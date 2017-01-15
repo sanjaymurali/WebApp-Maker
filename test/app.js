@@ -4,7 +4,7 @@ module.exports = function(app)
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
 
-    var connectionString = 'mongodb://sanjay:sanjay@ds161048.mlab.com:61048/webdev-spring17';
+    var connectionString = 'mongodb://127.0.0.1:27017/testmodel'; //Local connectionString
 
 
     if(process.env.MLAB_USERNAME) {
