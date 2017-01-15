@@ -13,6 +13,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Sanjay Murali <sanjaymurali@ccs.neu.edu>",
+  "contributors": [{
+    "name": "Jose G. Annunziato",
+    "email": "jannunzi@gmail.com"
+  }],
   "license": "ISC"
 }
