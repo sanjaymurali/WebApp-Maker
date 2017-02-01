@@ -1,5 +1,10 @@
+/*
+For varying font-size in different view ports
+idea from here: https://css-tricks.com/viewport-sized-typography/
+*/
+
 input.form-control {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 body {
@@ -11,14 +16,12 @@ a:hover{
     text-decoration: none;
 }
 
-/*
-For varying font-size in different view ports
-idea from here: https://css-tricks.com/viewport-sized-typography/
+
 
 h1{
     font-size: 7vh;
 }
-*/
+
 
 /* Navbar Styling */
 
@@ -39,6 +42,21 @@ h1{
 .navbar-default .navbar-brand a{
     color: white;
 }
+
+@media screen and (min-width: 768px) {
+    .navbar-fixed-bottom .pull-right {
+        position: absolute;
+        right: 1%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-fixed-bottom .pull-right {
+        position: absolute;
+        right: 1%;
+    }
+}
+
 
 /* List Group Styling */
 
