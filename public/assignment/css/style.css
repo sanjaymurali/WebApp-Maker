@@ -3,5 +3,45 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+/*
+For varying font-size in different view ports
+idea from here: https://css-tricks.com/viewport-sized-typography/
+
+h1{
+    font-size: 7vh;
+}
+*/
+
+/* Navbar Styling */
+
+.navbar-default {
+    background-color: #337ab7;
+}
+
+.navbar-default .navbar-text{
+    color: white;
+}
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-link {
+    color: white;
+}
+
+.navbar-default .navbar-brand a{
+    color: white;
+}
+
+/* List Group Styling */
+
+.list-group-item{
+    border: none;
 }
