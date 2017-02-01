@@ -16,8 +16,6 @@ a:hover{
     text-decoration: none;
 }
 
-
-
 h1{
     font-size: 7vh;
 }
@@ -43,6 +41,7 @@ h1{
     color: white;
 }
 
+
 @media screen and (min-width: 768px) {
     .navbar-fixed-bottom .pull-right {
         position: absolute;
@@ -63,3 +62,117 @@ h1{
 .list-group-item{
     border: none;
 }
+/* website-new styling */
+.left-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    overflow: auto;
+    border-right: #efefef solid 2px;
+}
+
+.navbar-left-pane {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: 10px;
+}
+
+
+.right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+}
+.navbar-right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+
+}
+
+.navbar-new-website{
+    color: white;
+    float: left;
+    height: 50px;
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.navbar_style .chevron-left{
+    position: absolute;
+}
+
+
+@media only screen and (min-device-width: 321px) and (max-device-width: 767px) and (orientation: landscape)  {
+    .page_style .hidden-xs {
+        display: block !important;
+    }
+
+
+    .page_style .col-xs-12{
+        width: 60%;
+    }
+
+    .navbar_style .col-xs-11{
+        width: 60%;
+    }
+
+    .page_style .col-sm-4{
+        width: 40%
+    }
+
+    .page_style .pull-right{
+        position: absolute;
+        right: 2%;
+
+
+    }
+
+    .navbar_style .plus_style{
+        position: absolute;
+        right: 10%;
+
+    }
+
+
+}
+
+
+
+
+@media only screen and (min-device-width: 768px) {
+
+    .navbar_style .pull-left{
+        position: absolute;
+    }
+
+    .navbar_style .navbar-left-pane{
+        margin-left: 40px;
+    }
+
+
+    .navbar_style .plus_style{
+        position: absolute;
+        right: 70px;
+
+    }
+}
+
+
+/* Styling for website-new ends here */
+
+
+
