@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
     <meta name="HandheldFriendly" content="true">
     <link href="../css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
@@ -21,14 +21,6 @@
             </a>
         </div>
 
-
-        <div class="navbar-text pull-right">
-            <a class="navbar-link" href="website-list.html">
-                <span class="glyphicon glyphicon-ok"></span>
-            </a>
-        </div>
-
-
         <div class="col-sm-4 hidden-xs navbar-left-pane">
 
             <div class="navbar-header">
@@ -44,6 +36,11 @@
             <div class="navbar-header">
 
                 <div class="navbar-new-website">New Website</div>
+                <div class="navbar-text pull-right">
+                    <a class="navbar-link" href="website-list.html">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -55,7 +52,7 @@
 
 
             <li class="list-group-item">
-                <a href="page-list.html">
+                <a href="../pages/page-list.html">
                     Address Book App
                 </a>
                 <a href="website-edit.html" class="pull-right">
@@ -63,7 +60,7 @@
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html">
+                <a href="../pages/page-list.html">
                     Blogger
                 </a>
                 <a href="website-edit.html" class="pull-right">
@@ -71,7 +68,7 @@
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html">
+                <a href="../pages/page-list.html">
                     Blogging App
                 </a>
                 <a href="website-edit.html" class="pull-right">
@@ -79,7 +76,7 @@
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="page-list.html">
+                <a href="../pages/page-list.html">
                     Secret testing App
                 </a>
                 <a href="website-edit.html" class="pull-right">
@@ -94,7 +91,7 @@
         <input class="form-control" id="name" placeholder="Website Name">
 
         <label for="description">Website Description</label>
-        <textarea rows="3" class="form-control" id="description" placeholder="Description"></textarea>
+        <textarea rows="4" class="form-control" id="description" placeholder="Description"></textarea>
     </div>
 </div>
 
@@ -103,15 +100,16 @@
     <div class="container-fluid">
 
         <div class="navbar-header">
-            <p class="navbar-brand pull-right navbar-link" href="../user/profile.html">
+            <a class="navbar-brand pull-right navbar-link" href="../user/profile.html">
 
                 <span class="glyphicon glyphicon-user"></span>
 
-            </p>
+            </a>
 
         </div>
     </div>
 </nav>
+
 
 </body>
 </html>
