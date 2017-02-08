@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="HandheldFriendly" content="true">
-    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
 
-    <title>New Page</title>
-</head>
-<body class="page_style">
+<div class="page_style">
 
 <nav class="navbar_style navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
+
 
         <div class="navbar-text pull-left">
             <a class="navbar-link" href="page-list.html">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
-
-
 
 
 
@@ -39,14 +27,13 @@
         <div class="col-xs-11 col-sm-8 navbar-right-pane">
             <div class="navbar-header">
 
-                <div class="navbar-new-website">New Page</div>
+                <div class="navbar-new-website">Edit Page</div>
                 <div class="navbar-text pull-right">
                     <a class="navbar-link" href="page-list.html">
                         <span class="glyphicon glyphicon-ok"></span>
                     </a>
                 </div>
             </div>
-
         </div>
 
     </div>
@@ -54,6 +41,8 @@
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs left-pane">
         <ul class="list-group">
+
+
             <li class="list-group-item">
                 <a href="page-list.html">
                     Blog Post
@@ -98,12 +87,15 @@
 
     </div>
     <div class="col-xs-12 col-sm-8 right-pane">
-        <label for="name">Page Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Page Name">
+        <form>
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Page Name" value="Blog Post">
 
-        <label for="title">Page Title</label>
-        <input type="text" class="form-control" id="title" placeholder="Page Title">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Page Title" value="Page Title here!">
 
+        <a class="btn btn-danger btn-block" href="page-list.html">Delete</a>
+        </form>
     </div>
 </div>
 
@@ -121,6 +113,4 @@
         </div>
     </div>
 </nav>
-
-</body>
-</html>
+</div>

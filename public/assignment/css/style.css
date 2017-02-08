@@ -2,7 +2,9 @@
 For varying font-size in different view ports
 idea from here: https://css-tricks.com/viewport-sized-typography/
 */
-
+.ng-cloak{
+    display: none !important; /* When The js files have been loaded yet and the page has finished rendering the angular braces appears as it is */
+}
 input.form-control {
     margin-bottom: 20px;
 }

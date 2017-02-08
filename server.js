@@ -12,4 +12,14 @@ require ("./test/app.js")(app);
 
 var port = process.env.PORT || 3000;
 
+/* Used to setup the client */
+app.use('/js', express.static(__dirname + '/public/assignment/js'));
+app.use('/css', express.static(__dirname + '/public/assignment/css'));
+
+
+app.all('/*', function (req, res, next) {
+    // Just send the index.html for other files to support HTML5Mode
+    res.sendFile('index.html', {root: 'public/assignment'});
+});
+
 app.listen(port);
