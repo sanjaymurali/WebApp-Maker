@@ -8,8 +8,6 @@
         var vm = this;
         var userId = $stateParams['uid'];
 
-        vm.navBarName = $state.current.data.pageName;
-
         vm.update = function (newUser) {
             var user = UserService.updateUser(userId, newUser);
             if(user == null) {

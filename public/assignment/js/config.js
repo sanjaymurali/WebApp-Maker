@@ -27,22 +27,9 @@
             })
             .state('profile', {
                 url: '/user/:uid',
-
-                views: {
-                    "": {
-                        templateUrl: 'views/user/templates/profile.view.client.html',
-                        controller: 'profileController',
-                        controllerAs: 'model'
-                    },
-                    "nav-common@profile": {
-                        templateUrl: 'views/components/nav.common.client.html',
-                        controller: 'profileController',
-                        controllerAs: 'model'
-                    }
-                },
-                data: {
-                    pageName: "Profile"
-                }
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'profileController',
+                controllerAs: 'model'
             }).state('website', {
                 url: '/user/:uid/website',
                 templateUrl: 'views/website/templates/website-list.view.client.html'
