@@ -9,9 +9,9 @@
 
     function PageService() {
         var pages = [
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem", "title": "Title 1" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem", "title": "Title 2" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem", "title": "Title 3" }
+            {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem", "title": "Title 1"},
+            {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem", "title": "Title 2"},
+            {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem", "title": "Title 3"}
         ];
         var api = {
             "createPage": createPage,
@@ -24,11 +24,13 @@
 
 
         function deletePage(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
+            for (var p in pages) {
+                if (pages[p]._id === pageId) {
                     pages.splice(p, 1);
+                    return pages;
                 }
             }
+            return null;
         }
 
         function createPage(websiteId, page) {
@@ -39,9 +41,9 @@
             return angular.copy(page);
         }
 
-        function updatePage(pageId,page){
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
+        function updatePage(pageId, page) {
+            for (var p in pages) {
+                if (pages[p]._id === pageId) {
                     pages[p].name = page.name;
                     pages[p].title = page.title;
                     return page;
@@ -52,8 +54,8 @@
 
         function findPageByWebsiteId(websiteId) {
             var combinedPages = [];
-            for(var p in pages) {
-                if(pages[p].websiteId === websiteId) {
+            for (var p in pages) {
+                if (pages[p].websiteId === websiteId) {
                     combinedPages.push(pages[p]);
                 }
             }
@@ -61,8 +63,8 @@
         }
 
         function findPageById(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id === pageId) {
+            for (var p in pages) {
+                if (pages[p]._id === pageId) {
                     return angular.copy(pages[p]);
                 }
             }

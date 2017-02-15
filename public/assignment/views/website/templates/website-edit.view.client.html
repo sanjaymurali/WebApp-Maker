@@ -52,12 +52,14 @@
 
     </div>
     <div class="col-xs-12 col-sm-8 right-pane">
-        <div class="alert alert-danger" ng-show="model.error">
-            {{model.error}}
+        <div class="alert alert-danger fade in" ng-show="model.error">
+            <a href="#" class="close" ng-click="model.alertOpenClose(model.error)">&times;</a>
+            {{model.errorMessage}}
         </div>
 
-        <div class="alert alert-success" ng-show="model.message">
-            {{model.message}}
+        <div class="alert alert-success fade in" ng-show="model.success">
+            <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
+            {{model.successMessage}}
         </div>
         <label for="name">Website Name</label>
         <input

@@ -1,84 +1,88 @@
 <div class="page_style">
 
-<nav class="navbar_style navbar navbar-fixed-top navbar-default">
-    <div class="container-fluid">
+    <nav class="navbar_style navbar navbar-fixed-top navbar-default">
+        <div class="container-fluid">
 
-        <div class="navbar-text pull-left">
-            <a class="navbar-link" ui-sref="website({uid:model.userId})">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-        </div>
-
-        <div class="col-sm-4 hidden-xs navbar-left-pane">
-
-            <div class="navbar-header">
-                <div class="navbar-new-website">Websites</div>
-
-                <a class="navbar-brand pull-right plus_style" ui-sref="website-new({uid: model.userId})">
-                    <span class="glyphicon glyphicon-plus"></span>
+            <div class="navbar-text pull-left">
+                <a class="navbar-link" ui-sref="website({uid:model.userId})">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
-        </div>
-        <div class="col-xs-11 col-sm-8 navbar-right-pane">
-            <div class="navbar-header">
+            <div class="col-sm-4 hidden-xs navbar-left-pane">
 
-                <div class="navbar-new-website">New Website</div>
-                <div class="navbar-text pull-right">
-                    <a class="navbar-link" ng-click="model.createWebsite(model.website)">
-                        <span class="glyphicon glyphicon-ok"></span>
+                <div class="navbar-header">
+                    <div class="navbar-new-website">Websites</div>
+
+                    <a class="navbar-brand pull-right plus_style" ui-sref="website-new({uid: model.userId})">
+                        <span class="glyphicon glyphicon-plus"></span>
                     </a>
                 </div>
+
             </div>
-        </div>
+            <div class="col-xs-11 col-sm-8 navbar-right-pane">
+                <div class="navbar-header">
 
-    </div>
-</nav>
-<div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs left-pane">
-        <ul class="list-group">
-
-            <li ng-repeat="website in model.websites track by $index" class="list-group-item">
-
-                <a ui-sref="page({uid: model.userId, wid: website._id})">
-                    {{website.name}}
-                </a>
-
-                        <a class="pull-right" ui-sref="website-edit({uid:model.userId,wid:website._id})">
-                            <span class="glyphicon glyphicon-cog"></span>
+                    <div class="navbar-new-website">New Website</div>
+                    <div class="navbar-text pull-right">
+                        <a class="navbar-link" ng-click="model.createWebsite(model.website)">
+                            <span class="glyphicon glyphicon-ok"></span>
                         </a>
+                    </div>
+                </div>
+            </div>
 
-            </li>
-        </ul>
-
-    </div>
-    <div class="col-xs-12 col-sm-8 right-pane">
-        <div class="alert alert-danger" ng-show="model.error">
-            {{model.error}}
         </div>
+    </nav>
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs left-pane">
+            <ul class="list-group">
 
-        <div class="alert alert-success" ng-show="model.message">
-            {{model.message}}
+                <li ng-repeat="website in model.websites track by $index" class="list-group-item">
+
+                    <a ui-sref="page({uid: model.userId, wid: website._id})">
+                        {{website.name}}
+                    </a>
+
+                    <a class="pull-right" ui-sref="website-edit({uid:model.userId,wid:website._id})">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+
+                </li>
+            </ul>
+
         </div>
-        <form>
-        <label for="name">Website Name</label>
-        <input
-                class="form-control"
-                id="name"
-                placeholder="Website Name"
-                ng-model="model.website.name">
+        <div class="col-xs-12 col-sm-8 right-pane">
 
-        <label for="description">Website Description</label>
-        <textarea rows="4"
-                  class="form-control"
-                  id="description"
-                  placeholder="Description"
-                  ng-model="model.website.description"></textarea>
-        <a class="btn btn-primary btn-block"
-               ng-click="model.createWebsite(model.website)">Create Website</a>
-        </form>
+            <div class="alert alert-danger fade in" ng-show="model.error">
+                <a href="#" class="close" ng-click="model.alertOpenClose(model.error)">&times;</a>
+                {{model.errorMessage}}
+            </div>
+
+            <div class="alert alert-success fade in" ng-show="model.success">
+                <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
+                {{model.successMessage}}
+            </div>
+
+            <form>
+                <label for="name">Website Name</label>
+                <input
+                        class="form-control"
+                        id="name"
+                        placeholder="Website Name"
+                        ng-model="model.website.name">
+
+                <label for="description">Website Description</label>
+                <textarea rows="4"
+                          class="form-control"
+                          id="description"
+                          placeholder="Description"
+                          ng-model="model.website.description"></textarea>
+                <a class="btn btn-primary btn-block"
+                   ng-click="model.createWebsite(model.website)">Create Website</a>
+            </form>
+        </div>
     </div>
-</div>
 
 
     <nav-footer-common
