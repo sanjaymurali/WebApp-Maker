@@ -64,13 +64,18 @@
                 controllerAs: 'model'
             }).state('widget', {
                 url: '/user/:uid/website/:wid/page/:pid/widget',
-                templateUrl: 'views/widget/templates/widget-list.view.client.html'
+                templateUrl: 'views/widget/templates/widget-list.view.client.html',
+                controller: 'WidgetListController',
+                controllerAs: 'model'
             }).state('widget-new', {
                 url: '/user/:uid/website/:wid/page/:pid/widget/new',
                 templateUrl: 'views/widget/templates/widget-choose.view.client.html'
+
             }).state('widget-edit', {
                 url: '/user/:uid/website/:wid/page/:pid/widget/:wgid',
-                templateUrl: 'views/widget/templates/widget-edit.view.client.html'
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+                controller: 'WidgetEditController',
+                controllerAs: 'model'
             });
 
         $urlRouterProvider.otherwise('/login');

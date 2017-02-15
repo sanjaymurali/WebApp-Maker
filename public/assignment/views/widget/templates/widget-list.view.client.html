@@ -1,88 +1,50 @@
 <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="widget-choose.html">
+            <a class="navbar-link" ui-sref="widget-new({uid: model.userId, wid: model.websiteId, pid: model.pageId})">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="../page/page-list.html">
+            <a class="navbar-link" ui-sref="page({uid: model.userId, wid: model.websiteId})">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Widgets</a>
+            <div class="navbar-new-website">Widgets</div>
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-    <div>
-        <div class="jga-toolbar">
-            <a>
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h1>GIZMODO</h1>
-    </div>
-    <div>
-        <div class="jga-toolbar">
-            <a href="widget-heading.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <h3>New Measurements of the Universe Expanding Tell a Confusing Story</h3>
 
-    </div>
-    <div>
+    <div ng-repeat="widget in model.widgets">
         <div class="jga-toolbar">
-            <a href="widget-image.html">
+            <a ui-sref="widget-edit({uid: model.userId, wid: model.websiteId, pid: model.pageId, wgid: widget._id})">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <img width="100%" src="https://i.kinja-img.com/gawker-media/image/upload/s--UE7cu6DV--/c_scale,fl_progressive,q_80,w_800/xoo0evqxzxrrmrn4ayoq.jpg">
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADER">
+                <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <ng-include src="'views/widget/templates/widget-IMAGE.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="HTML">
+                <ng-include src="'views/widget/templates/widget-HTML.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <ng-include src="'views/widget/templates/widget-YOUTUBE.view.client.html'"></ng-include>
+            </div>
+        </div>
     </div>
-    <div>
-        <div class="jga-toolbar">
-            <a>
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
 
-        <p>At the Environmental Protection Agency, it’s typical for an incoming administration to implement a realignment of sorts—with some grants or contracts, for instance, being frozen temporarily—but a decision by President Donald Trump’s staff to <a href="http://www.latimes.com/politics/washington/la-na-trailguide-updates-trump-administration-orders-media-1485281190-htmlstory.html" target="_blank" rel="noopener">order a total media blackout</a>, as well as ban any new spending, has left some employees rattled. <br></p>    </div>
-    <div>
-        <div class="jga-toolbar">
-            <a href="widget-youtube.html">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <iframe width="100%" height="300px" src="https://www.youtube.com/embed/gzmpl6783Hs" frameborder="0" allowfullscreen></iframe>    </div>
+
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-
-                <a class="navbar-brand pull-left navbar-link" href="#">
-                    <span class="glyphicon glyphicon-play"></span>
-                </a>
-
-            <a class="navbar-brand pull-left navbar-link" href="#">
-                <span class="glyphicon glyphicon-eye-open"></span>
-            </a>
-            <a class="navbar-brand pull-right navbar-link" href="../user/profile.html">
-
-                <span class="glyphicon glyphicon-user"></span>
-
-            </a>
-
-        </div>
-    </div>
-</nav>
+<nav-footer-common
+        uid="{{model.userId}}">
+</nav-footer-common>
