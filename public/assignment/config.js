@@ -23,7 +23,9 @@
             })
             .state('register', {
                 url: '/register',
-                templateUrl: 'views/user/templates/register.view.client.html'
+                templateUrl: 'views/user/templates/register.view.client.html',
+                controller: 'registerController',
+                controllerAs: 'model'
             })
             .state('profile', {
                 url: '/user/:uid',
@@ -32,13 +34,19 @@
                 controllerAs: 'model'
             }).state('website', {
                 url: '/user/:uid/website',
-                templateUrl: 'views/website/templates/website-list.view.client.html'
+                templateUrl: 'views/website/templates/website-list.view.client.html',
+                controller: 'WebsiteListController',
+                controllerAs: 'model'
             }).state('website-new', {
                 url: '/user/:uid/website/new',
-                templateUrl: 'views/website/templates/website-new.view.client.html'
+                templateUrl: 'views/website/templates/website-new.view.client.html',
+                controller: 'WebsiteNewController',
+                controllerAs: 'model'
             }).state('website-edit', {
                 url: '/user/:uid/website/:wid',
-                templateUrl: 'views/website/templates/website-edit.view.client.html'
+                templateUrl: 'views/website/templates/website-edit.view.client.html',
+                controller: 'WebsiteEditController',
+                controllerAs: 'model'
             }).state('page', {
                 url: '/user/:uid/website/:wid/page',
                 templateUrl: 'views/page/templates/page-list.view.client.html'

@@ -1,8 +1,16 @@
-<nav-header-common
-        pagename="Profile"
-        statename="profile"
-        uid="model.user._id">
-</nav-header-common>
+<nav class="navbar navbar-fixed-top navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a class="navbar-link" ng-click="model.update(model.user)">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <div class="navbar-new-website navbar-new-website-profile">Profile</div>
+        </div>
+    </div>
+</nav>
+
 
 <div class="container-fluid">
     <h1>Profile</h1>
@@ -54,9 +62,12 @@
         Update
     </a>
 
-    <a class="btn btn-danger btn-block" href="#/login">
+    <a class="btn btn-danger btn-block" ui-sref="login">
         Logout
     </a>
 </div>
 
 
+<nav-footer-common
+        uid="{{model.user._id}}">
+</nav-footer-common>

@@ -1,5 +1,8 @@
-
         <h1>Login</h1>
+        <div class="alert alert-danger" ng-show="model.error">
+            {{model.error}}
+        </div>
+
     <form>
         <label for="Username">Username</label>
         <input  id="Username"

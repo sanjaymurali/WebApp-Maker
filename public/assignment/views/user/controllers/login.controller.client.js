@@ -11,14 +11,12 @@
         var vm = this;
         vm.login = login;
 
-
-
         function login(user) {
             var loginUser = UserService.findUserByCredentials(user.username, user.password);
             if(loginUser != null) {
                 $state.go('profile',{uid: loginUser._id});
             } else {
-                vm.error = 'user not found';
+                vm.error = 'User not found';
             }
         }
     }

@@ -1,12 +1,12 @@
 <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="website-new.html">
+            <a class="navbar-link" ui-sref="website-new({uid: model.userId})">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="../user/profile.html">
+            <a class="navbar-link" ui-sref="profile({uid: model.userId})">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -15,73 +15,51 @@
         </div>
     </div>
 </nav>
+
 <div class="container-fluid">
 
+
     <ul class="list-group">
-
-
         <li class="list-group-item">
-            <a href="../page/page-list.html">
-                Address Book App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+            <div class="row">
+                <div class="col-xs-5 col-sm-6">
+                    Name
+                    <span class="glyphicon glyphicon-triangle-top"></span>
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    Last Modified
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    Owner
+                </div>
+                <div class="col-xs-7 col-sm-1">
+                    <a ui-sref="website-new({uid: model.userId})" class="pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
         </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">
-               Blogger
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">
-                Blogging App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">
-                Secret testing App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">
-                Facebook
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../page/page-list.html">
-                LinkedIn
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
+        <li ng-repeat="website in model.websites track by $index" class="list-group-item">
+            <div class="row">
+                <div class="col-xs-5 col-sm-6">
+                    {{website.name}}
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    {{website.created | date}}
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    {{website.developerId}}
+                </div>
+                <div class="col-xs-7 col-sm-1">
+                    <a ui-sref="website-edit({uid:model.userId,wid:website._id})">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
         </li>
     </ul>
-
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <a class="navbar-brand pull-right navbar-link" href="../user/profile.html">
-
-                <span class="glyphicon glyphicon-user"></span>
-
-            </a>
-
-        </div>
-    </div>
-</nav>
+<nav-footer-common
+        uid="{{model.userId}}">
+</nav-footer-common>
