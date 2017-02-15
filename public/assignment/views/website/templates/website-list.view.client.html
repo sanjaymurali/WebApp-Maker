@@ -42,7 +42,9 @@
         <li ng-repeat="website in model.websites track by $index" class="list-group-item">
             <div class="row">
                 <div class="col-xs-5 col-sm-6">
-                    {{website.name}}
+                    <a ui-sref="page({uid: model.userId, wid: website._id})">
+                        {{website.name}}
+                    </a>
                 </div>
                 <div class="col-sm-3 hidden-xs">
                     {{website.created | date}}

@@ -49,13 +49,19 @@
                 controllerAs: 'model'
             }).state('page', {
                 url: '/user/:uid/website/:wid/page',
-                templateUrl: 'views/page/templates/page-list.view.client.html'
+                templateUrl: 'views/page/templates/page-list.view.client.html',
+                controller: 'PageListController',
+                controllerAs: 'model'
             }).state('page-new', {
                 url: '/user/:uid/website/:wid/page/new',
-                templateUrl: "views/page/templates/page-new.view.client.html"
-            }).state('page-dit', {
+                templateUrl: "views/page/templates/page-new.view.client.html",
+                controller: 'PageNewController',
+                controllerAs: 'model'
+            }).state('page-edit', {
                 url: '/user/:uid/website/:wid/page/:pid',
-                templateUrl: 'views/page/templates/page-edit.view.client.html'
+                templateUrl: 'views/page/templates/page-edit.view.client.html',
+                controller: 'PageEditController',
+                controllerAs: 'model'
             }).state('widget', {
                 url: '/user/:uid/website/:wid/page/:pid/widget',
                 templateUrl: 'views/widget/templates/widget-list.view.client.html'

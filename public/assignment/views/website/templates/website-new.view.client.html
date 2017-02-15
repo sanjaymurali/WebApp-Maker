@@ -40,7 +40,9 @@
 
             <li ng-repeat="website in model.websites track by $index" class="list-group-item">
 
-                        {{website.name}}
+                <a ui-sref="page({uid: model.userId, wid: website._id})">
+                    {{website.name}}
+                </a>
 
                         <a class="pull-right" ui-sref="website-edit({uid:model.userId,wid:website._id})">
                             <span class="glyphicon glyphicon-cog"></span>

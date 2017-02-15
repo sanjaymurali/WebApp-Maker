@@ -39,7 +39,9 @@
         <div class="col-sm-4 hidden-xs left-pane">
             <ul class="list-group">
                 <li ng-repeat="website in model.websites track by $index" class="list-group-item">
+                    <a ui-sref="page({uid: model.userId, wid: website._id})">
                     {{website.name}}
+                    </a>
 
                     <a ui-sref="website-edit({uid:model.userId,wid:website._id})">
                         <span class="glyphicon glyphicon-cog pull-right"></span>

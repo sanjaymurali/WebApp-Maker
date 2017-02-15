@@ -1,17 +1,17 @@
 <nav class="navbar navbar-fixed-top navbar-default">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="page-new.html">
+            <a class="navbar-link" ui-sref="page-new({uid: model.userId, wid: model.websiteId})">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="../website/website-list.html">
+            <a class="navbar-link" ui-sref="website({uid: model.userId})">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Pages</a>
+            <div class="navbar-new-website">Pages</div>
         </div>
     </div>
 </nav>
@@ -20,76 +20,19 @@
     <ul class="list-group">
 
 
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                Blog Post
+        <li ng-repeat="page in model.pages track by $index" class="list-group-item">
+            <a>
+                {{page.name}}
             </a>
-            <a href="page-edit.html" class="pull-right">
+            <a ui-sref="page-edit({uid: model.userId, wid: model.websiteId, pid: page._id})" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                Blogs
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                Home
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                About
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                Contact Us
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                Facebook Page
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item">
-            <a href="../widget/widget-list.html">
-                LinkedIn Page
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
+
     </ul>
 
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-
-        <div class="navbar-header">
-            <a class="navbar-brand pull-right navbar-link" href="../user/profile.html">
-
-                <span class="glyphicon glyphicon-user"></span>
-
-            </a>
-
-        </div>
-    </div>
-</nav>
+<nav-footer-common
+        uid="{{model.userId}}">
+</nav-footer-common>
