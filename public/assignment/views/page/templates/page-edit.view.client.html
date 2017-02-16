@@ -42,7 +42,7 @@
             <ul class="list-group">
 
                 <li ng-repeat="page in model.pages track by $index" class="list-group-item">
-                    <a>
+                    <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: page._id})">
                         {{page.name}}
                     </a>
                     <a ui-sref="page-edit({uid: model.userId, wid: model.websiteId, pid: page._id})" class="pull-right">
