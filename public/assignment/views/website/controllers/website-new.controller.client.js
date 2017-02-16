@@ -1,46 +1,54 @@
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("WebsiteNewController", WebsiteNewController);
 
     function WebsiteNewController($stateParams, WebsiteService, helperService) {
         var vm = this;
-        vm.userId = $stateParams['uid'];
+
 
         function init() {
+            vm.userId = $stateParams['uid'];
+
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
             vm.createWebsite = createWebsite;
-            vm.alertOpenClose = alertOpenClose;
             vm.website = null;
+
+            vm.alertOpenClose = alertOpenClose;
             vm.error = false;
             vm.success = false;
         }
+
         init();
 
-        function createWebsite (website) {
+        function createWebsite(website) {
             cleanUpAlerts();
-            if(vm.website){
+            if (vm.website) {
                 var addNew = WebsiteService.createWebsite(vm.userId, website);
 
-                if(addNew != null){
+                if (addNew != null) {
                     vm.websites.push(addNew);
                     vm.success = true;
                     vm.successMessage = "Successfully Created new website!";
                     vm.website = null;
                 }
+                else {
+                    vm.error = true;
+                    vm.errorMessage = "There was an error in Creating the Website";
+                }
             }
-            else{
+            else {
                 vm.error = true;
                 vm.errorMessage = "There was an error in Creating the Website";
             }
         }
 
-        function alertOpenClose (successOrError) {
+        function alertOpenClose(successOrError) {
             vm.success = helperService.alertOpenClose(successOrError);
             vm.error = helperService.alertOpenClose(successOrError);
         }
 
-        function cleanUpAlerts () {
+        function cleanUpAlerts() {
             vm.success = false;
             vm.error = false;
         }

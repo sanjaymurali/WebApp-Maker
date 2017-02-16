@@ -33,57 +33,57 @@
                 controller: 'profileController',
                 controllerAs: 'model'
             }).state('website', {
-                url: '/user/:uid/website',
-                templateUrl: 'views/website/templates/website-list.view.client.html',
-                controller: 'WebsiteListController',
-                controllerAs: 'model'
-            }).state('website-new', {
-                url: '/user/:uid/website/new',
-                templateUrl: 'views/website/templates/website-new.view.client.html',
-                controller: 'WebsiteNewController',
-                controllerAs: 'model'
-            }).state('website-edit', {
-                url: '/user/:uid/website/:wid',
-                templateUrl: 'views/website/templates/website-edit.view.client.html',
-                controller: 'WebsiteEditController',
-                controllerAs: 'model'
-            }).state('page', {
-                url: '/user/:uid/website/:wid/page',
-                templateUrl: 'views/page/templates/page-list.view.client.html',
-                controller: 'PageListController',
-                controllerAs: 'model'
-            }).state('page-new', {
-                url: '/user/:uid/website/:wid/page/new',
-                templateUrl: "views/page/templates/page-new.view.client.html",
-                controller: 'PageNewController',
-                controllerAs: 'model'
-            }).state('page-edit', {
-                url: '/user/:uid/website/:wid/page/:pid',
-                templateUrl: 'views/page/templates/page-edit.view.client.html',
-                controller: 'PageEditController',
-                controllerAs: 'model'
-            }).state('widget', {
-                url: '/user/:uid/website/:wid/page/:pid/widget',
-                templateUrl: 'views/widget/templates/widget-list.view.client.html',
-                controller: 'WidgetListController',
-                controllerAs: 'model'
-            }).state('widget-new', {
-                url: '/user/:uid/website/:wid/page/:pid/widget/new',
-                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
-                controller: 'WidgetNewController',
-                controllerAs: 'model'
+            url: '/user/:uid/website',
+            templateUrl: 'views/website/templates/website-list.view.client.html',
+            controller: 'WebsiteListController',
+            controllerAs: 'model'
+        }).state('website-new', {
+            url: '/user/:uid/website/new',
+            templateUrl: 'views/website/templates/website-new.view.client.html',
+            controller: 'WebsiteNewController',
+            controllerAs: 'model'
+        }).state('website-edit', {
+            url: '/user/:uid/website/:wid',
+            templateUrl: 'views/website/templates/website-edit.view.client.html',
+            controller: 'WebsiteEditController',
+            controllerAs: 'model'
+        }).state('page', {
+            url: '/user/:uid/website/:wid/page',
+            templateUrl: 'views/page/templates/page-list.view.client.html',
+            controller: 'PageListController',
+            controllerAs: 'model'
+        }).state('page-new', {
+            url: '/user/:uid/website/:wid/page/new',
+            templateUrl: "views/page/templates/page-new.view.client.html",
+            controller: 'PageNewController',
+            controllerAs: 'model'
+        }).state('page-edit', {
+            url: '/user/:uid/website/:wid/page/:pid',
+            templateUrl: 'views/page/templates/page-edit.view.client.html',
+            controller: 'PageEditController',
+            controllerAs: 'model'
+        }).state('widget', {
+            url: '/user/:uid/website/:wid/page/:pid/widget',
+            templateUrl: 'views/widget/templates/widget-list.view.client.html',
+            controller: 'WidgetListController',
+            controllerAs: 'model'
+        }).state('widget-new', {
+            url: '/user/:uid/website/:wid/page/:pid/widget/new',
+            templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+            controller: 'WidgetNewController',
+            controllerAs: 'model'
 
-            }).state('widget-new-specific', {
-                url: '/user/:uid/website/:wid/page/:pid/widget/new/:specific',
-                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
-                controller: 'WidgetNewController',
-                controllerAs: 'model'
-            }).state('widget-edit', {
-                url: '/user/:uid/website/:wid/page/:pid/widget/:wgid',
-                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
-                controller: 'WidgetEditController',
-                controllerAs: 'model'
-            });
+        }).state('widget-new-specific', {
+            url: '/user/:uid/website/:wid/page/:pid/widget/new/:specific',
+            templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+            controller: 'WidgetNewController',
+            controllerAs: 'model'
+        }).state('widget-edit', {
+            url: '/user/:uid/website/:wid/page/:pid/widget/:wgid',
+            templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+            controller: 'WidgetEditController',
+            controllerAs: 'model'
+        });
 
         $urlRouterProvider.otherwise('/login');
     }

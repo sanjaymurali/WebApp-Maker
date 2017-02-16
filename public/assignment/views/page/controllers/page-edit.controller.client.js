@@ -1,4 +1,4 @@
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("PageEditController", PageEditController);
@@ -6,37 +6,41 @@
     function PageEditController($stateParams, $state, PageService, helperService) {
         var vm = this;
 
+
         function init() {
             vm.userId = $stateParams['uid'];
             vm.websiteId = $stateParams['wid'];
             vm.pageId = $stateParams['pid'];
+
             vm.deletePage = deletePage;
             vm.updatePage = updatePage;
-            vm.alertOpenClose = alertOpenClose;
             vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
             vm.page = PageService.findPageById(vm.pageId);
+
+            vm.alertOpenClose = alertOpenClose;
             vm.success = false;
             vm.error = false;
         }
+
         init();
 
-        function deletePage () {
+        function deletePage() {
             cleanUpAlerts();
             PageService.deletePage(vm.pageId);
             vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
 
-            if(vm.pages.length == 0){
+            if (vm.pages.length == 0) {
                 $state.go('page-new', {uid: vm.userId, wid: vm.websiteId});
             }
             else
-                $state.go('page-edit', {uid:vm.userId,wid:vm.websiteId, pid: vm.pages[0]._id});
+                $state.go('page-edit', {uid: vm.userId, wid: vm.websiteId, pid: vm.pages[0]._id});
         }
 
-        function updatePage () {
+        function updatePage() {
             cleanUpAlerts();
-            var udpatedPage = PageService.updatePage(vm.pageId,vm.page);
+            var udpatedPage = PageService.updatePage(vm.pageId, vm.page);
 
-            if(udpatedPage == null) {
+            if (udpatedPage == null) {
                 vm.error = true;
                 vm.errorMessage = "Unable to update page";
             } else {
@@ -45,12 +49,12 @@
             }
         }
 
-        function alertOpenClose (successOrError) {
+        function alertOpenClose(successOrError) {
             vm.success = helperService.alertOpenClose(successOrError);
             vm.error = helperService.alertOpenClose(successOrError);
         }
 
-        function cleanUpAlerts () {
+        function cleanUpAlerts() {
             vm.success = false;
             vm.error = false;
         }

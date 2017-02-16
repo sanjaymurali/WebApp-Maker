@@ -61,7 +61,9 @@
 
             <div class="alert alert-success fade in" ng-show="model.success">
                 <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
-                {{model.successMessage}}
+                {{model.successMessage}}<br/>
+                Click <a ui-sref="website({uid: model.userId, wid: model.website._id})">here</a> to view your Website
+                List Page
             </div>
 
             <form>

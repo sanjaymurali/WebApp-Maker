@@ -35,8 +35,8 @@
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
-            page._id = (new Date()).getTime() + "";
-
+            page._id = (new Date()).getTime() + ""; //Attached with String to make it a String
+            //Check return from DB in assignment4
             pages.push(page);
             return angular.copy(page);
         }

@@ -12,7 +12,7 @@
 </nav>
 
 <ul class="list-inline">
-    <li  ng-repeat="widgetType in model.widgetTypes">
+    <li ng-repeat="widgetType in model.widgetTypes">
         <a ui-sref="widget-new-specific({uid: model.userId, wid: model.websiteId, pid: model.pageId, specific: widgetType})">{{widgetType}}</a>
     </li>
 </ul>
@@ -20,9 +20,9 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <div ng-show="model.showOptions">Please choose one of the above widgets</div>
-<div class="container-fluid"
-     ng-include="model.getCreatorTemplateUrl(model.widgetTypeSelected)">
-</div>
+        <div class="container-fluid"
+             ng-include="model.getCreatorTemplateUrl(model.widgetTypeSelected)">
+        </div>
     </div>
 </div>
 

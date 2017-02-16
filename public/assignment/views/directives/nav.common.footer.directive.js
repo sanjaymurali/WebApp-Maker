@@ -2,14 +2,14 @@
  * Created by sanjaymurali on 2/13/17.
  */
 
-(function(){
+(function () {
     var WebAppMakerModule = angular.module('WebAppMaker');
 
 
     WebAppMakerModule.directive('navFooterCommon', commonfooter);
 
     function commonfooter() {
-        return{
+        return {
             scope: scope,
             link: linkfn,
             templateUrl: 'views/directives/templates/nav.footer.common.client.html'
@@ -20,7 +20,7 @@
         userid: '@uid'
     };
 
-    function linkfn(scope,element){
+    function linkfn(scope, element) {
 
         scope.userid = element.attr('uid');
 

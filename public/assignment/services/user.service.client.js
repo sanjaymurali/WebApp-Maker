@@ -73,7 +73,6 @@
             //Adding a id using the milliseconds property on Date.
             //This is a hack to generate as many new ids as possible
             user._id = (new Date()).getTime() + "";
-            ;
             delete user['verifyPassword'];
             users.push(user);
 

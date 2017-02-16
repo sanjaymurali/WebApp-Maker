@@ -1,5 +1,4 @@
-module.exports = function(app)
-{
+module.exports = function (app) {
     app.get("/api/test", findAllMessages);
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
@@ -7,7 +6,7 @@ module.exports = function(app)
     var connectionString = 'mongodb://127.0.0.1:27017/test'; //Local connectionString
 
 
-    if(process.env.MLAB_USERNAME) {
+    if (process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
             process.env.MLAB_PASSWORD + "@" +
             process.env.MLAB_HOST + ':' +
@@ -28,10 +27,10 @@ module.exports = function(app)
         TestModel
             .find()
             .then(
-                function(tests) {
+                function (tests) {
                     res.json(tests);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 }
             );
@@ -41,10 +40,10 @@ module.exports = function(app)
         TestModel
             .create(req.body)
             .then(
-                function(test) {
+                function (test) {
                     res.json(test);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 }
             );
@@ -54,10 +53,10 @@ module.exports = function(app)
         TestModel
             .remove({_id: req.params.id})
             .then(
-                function(result) {
+                function (result) {
                     res.json(result);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 }
             );

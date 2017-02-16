@@ -1,4 +1,3 @@
-
 <div class="page_style">
 
     <nav class="navbar_style navbar navbar-fixed-top navbar-default">
@@ -40,52 +39,54 @@
             <ul class="list-group">
                 <li ng-repeat="website in model.websites track by $index" class="list-group-item">
                     <a ui-sref="page({uid: model.userId, wid: website._id})">
-                    {{website.name}}
+                        {{website.name}}
                     </a>
 
                     <a ui-sref="website-edit({uid:model.userId,wid:website._id})">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
 
-        </li>
-        </ul>
+                </li>
+            </ul>
 
-    </div>
-    <div class="col-xs-12 col-sm-8 right-pane">
-        <div class="alert alert-danger fade in" ng-show="model.error">
-            <a href="#" class="close" ng-click="model.alertOpenClose(model.error)">&times;</a>
-            {{model.errorMessage}}
         </div>
+        <div class="col-xs-12 col-sm-8 right-pane">
+            <div class="alert alert-danger fade in" ng-show="model.error">
+                <a href="#" class="close" ng-click="model.alertOpenClose(model.error)">&times;</a>
+                {{model.errorMessage}}
+            </div>
 
-        <div class="alert alert-success fade in" ng-show="model.success">
-            <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
-            {{model.successMessage}}
+            <div class="alert alert-success fade in" ng-show="model.success">
+                <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
+                {{model.successMessage}}<br/>
+                Click <a ui-sref="website({uid: model.userId, wid: model.website._id})">here</a> to view your Website
+                List Page
+            </div>
+            <label for="name">Website Name</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Website Name"
+                    value="{{model.website.name}}"
+                    ng-model="model.website.name">
+
+            <label for="description">Website Description</label>
+            <textarea
+                    rows="3"
+                    class="form-control"
+                    id="description"
+                    placeholder="Description"
+                    ng-model="model.website.description">{{model.website.description}}</textarea>
+
+            <a class="btn btn-block btn-primary" ng-click="model.updateWebsite()">Update</a>
+            <a class="btn btn-block btn-danger" ng-click="model.deleteWebsite()">Delete</a>
         </div>
-        <label for="name">Website Name</label>
-        <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Website Name"
-                value="{{model.website.name}}"
-                ng-model="model.website.name">
-
-        <label for="description">Website Description</label>
-        <textarea
-                rows="3"
-                class="form-control"
-                id="description"
-                placeholder="Description"
-                ng-model="model.website.description">{{model.website.description}}</textarea>
-
-        <a class="btn btn-block btn-primary" ng-click="model.updateWebsite()">Update</a>
-        <a class="btn btn-block btn-danger" ng-click="model.deleteWebsite()">Delete</a>
     </div>
-</div>
 
 
-<nav-footer-common
-        uid="{{model.userId}}">
-</nav-footer-common>
+    <nav-footer-common
+            uid="{{model.userId}}">
+    </nav-footer-common>
 
 </div>

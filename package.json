@@ -14,9 +14,11 @@
     "start": "node server.js"
   },
   "author": "Sanjay Murali <sanjaymurali@ccs.neu.edu>",
-  "contributors": [{
-    "name": "Jose G. Annunziato",
-    "email": "jannunzi@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Jose G. Annunziato",
+      "email": "jannunzi@gmail.com"
+    }
+  ],
   "license": "ISC"
 }

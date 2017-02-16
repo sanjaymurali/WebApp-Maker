@@ -1,25 +1,25 @@
-        <h1>Login</h1>
-        <div class="alert alert-danger" ng-show="model.error">
-            {{model.error}}
-        </div>
+<h1>Login</h1>
+<div class="alert alert-danger" ng-show="model.error">
+    {{model.error}}
+</div>
 
-    <form>
-        <label for="Username">Username</label>
-        <input  id="Username"
-                type="text"
-                class="form-control"
-                placeholder="Username"
-                ng-model="user.username"/>
+<form>
+    <label for="Username">Username</label>
+    <input id="Username"
+           type="text"
+           class="form-control"
+           placeholder="Username"
+           ng-model="user.username"/>
 
-        <label for="Password">Password</label>
-        <input  id="Password"
-                type="password"
-                class="form-control"
-                placeholder="Password"
-                ng-model="user.password"/>
+    <label for="Password">Password</label>
+    <input id="Password"
+           type="password"
+           class="form-control"
+           placeholder="Password"
+           ng-model="user.password"/>
 
-        <a class="btn btn-primary btn-block"
-           ng-click="model.login(user)">Login</a>
-        <a class="btn btn-success btn-block"
-           ui-sref="register">Register</a>
-    </form>
+    <a class="btn btn-primary btn-block"
+       ng-click="model.login(user)">Login</a>
+    <a class="btn btn-success btn-block"
+       ui-sref="register">Register</a>
+</form>

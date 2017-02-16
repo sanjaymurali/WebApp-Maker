@@ -2,9 +2,10 @@
 For varying font-size in different view ports
 idea from here: https://css-tricks.com/viewport-sized-typography/
 */
-.ng-cloak{
+.ng-cloak {
     display: none !important; /* When The js files have been loaded yet and the page has finished rendering the angular braces appears as it is */
 }
+
 input.form-control {
     margin-bottom: 20px;
 }
@@ -22,18 +23,17 @@ body {
     padding-bottom: 60px;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
-a:visited, a:active, a:link{
+a:visited, a:active, a:link {
     text-decoration: none;
 }
 
-h1{
+h1 {
     font-size: 7vh;
 }
-
 
 /* Navbar Styling */
 
@@ -41,20 +41,21 @@ h1{
     background-color: #337ab7;
 }
 
-.navbar-default .navbar-text{
+.navbar-default .navbar-text {
     color: white;
 }
+
 .navbar-default .navbar-brand {
     color: white;
 }
+
 .navbar-default .navbar-link {
     color: white;
 }
 
-.navbar-default .navbar-brand a{
+.navbar-default .navbar-brand a {
     color: white;
 }
-
 
 @media screen and (min-width: 768px) {
     .navbar-fixed-bottom .pull-right {
@@ -70,12 +71,12 @@ h1{
     }
 }
 
-
 /* List Group Styling */
 
-.list-group-item{
+.list-group-item {
     border: none;
 }
+
 /* website-new styling */
 .left-pane {
     position: absolute;
@@ -95,7 +96,6 @@ h1{
     margin-left: 10px;
 }
 
-
 .right-pane {
     position: absolute;
     top: 0px;
@@ -110,16 +110,14 @@ h1{
 }
 
 .navbar-right-pane {
-   position: absolute;
+    position: absolute;
     top: 0px;
     right: 0;
     bottom: 0px;
 
 }
 
-
-
-.navbar-new-website{
+.navbar-new-website {
     color: white;
     float: left;
     height: 50px;
@@ -128,41 +126,39 @@ h1{
     line-height: 20px;
 }
 
-.navbar-new-website-profile{
+.navbar-new-website-profile {
     padding-left: 30px;
 }
 
-
-
-@media only screen and (min-device-width: 320px) and (max-device-width: 767px) and (orientation: landscape)  {
+@media only screen and (min-device-width: 320px) and (max-device-width: 767px) and (orientation: landscape) {
     .page_style .hidden-xs {
         display: block !important;
     }
 
-
-    .page_style .col-xs-12{
+    .page_style .col-xs-12 {
         width: 60%;
     }
 
-    .navbar_style .col-xs-11{
+    .navbar_style .col-xs-11 {
         width: 60%;
     }
 
-    .page_style .col-sm-4{
+    .page_style .col-sm-4 {
         width: 40%
     }
 
-    .page_style .pull-right{
+    .page_style .pull-right {
         position: absolute;
         right: 2%;
     }
 
-    .navbar_style .plus_style{
+    .navbar_style .plus_style {
         position: absolute;
         right: 12px;
 
     }
-    .navbar-right-pane .pull-right{
+
+    .navbar-right-pane .pull-right {
         position: absolute;
         top: 0px;
         right: 5%;
@@ -171,30 +167,27 @@ h1{
     }
 }
 
-
-
-
 @media only screen and (min-device-width: 768px) {
 
-    .navbar_style .pull-left{
+    .navbar_style .pull-left {
         position: absolute;
     }
 
-    .navbar_style .navbar-left-pane{
-        margin-left: 40px;
-    }
-    .navbar_style .navbar-right-pane{
+    .navbar_style .navbar-left-pane {
         margin-left: 40px;
     }
 
-    .navbar_style .plus_style{
+    .navbar_style .navbar-right-pane {
+        margin-left: 40px;
+    }
+
+    .navbar_style .plus_style {
         position: absolute;
         right: 50px;
 
     }
 
-
-    .navbar-right-pane .pull-right{
+    .navbar-right-pane .pull-right {
         position: absolute;
         top: 0px;
         right: 2%;
@@ -203,7 +196,6 @@ h1{
     }
 
 }
-
 
 /* Styling for website-new ends here */
 

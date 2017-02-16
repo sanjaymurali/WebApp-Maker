@@ -1,4 +1,4 @@
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("WidgetEditController", WidgetEditController);
@@ -11,28 +11,30 @@
             vm.websiteId = $stateParams['wid'];
             vm.pageId = $stateParams['pid'];
             vm.widgetId = $stateParams['wgid'];
+
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
             vm.getEditorTemplateUrl = getEditorTemplateUrl;
             vm.updateWidget = updateWidget;
             vm.deleteWidget = deleteWidget;
+
             vm.headerSizes = WidgetService.headerSizes;
 
             vm.alertOpenClose = alertOpenClose;
             vm.success = false;
             vm.error = false;
         }
+
         init();
 
         function getEditorTemplateUrl(type) {
-            return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
+            return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
         }
 
-        function updateWidget () {
+        function updateWidget() {
             cleanUpAlerts();
             var updatedWidget = WidgetService.updateWidget(vm.widgetId, vm.widget);
 
-
-            if(updatedWidget == null) {
+            if (updatedWidget == null) {
                 vm.error = true;
                 vm.errorMessage = "Unable to update widget";
             } else {
@@ -42,11 +44,11 @@
 
         }
 
-        function deleteWidget () {
+        function deleteWidget() {
             cleanUpAlerts();
             var deletedWidget = WidgetService.deleteWidget(vm.widgetId);
 
-            if(deletedWidget == null) {
+            if (deletedWidget == null) {
                 vm.error = true;
                 vm.errorMessage = "Unable to update widget";
             } else {
@@ -55,12 +57,12 @@
 
         }
 
-        function alertOpenClose (successOrError) {
+        function alertOpenClose(successOrError) {
             vm.success = helperService.alertOpenClose(successOrError);
             vm.error = helperService.alertOpenClose(successOrError);
         }
 
-        function cleanUpAlerts () {
+        function cleanUpAlerts() {
             vm.success = false;
             vm.error = false;
         }

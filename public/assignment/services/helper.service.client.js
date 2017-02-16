@@ -6,14 +6,14 @@
     angular
         .module("WebAppMaker")
         .factory("helperService", helperService);
-    function helperService () {
-        var api = {
-            "alertOpenClose": alertOpenClose,
 
+    function helperService() {
+        var api = {
+            "alertOpenClose": alertOpenClose
         };
         return api;
 
-        function alertOpenClose (success) {
+        function alertOpenClose(success) {
             return !success;
         }
 
