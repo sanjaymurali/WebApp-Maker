@@ -9,15 +9,15 @@
     <div class="alert alert-success fade in" ng-show="model.success">
         <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
         {{model.successMessage}}
+        Click <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: model.pageId})">here</a> to view your Widget Page
     </div>
 </div>
 
 <label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+<input ng-model="model.widget.name" placeholder="HTML Name" class="form-control"/>
 
 <label>Text</label>
-<textarea rows="5" ng-model="model.widget.text" class="form-control"></textarea>
+<textarea rows="5" ng-model="model.widget.text" placeholder="HTML Text" class="form-control"></textarea>
 
 
-<a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update HTML</a>
-<a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
+<a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create HTML</a>

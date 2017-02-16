@@ -69,8 +69,15 @@
                 controllerAs: 'model'
             }).state('widget-new', {
                 url: '/user/:uid/website/:wid/page/:pid/widget/new',
-                templateUrl: 'views/widget/templates/widget-choose.view.client.html'
+                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                controller: 'WidgetNewController',
+                controllerAs: 'model'
 
+            }).state('widget-new-specific', {
+                url: '/user/:uid/website/:wid/page/:pid/widget/new/:specific',
+                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                controller: 'WidgetNewController',
+                controllerAs: 'model'
             }).state('widget-edit', {
                 url: '/user/:uid/website/:wid/page/:pid/widget/:wgid',
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',

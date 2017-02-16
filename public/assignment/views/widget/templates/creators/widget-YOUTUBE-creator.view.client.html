@@ -9,23 +9,22 @@
     <div class="alert alert-success fade in" ng-show="model.success">
         <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
         {{model.successMessage}}
+        Click <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: model.pageId})">here</a> to view your Widget Page
     </div>
 </div>
 <div class="container">
 
     <form>
-
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" placeholder="Video Name" ng-model="model.widget.name">
 
         <label for="url">URL</label>
-        <input type="text" class="form-control" id="url" placeholder="YouTube URL" value="URL here!" ng-model="model.widget.url">
+        <input type="text" class="form-control" id="url" placeholder="YouTube URL" ng-model="model.widget.url">
 
         <label for="width">Width</label>
-        <input type="text" class="form-control" id="width" placeholder="Video Width" value="100%" ng-model="model.widget.width">
+        <input type="text" class="form-control" id="width" placeholder="Video Width" ng-model="model.widget.width">
 
         <a class="btn btn-primary btn-block"
-           ng-click="model.updateWidget()">Update Video</a>
-        <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
+           ng-click="model.createWidget()">Create Video</a>
     </form>
 </div>

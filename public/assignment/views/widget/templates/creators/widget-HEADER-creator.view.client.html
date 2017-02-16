@@ -9,18 +9,19 @@
     <div class="alert alert-success fade in" ng-show="model.success">
         <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
         {{model.successMessage}}
+        Click <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: model.pageId})">here</a> to view your Widget Page
     </div>
 </div>
 
 <label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+<input ng-model="model.widget.name" placeholder="Header Name" class="form-control"/>
 
 <label>Text</label>
-<input ng-model="model.widget.text" class="form-control"/>
+<input ng-model="model.widget.text" placeholder="Header Text" class="form-control"/>
 
 <label>Size</label>
 <select ng-options="headerSize for headerSize in model.headerSizes" ng-model="model.widget.size" class="form-control">
 </select>
 
-<a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update Header</a>
-<a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
+<a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create Header</a>
+

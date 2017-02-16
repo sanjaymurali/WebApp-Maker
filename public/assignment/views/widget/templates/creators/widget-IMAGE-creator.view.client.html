@@ -8,6 +8,7 @@
     <div class="alert alert-success fade in" ng-show="model.success">
         <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
         {{model.successMessage}}
+        Click <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: model.pageId})">here</a> to view your Widget Page
     </div>
 </div>
 <div class="container">
@@ -32,7 +33,6 @@
 
 
         <a class="btn btn-primary btn-block"
-           ng-click="model.updateWidget()">Update Image</a>
-        <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
+           ng-click="model.createWidget()">Create Image</a>
     </form>
 </div>

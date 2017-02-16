@@ -18,7 +18,12 @@
 
 <div class="container-fluid">
 
-    <div ng-repeat="widget in model.widgets">
+    <span ng-show="model.showCreateWidgetMessage">
+        <h2>{{model.createWidgetMessage}}</h2><br/>
+        <a ui-sref="widget-new({uid: model.userId, wid: model.websiteId, pid: model.pageId})">New Widget</a>
+    </span>
+
+    <div ng-repeat="widget in model.widgets track by $index">
         <div class="jga-toolbar">
             <a ui-sref="widget-edit({uid: model.userId, wid: model.websiteId, pid: model.pageId, wgid: widget._id})">
                 <span class="glyphicon glyphicon-cog"></span>

@@ -15,7 +15,13 @@
             vm.websiteId = $stateParams['wid'];
             vm.pageId = $stateParams['pid'];
             vm.widgets = WidgetService.findAllWidgets(vm.pageId);
-            console.log(vm.widgets);
+            vm.showCreateWidgetMessage = false;
+
+            if(vm.widgets.length == 0){
+                vm.showCreateWidgetMessage = true;
+                vm.createWidgetMessage = "Create a New Widget";
+            }
+
         }
 
         init();
