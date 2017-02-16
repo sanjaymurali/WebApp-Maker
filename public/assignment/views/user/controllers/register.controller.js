@@ -11,6 +11,7 @@
         var vm = this;
 
         function init() {
+            vm.user = {};
             vm.error = false;
             vm.register = register;
         }
