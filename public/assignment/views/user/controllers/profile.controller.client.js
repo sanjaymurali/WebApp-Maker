@@ -8,9 +8,9 @@
 
 
         function init() {
-            var userId = $stateParams['uid'];
+            vm.userId = $stateParams['uid'];
 
-            var user = UserService.findUserById(userId);
+            var user = UserService.findUserById(vm.userId);
             vm.user = user;
             vm.update = update;
         }
@@ -18,7 +18,7 @@
         init();
 
         function update(newUser) {
-            var user = UserService.updateUser(userId, newUser);
+            var user = UserService.updateUser(vm.userId, newUser);
             if (user == null) {
                 vm.error = "Unable to update user";
             } else {
