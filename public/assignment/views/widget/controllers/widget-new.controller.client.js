@@ -54,7 +54,6 @@
             cleanUpAlerts();
             vm.widget.widgetType = vm.widgetTypeSelected;
             var createdWidget = WidgetService.createWidget(vm.pageId, vm.widget);
-            console.log(createdWidget);
 
             if (createdWidget == null) {
                 vm.error = true;
