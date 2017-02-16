@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("PageNewController", PageNewController);
+        .controller("NewPageController", NewPageController);
 
-    function PageNewController($stateParams, PageService, helperService) {
+    function NewPageController($stateParams, PageService, helperService) {
         var vm = this;
 
         function init() {

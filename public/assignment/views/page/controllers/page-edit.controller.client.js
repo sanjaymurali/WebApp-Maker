@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("PageEditController", PageEditController);
+        .controller("EditPageController", EditPageController);
 
-    function PageEditController($stateParams, $state, PageService, helperService) {
+    function EditPageController($stateParams, $state, PageService, helperService) {
         var vm = this;
 
 

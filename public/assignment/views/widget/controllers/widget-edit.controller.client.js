@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WidgetEditController", WidgetEditController);
+        .controller("EditWidgetController", EditWidgetController);
 
-    function WidgetEditController($stateParams, $state, WidgetService, helperService) {
+    function EditWidgetController($stateParams, $state, WidgetService, helperService) {
         var vm = this;
 
         function init() {

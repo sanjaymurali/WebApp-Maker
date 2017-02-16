@@ -5,9 +5,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("WidgetNewController", WidgetNewController);
+        .controller("NewWidgetController", NewWidgetController);
 
-    function WidgetNewController($stateParams, $state, $scope, WidgetService, helperService) {
+    function NewWidgetController($stateParams, $state, $scope, WidgetService, helperService) {
         var vm = this;
 
         function init() {
