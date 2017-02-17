@@ -12,7 +12,14 @@ require("./test/app.js")(app);
 
 var port = process.env.PORT || 3000;
 
-/* Used to setup the client */
+//var apiRouter = require('express').Router();
+
+require("./assignment/app.js")(app);
+
+//app.use('/makerapi', webappmaker);
+
+
+//Used to setup the client
 app.use('/js', express.static(__dirname + '/public/assignment/js'));
 app.use('/css', express.static(__dirname + '/public/assignment/css'));
 app.use('/views', express.static(__dirname + '/public/assignment/views'))
