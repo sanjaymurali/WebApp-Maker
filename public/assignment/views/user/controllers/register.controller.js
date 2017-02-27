@@ -24,21 +24,24 @@
                 vm.error = "Unable to Register";
             else{
                 if (user.password === user.verifyPassword) {
-                    var registerUser = UserService.createUser(user);
-                    if (registerUser != null) {
-                        $state.go('profile', {uid: registerUser._id});
-                    } else {
-                        vm.error = 'Unable to register!';
-                    }
+                    var registerUser = {};
+                        UserService
+                        .createUser(user)
+                        .then(function(response){
+                            console.log(response);
+                            if(response.statusText === "OK"){
+                                var json = response.data;
+                                $state.go('profile', {uid: json.user._id});
+                            }
+                            else
+                                vm.error = 'Unable to register!';
+                        });
                 }
                 else
                     vm.error = 'Passwords Do not Match!';
             }
 
         }
-
-        // Delete!
-
 
     }
 })();

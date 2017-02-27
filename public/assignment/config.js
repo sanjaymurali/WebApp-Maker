@@ -5,7 +5,7 @@
 (function () {
     var WebAppMakerModule = angular.module('WebAppMaker');
 
-    var configuration = function ($stateProvider, $urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider) {
+    var configuration = function ($stateProvider, $urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider,$httpProvider) {
         $locationProvider.html5Mode({
             enabled: true
         });
@@ -14,6 +14,19 @@
 
         $urlRouterProvider.when('/user/', '/login'); //look at this , if there are problems
 
+       //$httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+       //$httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
+
+        var userJSON = {
+            resolvedJson: function($stateParams, UserService){
+                return UserService
+                    .findUserById($stateParams['uid'])
+                    .then(function(response){
+                        console.log("config: ", response);
+                        return response;
+                    });
+            }
+        };
         $stateProvider
             .state('login', {
                 url: '/login',
@@ -26,12 +39,15 @@
                 templateUrl: 'views/user/templates/register.view.client.html',
                 controller: 'registerController',
                 controllerAs: 'model'
+
             })
             .state('profile', {
                 url: '/user/:uid',
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: userJSON
+
             })
             .state('website', {
                 url: '/user/:uid/website',

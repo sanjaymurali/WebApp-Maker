@@ -7,44 +7,11 @@
         .module("WebAppMaker")
         .factory('UserService', userService);
 
-    function userService() {
-        var users = [
-            {
-                _id: "123",
-                username: "alice",
-                password: "alice",
-                firstName: "Alice",
-                lastName: "Wonder",
-                email: "alice@gmail.com"
-            },
-            {
-                _id: "234",
-                username: "bob",
-                password: "bob",
-                firstName: "Bob",
-                lastName: "Marley",
-                email: "bob@gmail.com"
-            },
-            {
-                _id: "345",
-                username: "charly",
-                password: "charly",
-                firstName: "Charly",
-                lastName: "Garcia",
-                email: "charly@gmail.com"
-            },
-            {
-                _id: "456",
-                username: "jannunzi",
-                password: "jannunzi",
-                firstName: "Jose",
-                lastName: "Annunzi",
-                email: "jose@gmail.com"
-            }
-        ];
+    function userService($http) {
+
+        var apiURL = '/api/';
 
         var api = {
-            "users": users,
             "createUser": createUser,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
@@ -55,71 +22,27 @@
         return api;
 
         function updateUser(userId, newUser) {
-            for (var u in users) {
-                var user = users[u];
-                if (user._id === userId) {
-                    users[u].firstName = newUser.firstName;
-                    users[u].lastName = newUser.lastName;
-                    users[u].email = newUser.email;
-                    users[u].username = newUser.username;
-                    return user;
-                }
-            }
-            return null;
+            return $http.put(apiURL+'user/' + userId, newUser);
         }
 
         function createUser(user) {
-
-            //Adding a id using the milliseconds property on Date.
-            //This is a hack to generate as many new ids as possible
-            user._id = (new Date()).getTime() + "";
-            delete user['verifyPassword'];
-            users.push(user);
-
-            return user;
+            return $http.post(apiURL+'user', user);
         }
 
         function deleteUser(userId) {
-            var userIdToString = userId + "";
-            for (var u in users) {
-                var user = users[u];
-                if (user._id === userIdToString) {
-                    return users.splice(u, 1);
-                }
-            }
-
-            return null;
+            return $http.delete(apiURL+'user'+userId);
         }
 
         function findUserById(uid) {
-            for (var u in users) {
-                var user = users[u];
-                if (user._id === uid) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get(apiURL+'user/' + uid);
         }
 
         function findUserByCredentials(username, password) {
-            for (var u in users) {
-                var user = users[u];
-                if (user.username === username &&
-                    user.password === password) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get(apiURL+'user', {params: {username: username, password: password}});
         }
 
         function findUserByUsername(username) {
-            for (var u in users) {
-                var user = users[u];
-                if (user.username === username) {
-                    return angular.copy(user);
-                }
-            }
-            return null;
+            return $http.get(apiURL+'user', {params: {username: username}});
         }
     }
 })();

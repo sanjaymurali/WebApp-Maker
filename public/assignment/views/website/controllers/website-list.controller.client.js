@@ -10,7 +10,11 @@
         function init() {
             vm.userId = $stateParams['uid'];
 
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService.findWebsitesByUser(vm.userId).then(function(response){
+                if(response.statusText === "OK"){
+                    vm.websites = response.data.websites;
+                }
+            });
         }
 
         init();

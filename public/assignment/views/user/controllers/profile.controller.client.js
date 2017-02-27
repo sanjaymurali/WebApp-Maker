@@ -3,27 +3,42 @@
         .module("WebAppMaker")
         .controller("profileController", profileController);
 
-    function profileController($state, $stateParams, UserService) {
+    function profileController($state, $stateParams, UserService, resolvedJson) {
         var vm = this;
 
 
         function init() {
+            var userJson = resolvedJson.data;
+            var user = {};
             vm.userId = $stateParams['uid'];
 
-            var user = UserService.findUserById(vm.userId);
-            vm.user = user;
+            if(userJson.success){
+                user = userJson.user;
+                vm.user = user;
+            }
+            else
+                vm.error = 'Error';
+
             vm.update = update;
         }
 
         init();
 
         function update(newUser) {
-            var user = UserService.updateUser(vm.userId, newUser);
-            if (user == null) {
-                vm.error = "Unable to update user";
-            } else {
-                vm.message = "User successfully updated"
-            }
+            console.log(newUser);
+            var user = {};
+                UserService
+                .updateUser(vm.userId, newUser)
+                .then(function(response){
+                    if(response.statusText === "OK"){
+                        var json = response.data;
+                        vm.user = json.user;
+                        vm.message = "User successfully updated"
+                    }
+                    else
+                        vm.error = "Unable to update user";
+                });
+
         };
     }
 })();

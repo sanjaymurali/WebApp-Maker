@@ -13,8 +13,20 @@
 
             vm.deleteWebsite = deleteWebsite;
             vm.updateWebsite = updateWebsite;
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+
+            vm.websites = {};
+            vm.website = {};
+            WebsiteService.findWebsitesByUser(vm.userId).then(function(response){
+                if(response.statusText === "OK"){
+                    vm.websites = response.data.websites;
+                }
+            });
+
+            WebsiteService.findWebsiteById(vm.websiteId).then(function(response){
+                if(response.statusText === "OK"){
+                    vm.website = response.data.website;
+                }
+            });
 
             vm.alertOpenClose = alertOpenClose;
             vm.success = false;
@@ -25,26 +37,41 @@
 
         function deleteWebsite() {
             cleanUpAlerts();
-            WebsiteService.deleteWebsite(vm.websiteId);
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            if (vm.websites.length == 0) {
-                $state.go('website-new', {uid: vm.userId});
-            }
-            else
-                $state.go('website-edit', {uid: vm.userId, wid: vm.websites[0]._id});
-        }
+            WebsiteService.deleteWebsite(vm.websiteId).then(function(response){
+                if(response.statusText === "OK"){
+                    WebsiteService.findWebsitesByUser(vm.userId).then(function(response){
+                        vm.websites = response.data.websites;
+                        if (vm.websites.length == 0) {
+                            $state.go('website-new', {uid: vm.userId});
+                        }
+                        else
+                            $state.go('website-edit', {uid: vm.userId, wid: vm.websites[0]._id});
+                    });
+                }
+            });
+ }
 
         function updateWebsite() {
             cleanUpAlerts();
-            var udpatedWebsite = WebsiteService.updateWebsite(vm.websiteId, vm.website);
+            WebsiteService.updateWebsite(vm.websiteId, vm.website).then(function(response){
+                if (response.statusText === "OK") {
+                    for(var current in vm.websites){
+                        if(vm.websites[current]._id === response.data.website._id){
 
-            if (udpatedWebsite == null) {
-                vm.error = true;
-                vm.errorMessage = "Unable to update website";
-            } else {
-                vm.success = true;
-                vm.successMessage = "Website successfully updated"
-            }
+                            vm.websites[current] = response.data.website;
+                            console.log(vm.websites[current]);
+                        }
+                    }
+
+                    vm.success = true;
+                    vm.successMessage = "Website successfully updated"
+
+                } else {
+                    vm.error = true;
+                    vm.errorMessage = "Unable to update website";
+                }
+            });
+
         }
 
         function alertOpenClose(successOrError) {

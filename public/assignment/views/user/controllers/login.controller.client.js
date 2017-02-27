@@ -19,12 +19,19 @@
 
 
         function login(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if (loginUser != null) {
-                $state.go('profile', {uid: loginUser._id});
-            } else {
-                vm.error = 'User not found';
-            }
+            var loginUser = {};
+            UserService
+                .findUserByCredentials(user.username, user.password)
+                .then(function(response){
+                    var json = response.data;
+
+                    if(json.success){
+                        loginUser = json.user;
+                        $state.go('profile', {uid: loginUser._id});
+                    }
+                    else
+                        vm.error = 'User not found';
+                });
         }
     }
 })();

@@ -3,6 +3,13 @@
  */
 
 module.exports = function (app) {
+
+    app.get('/api/user', queryStringCheck);
+    app.post('/api/user', createUser);
+    app.get('/api/user/:userId', findUserById);
+    app.put('/api/user/:userId', updateUser);
+    app.delete('/api/user/:userId', deleteUser);
+
     var users = [
         {
             _id: "123",
@@ -38,12 +45,6 @@ module.exports = function (app) {
         }
     ];
 
-    app.get('/makerapi/user', queryStringCheck);
-    app.post('/makerapi/user', createUser);
-    app.get('/makerapi/user/:userId', findUserById);
-    app.put('/makerapi/user/:userId', updateUser);
-    app.delete('/makerapi/user/:userId', deleteUser);
-
     function createUser(req, res) {
         //Adding a id using the milliseconds property on Date.
         //This is a hack to generate as many new ids as possible
@@ -57,11 +58,13 @@ module.exports = function (app) {
         };
         //Add condition here when dealing with DB
         users.push(user);
-        res.json({success: true, user: user});
+        console.log(user);
+        res.status(200).json({user: user});
     }
 
     function updateUser(req, res) {
         var userId = req.params.userId;
+        console.log(req.body);
         var updatedProperties = Object.getOwnPropertyNames(req.body);
         for (var u in users) {
             var user = users[u];
@@ -72,10 +75,10 @@ module.exports = function (app) {
                         && updatedProperties[i] != '_id')
                         users[u][updatedProperties[i]] = req.body[updatedProperties[i]];
                 }
-                return res.json({success: true, user: user});;
+                return res.status(200).json({user: user});;
             }
         }
-        res.json({success: false});
+        res.status(404);
     }
 
     function deleteUser(req, res) {
@@ -104,7 +107,6 @@ module.exports = function (app) {
     }
 
     function findUserByCredentials(req, res, next) {
-
         var username = req.query.username;
         var password = req.query.password;
         for (var u in users) {
