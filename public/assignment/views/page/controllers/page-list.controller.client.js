@@ -10,7 +10,10 @@
             vm.userId = $stateParams['uid'];
             vm.websiteId = $stateParams['wid'];
 
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPageByWebsiteId(vm.websiteId).then(function(response){
+                if(response.statusText === "OK")
+                    vm.pages = response.data.pages;
+            });
         }
 
         init();

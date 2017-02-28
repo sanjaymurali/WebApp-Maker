@@ -14,14 +14,18 @@
             vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
             vm.getTrustedHtml = getTrustedHtml;
             vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            WidgetService.findWidgetsByPageId(vm.pageId).then(function(response){
+                if(response.statusText === "OK"){
+                    vm.widgets = response.data.widgets;
+                    if (vm.widgets.length == 0) {
+                        vm.showCreateWidgetMessage = true;
+                        vm.createWidgetMessage = "Create a New Widget";
+                    }
+                }
+            });
 
             vm.showCreateWidgetMessage = false;
 
-            if (vm.widgets.length == 0) {
-                vm.showCreateWidgetMessage = true;
-                vm.createWidgetMessage = "Create a New Widget";
-            }
         }
 
         init();

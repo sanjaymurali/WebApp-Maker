@@ -52,7 +52,7 @@ module.exports = function (app) {
                 return res.status(200).json({website: websites[w]});
             }
         }
-        res.status(404);
+        res.sendStatus(404);
     }
 
     function findAllWebsitesForUser(req, res) {
@@ -73,7 +73,7 @@ module.exports = function (app) {
                 return res.status(200).json({website: websites[w]});
             }
         }
-        res.status(404);
+        res.sendStatus(404);
     }
 
 }

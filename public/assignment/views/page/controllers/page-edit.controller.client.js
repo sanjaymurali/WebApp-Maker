@@ -14,8 +14,14 @@
 
             vm.deletePage = deletePage;
             vm.updatePage = updatePage;
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService.findPageByWebsiteId(vm.websiteId).then(function(response){
+                if(response.statusText === "OK")
+                    vm.pages = response.data.pages;
+            });
+            PageService.findPageById(vm.pageId).then(function(response){
+                if(response.statusText === "OK")
+                    vm.page = response.data.page;
+            });
 
             vm.alertOpenClose = alertOpenClose;
             vm.success = false;
@@ -27,26 +33,38 @@
         function deletePage() {
             cleanUpAlerts();
             PageService.deletePage(vm.pageId);
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPageByWebsiteId(vm.websiteId).then(function(response){
+                if(response.statusText === "OK"){
+                    vm.pages = response.data.pages;
+                    if (vm.pages.length == 0) {
+                        $state.go('page-new', {uid: vm.userId, wid: vm.websiteId});
+                    }
+                    else
+                        $state.go('page-edit', {uid: vm.userId, wid: vm.websiteId, pid: vm.pages[0]._id});
+                }
+            });
 
-            if (vm.pages.length == 0) {
-                $state.go('page-new', {uid: vm.userId, wid: vm.websiteId});
-            }
-            else
-                $state.go('page-edit', {uid: vm.userId, wid: vm.websiteId, pid: vm.pages[0]._id});
+
         }
 
         function updatePage() {
             cleanUpAlerts();
-            var udpatedPage = PageService.updatePage(vm.pageId, vm.page);
+            PageService.updatePage(vm.pageId, vm.page).then(function(response){
+                if(response.statusText === "OK"){
+                    for(var current in vm.pages){
+                        if(vm.pages[current]._id === response.data.page._id){
+                            vm.pages[current] = response.data.page;
+                        }
+                    }
+                    vm.success = true;
+                    vm.successMessage = "Page successfully updated"
+                }
+                else{
+                    vm.error = true;
+                    vm.errorMessage = "Unable to update page";
+                }
+            });
 
-            if (udpatedPage == null) {
-                vm.error = true;
-                vm.errorMessage = "Unable to update page";
-            } else {
-                vm.success = true;
-                vm.successMessage = "Page successfully updated"
-            }
         }
 
         function alertOpenClose(successOrError) {

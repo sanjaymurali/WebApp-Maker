@@ -4,7 +4,7 @@
 
 module.exports = function (app) {
 
-    app.get('/api/user', queryStringCheck);
+    app.get('/api/user', findUser);
     app.post('/api/user', createUser);
     app.get('/api/user/:userId', findUserById);
     app.put('/api/user/:userId', updateUser);
@@ -58,7 +58,6 @@ module.exports = function (app) {
         };
         //Add condition here when dealing with DB
         users.push(user);
-        console.log(user);
         res.status(200).json({user: user});
     }
 
@@ -70,8 +69,7 @@ module.exports = function (app) {
             var user = users[u];
             if (user._id === userId) {
                 for(i=0;i<updatedProperties.length;i++){
-                    if(
-                        (users[u].hasOwnProperty(updatedProperties[i]))
+                    if((users[u].hasOwnProperty(updatedProperties[i]))
                         && updatedProperties[i] != '_id')
                         users[u][updatedProperties[i]] = req.body[updatedProperties[i]];
                 }
@@ -82,16 +80,17 @@ module.exports = function (app) {
     }
 
     function deleteUser(req, res) {
+        console.log("In here!")
         var userId = req.params.userId;
         var userIdToString = userId + "";
         for (var u in users) {
             var user = users[u];
             if (user._id === userIdToString) {
                 users.splice(u, 1);
-                return res.json({success: true});
+                return res.sendStatus(200);
             }
         }
-        res.json({success: false});
+        res.sendStatus(404);
 
     }
 
@@ -131,7 +130,7 @@ module.exports = function (app) {
         res.json({success: false});
     }
 
-    function queryStringCheck(req, res) {
+    function findUser(req, res) {
         if (req.query.username && req.query.password)
             findUserByCredentials(req, res);
         else

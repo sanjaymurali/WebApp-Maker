@@ -30,7 +30,7 @@
         }
 
         function deleteUser(userId) {
-            return $http.delete(apiURL+'user'+userId);
+            return $http.delete(apiURL+'user/'+userId);
         }
 
         function findUserById(uid) {

@@ -7,12 +7,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
-        var pages = [
-            {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem", "title": "Title 1"},
-            {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem", "title": "Title 2"},
-            {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem", "title": "Title 3"}
-        ];
+    function PageService($http) {
         var api = {
             "createPage": createPage,
             "updatePage": updatePage,
@@ -24,51 +19,23 @@
 
 
         function deletePage(pageId) {
-            for (var p in pages) {
-                if (pages[p]._id === pageId) {
-                    pages.splice(p, 1);
-                    return pages;
-                }
-            }
-            return null;
+            return $http.delete('/api/page/'+pageId);
         }
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime() + ""; //Attached with String to make it a String
-            //Check return from DB in assignment4
-            pages.push(page);
-            return angular.copy(page);
+            return $http.post('/api/website/'+websiteId+'/page',page);
         }
 
         function updatePage(pageId, page) {
-            for (var p in pages) {
-                if (pages[p]._id === pageId) {
-                    pages[p].name = page.name;
-                    pages[p].title = page.title;
-                    return page;
-                }
-            }
-            return null;
+            return $http.put('/api/page/'+pageId, page);
         }
 
         function findPageByWebsiteId(websiteId) {
-            var combinedPages = [];
-            for (var p in pages) {
-                if (pages[p].websiteId === websiteId) {
-                    combinedPages.push(pages[p]);
-                }
-            }
-            return combinedPages;
+            return $http.get('/api/website/'+websiteId+'/page');
         }
 
         function findPageById(pageId) {
-            for (var p in pages) {
-                if (pages[p]._id === pageId) {
-                    return angular.copy(pages[p]);
-                }
-            }
-            return null;
+            return $http.get('/api/page/'+pageId);
         }
     }
 })();

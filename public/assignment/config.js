@@ -22,7 +22,6 @@
                 return UserService
                     .findUserById($stateParams['uid'])
                     .then(function(response){
-                        console.log("config: ", response);
                         return response;
                     });
             }

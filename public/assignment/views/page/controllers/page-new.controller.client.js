@@ -10,7 +10,11 @@
             vm.userId = $stateParams['uid'];
             vm.websiteId = $stateParams['wid'];
 
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPageByWebsiteId(vm.websiteId).then(function(response){
+                if(response.statusText === "OK")
+                    vm.pages = response.data.pages;
+            });
+
             vm.createPage = createPage;
             vm.page = null;
 
@@ -24,19 +28,24 @@
         function createPage(page) {
             cleanUpAlerts();
             if (vm.page) {
-                var addNew = PageService.createPage(vm.websiteId, page);
+                PageService.createPage(vm.websiteId, page).then(function(response){
+                    if(response.statusText === "OK"){
+                        var addNew = response.data.page;
+                        vm.pages.push(addNew);
+                        vm.success = true;
+                        vm.successMessage = "Successfully Created new page!";
+                        vm.page = null;
+                    }
+                    else {
+                        vm.error = true;
+                        vm.errorMessage = "There was an error in Creating the page";
+                    }
 
-                if (addNew != null) {
-                    vm.pages.push(addNew);
-                    vm.success = true;
-                    vm.successMessage = "Successfully Created new page!";
-                    vm.page = null;
-                }
+                });
+
+
             }
-            else {
-                vm.error = true;
-                vm.errorMessage = "There was an error in Creating the page";
-            }
+
 
         }
 
