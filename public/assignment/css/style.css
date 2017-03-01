@@ -18,6 +18,10 @@ textarea.form-control {
     margin-bottom: 10px;
 }
 
+#editor .btn-danger{
+    margin-top: 10px;
+}
+
 select.form-control {
     margin-bottom: 20px;
 }

@@ -21,6 +21,8 @@
             vm.getCreatorTemplateUrl = getCreatorTemplateUrl;
             vm.createWidget = createWidget;
 
+            vm.imageTypeHandler = imageTypeHandler;
+
             vm.headerSizes = WidgetService.headerSizes;
             vm.widgetTypes = WidgetService.widgetTypes;
             vm.showOptions = true;
@@ -28,6 +30,9 @@
             vm.alertOpenClose = alertOpenClose;
             vm.success = false;
             vm.error = false;
+
+            vm.showImageUploadForm = true;
+            vm.showImageURLForm = false;
 
             //Set initial Header size : h1,h2
             vm.widget.size = 1;
@@ -47,6 +52,19 @@
             else {
                 vm.showOptions = false;
                 return 'views/widget/templates/creators/widget-' + type + '-creator.view.client.html';
+            }
+        }
+
+
+        function imageTypeHandler(type) {
+            console.log(type);
+            if(type === "imageURL"){
+                vm.showImageURLForm = true;
+                vm.showImageUploadForm = false;
+            }
+            else{
+                vm.showImageURLForm = false;
+                vm.showImageUploadForm = true;
             }
         }
 

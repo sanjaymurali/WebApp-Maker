@@ -20,17 +20,37 @@
             vm.updateWidget = updateWidget;
             vm.deleteWidget = deleteWidget;
 
+            vm.imageTypeHandler = imageTypeHandler;
+
             vm.headerSizes = WidgetService.headerSizes;
 
             vm.alertOpenClose = alertOpenClose;
             vm.success = false;
             vm.error = false;
+
+            vm.showImageUploadForm = true;
+            vm.showImageURLForm = false;
+
+            vm.imageTypeURL = "imageURL";
+            vm.imageTypeUpload = "imageUpload";
         }
 
         init();
 
         function getEditorTemplateUrl(type) {
             return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
+        }
+
+        function imageTypeHandler(type) {
+            console.log(type);
+            if(type === "imageURL"){
+                vm.showImageURLForm = true;
+                vm.showImageUploadForm = false;
+            }
+            else{
+                vm.showImageURLForm = false;
+                vm.showImageUploadForm = true;
+            }
         }
 
         function updateWidget() {

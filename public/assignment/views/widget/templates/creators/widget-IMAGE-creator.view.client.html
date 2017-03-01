@@ -14,28 +14,57 @@
 </div>
 <div class="container">
 
-    <form>
+    <form action="/api/upload" method="POST" enctype="multipart/form-data">
 
         <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Image Name" ng-model="model.widget.name">
+        <input name="name" type="text" class="form-control" value="{{model.widget.name}}" id="name" placeholder="Image Name" ng-model="model.widget.name">
 
         <label for="text">Text</label>
-        <input type="text" class="form-control" id="text" placeholder="Image Desc" ng-model="model.widget.description">
+        <input name="text" type="text" class="form-control" value="{{model.widget.description}}" id="text" placeholder="Image Desc" ng-model="model.widget.description">
 
-
-        <label for="url">URL</label>
-        <input type="text" class="form-control" id="url" placeholder="Image URL" value="URL here!"
-               ng-model="model.widget.url">
 
         <label for="width">Width</label>
-        <input type="text" class="form-control" id="width" placeholder="Image Width" value="100%"
-               ng-model="model.widget.width">
+        <input name="width" type="text" class="form-control" id="width" placeholder="Image Width" value="100%"
+               value="{{model.widget.width}}" ng-model="model.widget.width">
 
-        <label for="upload">Upload</label>
-        <input type="file" class="form-control" id="upload">
+
+        <label for="imageType">Imgae Upload / Image URL ?</label>
+        <div class="form-group" id="imageType">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="imageURL" value="imageURL" ng-model="model.imageTypeURL" ng-click="model.imageTypeHandler(model.imageTypeURL)">
+                    Image URL
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="imageURL" value="imageUpload" ng-model="model.imageTypeUpload" ng-click="model.imageTypeHandler(model.imageTypeUpload)">
+                    Image Upload
+                </label>
+            </div>
+        </div>
+
+        <span ng-if="model.showImageURLForm">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url" placeholder="Image URL" value="URL here!"
+               ng-model="model.widget.url">
 
 
         <a class="btn btn-primary btn-block"
            ng-click="model.createWidget()">Create Image</a>
+        </span>
+
+        <span ng-if="model.showImageUploadForm">
+            <input  name="pageId" value="{{model.pageId}}" style="display: none"/>
+            <input  name="userId" value="{{model.userId}}" style="display: none"/>
+            <input  name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+
+            <label for="uploadedImage">Upload</label>
+            <input type="file" name="uploadedImage" class="form-control" id="uploadedImage">
+            <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+
+        </span>
+
+
     </form>
 </div>

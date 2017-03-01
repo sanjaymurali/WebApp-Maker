@@ -4,6 +4,10 @@
 
 
 module.exports = function (app) {
+
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
     var widgets = [
         {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO", "name": "name1"},
         {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum", "name": "name2"},
@@ -34,11 +38,52 @@ module.exports = function (app) {
     var headerSizes = [1, 2, 3, 4, 5, 6];
     var widgetTypes = ['HEADER', 'IMAGE', 'HTML', 'YOUTUBE'];
 
+    app.post("/api/upload", upload.single('uploadedImage'), uploadImage);
+
     app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
     app.post('/api/page/:pageId/widget', createWidget);
     app.get('/api/widget/:widgetId', findWidgetById);
     app.put('/api/widget/:widgetId', updateWidget);
     app.delete('/api/widget/:widgetId', deleteWidget);
+
+
+    function uploadImage(req, res) {
+
+        var widget = {};
+
+        if(req.body.widgetId){
+            //Update a Widget
+            var widgetId = req.body.widgetId;
+
+            for (var w in widgets) {
+                if (widgets[w]._id === widgetId) {
+                    widgets[w].width = req.body.width;
+                    widgets[w].name = req.body.name;
+                    widgets[w].url = "/../uploads/"+req.file.filename;
+                    widgets[w].description = req.body.text;
+                }
+            }
+            res.redirect("/assignment/user/"+req.body.userId+"/website/"+req.body.websiteId+"/page/"+req.body.pageId+"/widget");
+
+        }
+        else{
+            //Create a New Widget
+            widget._id = (new Date()).getTime() + "";
+            widget.pageId = req.body.pageId + "";
+            widget.widgetType = "IMAGE";
+            widget.width = req.body.width;
+            widget.name = req.body.name;
+            widget.url = "/../uploads/"+req.file.filename;
+            widget.description = req.body.text;
+
+            widgets.push(widget);
+
+            //hacky Solution, Have to implement a File Uploader Directive in the spring Break
+            res.redirect("/assignment/user/"+req.body.userId+"/website/"+req.body.websiteId+"/page/"+req.body.pageId+"/widget");
+
+        }
+
+    }
 
     function createWidget(req, res) {
         var pageId = req.params.pageId;
@@ -48,7 +93,6 @@ module.exports = function (app) {
 
         widgets.push(widget);
         res.status(200).json({widget: widget});
-
     }
 
     function updateWidget(req, res) {
