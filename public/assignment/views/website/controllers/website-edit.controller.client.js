@@ -59,7 +59,6 @@
                         if(vm.websites[current]._id === response.data.website._id){
 
                             vm.websites[current] = response.data.website;
-                            console.log(vm.websites[current]);
                         }
                     }
 

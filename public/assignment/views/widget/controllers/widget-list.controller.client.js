@@ -17,7 +17,6 @@
             WidgetService.findWidgetsByPageId(vm.pageId).then(function(response){
                 if(response.statusText === "OK"){
                     vm.widgets = response.data.widgets;
-                    console.log(vm.widgets);
                     if (vm.widgets.length == 0) {
                         vm.showCreateWidgetMessage = true;
                         vm.createWidgetMessage = "Create a New Widget";

@@ -63,7 +63,6 @@ module.exports = function (app) {
 
     function updateUser(req, res) {
         var userId = req.params.userId;
-        console.log(req.body);
         var updatedProperties = Object.getOwnPropertyNames(req.body);
         for (var u in users) {
             var user = users[u];

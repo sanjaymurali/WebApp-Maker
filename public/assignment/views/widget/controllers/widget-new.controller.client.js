@@ -57,7 +57,6 @@
 
 
         function imageTypeHandler(type) {
-            console.log(type);
             if(type === "imageURL"){
                 vm.showImageURLForm = true;
                 vm.showImageUploadForm = false;

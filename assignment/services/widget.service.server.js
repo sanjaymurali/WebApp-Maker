@@ -140,9 +140,7 @@ module.exports = function (app) {
         var widgetsOfPage = getWidgetsByPageId(pageId);
 
         var selectedWidget = widgetsOfPage.find(getInitialIndex);
-        console.log("Selected widget: ", selectedWidget);
         var replacedWidget = widgetsOfPage.find(getFinalIndex);
-        console.log("replaced widget: ", replacedWidget);
 
         //Swap the sortable of the selectedWidget to its final Position
         selectedWidget.sortable = finalPos;
