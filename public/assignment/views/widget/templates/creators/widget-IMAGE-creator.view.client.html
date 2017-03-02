@@ -17,10 +17,12 @@
     <form action="/api/upload" method="POST" enctype="multipart/form-data">
 
         <label for="name">Name</label>
-        <input name="name" type="text" class="form-control" value="{{model.widget.name}}" id="name" placeholder="Image Name" ng-model="model.widget.name">
+        <input name="name" type="text" class="form-control" value="{{model.widget.name}}" id="name"
+               placeholder="Image Name" ng-model="model.widget.name">
 
         <label for="text">Text</label>
-        <input name="text" type="text" class="form-control" value="{{model.widget.description}}" id="text" placeholder="Image Desc" ng-model="model.widget.description">
+        <input name="text" type="text" class="form-control" value="{{model.widget.description}}" id="text"
+               placeholder="Image Desc" ng-model="model.widget.description">
 
 
         <label for="width">Width</label>
@@ -32,13 +34,15 @@
         <div class="form-group" id="imageType">
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageURL" ng-model="model.imageTypeURL" ng-click="model.imageTypeHandler(model.imageTypeURL)">
+                    <input type="radio" name="imageURL" value="imageURL" ng-model="model.imageTypeURL"
+                           ng-click="model.imageTypeHandler(model.imageTypeURL)">
                     Image URL
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageUpload" ng-model="model.imageTypeUpload" ng-click="model.imageTypeHandler(model.imageTypeUpload)">
+                    <input type="radio" name="imageURL" value="imageUpload" ng-model="model.imageTypeUpload"
+                           ng-click="model.imageTypeHandler(model.imageTypeUpload)">
                     Image Upload
                 </label>
             </div>
@@ -47,7 +51,7 @@
         <span ng-if="model.showImageURLForm">
             <label for="url">URL</label>
             <input type="text" class="form-control" id="url" placeholder="Image URL" value="URL here!"
-               ng-model="model.widget.url">
+                   ng-model="model.widget.url">
 
 
         <a class="btn btn-primary btn-block"
@@ -55,9 +59,9 @@
         </span>
 
         <span ng-if="model.showImageUploadForm">
-            <input  name="pageId" value="{{model.pageId}}" style="display: none"/>
-            <input  name="userId" value="{{model.userId}}" style="display: none"/>
-            <input  name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+            <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+            <input name="userId" value="{{model.userId}}" style="display: none"/>
+            <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
 
             <label for="uploadedImage">Upload</label>
             <input type="file" name="uploadedImage" class="form-control" id="uploadedImage">

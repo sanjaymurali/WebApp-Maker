@@ -14,8 +14,8 @@
             vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
             vm.getTrustedHtml = getTrustedHtml;
             vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
-            WidgetService.findWidgetsByPageId(vm.pageId).then(function(response){
-                if(response.statusText === "OK"){
+            WidgetService.findWidgetsByPageId(vm.pageId).then(function (response) {
+                if (response.statusText === "OK") {
                     vm.widgets = response.data.widgets;
                     if (vm.widgets.length == 0) {
                         vm.showCreateWidgetMessage = true;

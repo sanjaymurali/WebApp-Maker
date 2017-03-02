@@ -22,27 +22,27 @@
         return api;
 
         function updateUser(userId, newUser) {
-            return $http.put(apiURL+'user/' + userId, newUser);
+            return $http.put(apiURL + 'user/' + userId, newUser);
         }
 
         function createUser(user) {
-            return $http.post(apiURL+'user', user);
+            return $http.post(apiURL + 'user', user);
         }
 
         function deleteUser(userId) {
-            return $http.delete(apiURL+'user/'+userId);
+            return $http.delete(apiURL + 'user/' + userId);
         }
 
         function findUserById(uid) {
-            return $http.get(apiURL+'user/' + uid);
+            return $http.get(apiURL + 'user/' + uid);
         }
 
         function findUserByCredentials(username, password) {
-            return $http.get(apiURL+'user', {params: {username: username, password: password}});
+            return $http.get(apiURL + 'user', {params: {username: username, password: password}});
         }
 
         function findUserByUsername(username) {
-            return $http.get(apiURL+'user', {params: {username: username}});
+            return $http.get(apiURL + 'user', {params: {username: username}});
         }
     }
 })();

@@ -12,8 +12,8 @@
             vm.pageId = $stateParams['pid'];
             vm.widgetId = $stateParams['wgid'];
 
-            WidgetService.findWidgetById(vm.widgetId).then(function(response){
-                if(response.statusText === "OK")
+            WidgetService.findWidgetById(vm.widgetId).then(function (response) {
+                if (response.statusText === "OK")
                     vm.widget = response.data.widget;
             });
             vm.getEditorTemplateUrl = getEditorTemplateUrl;
@@ -42,11 +42,11 @@
         }
 
         function imageTypeHandler(type) {
-            if(type === "imageURL"){
+            if (type === "imageURL") {
                 vm.showImageURLForm = true;
                 vm.showImageUploadForm = false;
             }
-            else{
+            else {
                 vm.showImageURLForm = false;
                 vm.showImageUploadForm = true;
             }
@@ -54,12 +54,12 @@
 
         function updateWidget() {
             cleanUpAlerts();
-            WidgetService.updateWidget(vm.widgetId, vm.widget).then(function(response){
-                if(response.statusText === "OK"){
+            WidgetService.updateWidget(vm.widgetId, vm.widget).then(function (response) {
+                if (response.statusText === "OK") {
                     vm.success = true;
                     vm.successMessage = "Widget successfully updated"
                 }
-                else{
+                else {
                     vm.error = true;
                     vm.errorMessage = "Unable to update widget";
                 }
@@ -69,10 +69,10 @@
 
         function deleteWidget() {
             cleanUpAlerts();
-            var deletedWidget = WidgetService.deleteWidget(vm.widgetId).then(function(response){
-                if(response.statusText === "OK")
+            var deletedWidget = WidgetService.deleteWidget(vm.widgetId).then(function (response) {
+                if (response.statusText === "OK")
                     $state.go('widget', {uid: vm.userId, wid: vm.widgetId, pid: vm.pageId});
-                else{
+                else {
                     vm.error = true;
                     vm.errorMessage = "Unable to Delete widget";
                 }

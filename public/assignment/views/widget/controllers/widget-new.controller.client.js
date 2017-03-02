@@ -57,11 +57,11 @@
 
 
         function imageTypeHandler(type) {
-            if(type === "imageURL"){
+            if (type === "imageURL") {
                 vm.showImageURLForm = true;
                 vm.showImageUploadForm = false;
             }
-            else{
+            else {
                 vm.showImageURLForm = false;
                 vm.showImageUploadForm = true;
             }

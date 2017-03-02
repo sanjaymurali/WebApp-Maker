@@ -19,23 +19,23 @@
 
 
         function deletePage(pageId) {
-            return $http.delete('/api/page/'+pageId);
+            return $http.delete('/api/page/' + pageId);
         }
 
         function createPage(websiteId, page) {
-            return $http.post('/api/website/'+websiteId+'/page',page);
+            return $http.post('/api/website/' + websiteId + '/page', page);
         }
 
         function updatePage(pageId, page) {
-            return $http.put('/api/page/'+pageId, page);
+            return $http.put('/api/page/' + pageId, page);
         }
 
         function findPageByWebsiteId(websiteId) {
-            return $http.get('/api/website/'+websiteId+'/page');
+            return $http.get('/api/website/' + websiteId + '/page');
         }
 
         function findPageById(pageId) {
-            return $http.get('/api/page/'+pageId);
+            return $http.get('/api/page/' + pageId);
         }
     }
 })();

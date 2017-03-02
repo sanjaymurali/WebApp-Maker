@@ -20,26 +20,26 @@
 
         function register(user) {
             // Remove this later
-            if(user.password === undefined || user.verifyPassword === undefined || user.username === undefined)
+            if (user.password === undefined || user.verifyPassword === undefined || user.username === undefined)
                 vm.error = "Unable to Register";
-            else{
+            else {
                 if (user.password === user.verifyPassword) {
                     var registerUser = {};
-                    UserService.findUserByUsername(user.username).then(function(response){
+                    UserService.findUserByUsername(user.username).then(function (response) {
 
                         vm.error = 'Change the Username';
 
-                    }, function(response){
-                            UserService
-                                .createUser(user)
-                                .then(function(response){
-                                    if(response.statusText === "OK"){
-                                        var json = response.data;
-                                        $state.go('profile', {uid: json.user._id});
-                                    }
-                                    else
-                                        vm.error = 'Unable to register!';
-                                });
+                    }, function (response) {
+                        UserService
+                            .createUser(user)
+                            .then(function (response) {
+                                if (response.statusText === "OK") {
+                                    var json = response.data;
+                                    $state.go('profile', {uid: json.user._id});
+                                }
+                                else
+                                    vm.error = 'Unable to register!';
+                            });
                     })
 
                 }

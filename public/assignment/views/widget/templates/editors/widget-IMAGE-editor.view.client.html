@@ -17,26 +17,31 @@
     <form action="/api/upload" method="POST" enctype="multipart/form-data">
 
         <label for="name">Name</label>
-        <input name="name" value="{{model.widget.name}}" type="text" class="form-control" id="name" placeholder="Image Name" ng-model="model.widget.name">
+        <input name="name" value="{{model.widget.name}}" type="text" class="form-control" id="name"
+               placeholder="Image Name" ng-model="model.widget.name">
 
         <label for="text">Text</label>
-        <input name="text" value="{{model.widget.description}}" type="text" class="form-control" id="text" placeholder="Image Desc" ng-model="model.widget.description">
+        <input name="text" value="{{model.widget.description}}" type="text" class="form-control" id="text"
+               placeholder="Image Desc" ng-model="model.widget.description">
 
         <label for="width">Width</label>
-        <input name="width" value="{{model.widget.width}}" type="text" class="form-control" id="width" placeholder="Image Width" value="100%"
+        <input name="width" value="{{model.widget.width}}" type="text" class="form-control" id="width"
+               placeholder="Image Width" value="100%"
                ng-model="model.widget.width">
 
         <label for="imageType">Image Upload / Image URL ?</label>
         <div class="form-group" id="imageType">
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageURL" ng-click="model.imageTypeHandler(model.imageTypeURL)" ng-checked="model.imageTypeURL">
+                    <input type="radio" name="imageURL" value="imageURL"
+                           ng-click="model.imageTypeHandler(model.imageTypeURL)" ng-checked="model.imageTypeURL">
                     Image URL
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageUpload" ng-click="model.imageTypeHandler(model.imageTypeUpload)">
+                    <input type="radio" name="imageURL" value="imageUpload"
+                           ng-click="model.imageTypeHandler(model.imageTypeUpload)">
                     Image Upload
                 </label>
             </div>
@@ -54,10 +59,10 @@
         </span>
 
         <span ng-if="model.showImageUploadForm">
-            <input  name="widgetId" value="{{model.widgetId}}" style="display: none"/>
-            <input  name="pageId" value="{{model.pageId}}" style="display: none"/>
-            <input  name="userId" value="{{model.userId}}" style="display: none"/>
-            <input  name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+            <input name="widgetId" value="{{model.widgetId}}" style="display: none"/>
+            <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+            <input name="userId" value="{{model.userId}}" style="display: none"/>
+            <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
 
             <label for="uploadedImage">Upload</label>
             <input type="file" name="uploadedImage" class="form-control" id="uploadedImage">

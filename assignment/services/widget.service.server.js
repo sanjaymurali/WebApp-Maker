@@ -6,13 +6,29 @@
 module.exports = function (app) {
 
     var multer = require('multer');
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+    var upload = multer({dest: __dirname + '/../../public/uploads'});
     var initialPos = 0;
     var finalPos = 0;
 
     var widgets = [
-        {"_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO", "name": "name1", "sortable": 0},
-        {"_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum", "name": "name2", "sortable": 1 },
+        {
+            "_id": "123",
+            "widgetType": "HEADER",
+            "pageId": "321",
+            "size": 2,
+            "text": "GIZMODO",
+            "name": "name1",
+            "sortable": 0
+        },
+        {
+            "_id": "234",
+            "widgetType": "HEADER",
+            "pageId": "321",
+            "size": 4,
+            "text": "Lorem ipsum",
+            "name": "name2",
+            "sortable": 1
+        },
         {
             "_id": "345",
             "widgetType": "IMAGE",
@@ -31,12 +47,27 @@ module.exports = function (app) {
             "name": "name4",
             "sortable": 3
         },
-        {"_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum", "name": "name5", "sortable": 4},
+        {
+            "_id": "567",
+            "widgetType": "HEADER",
+            "pageId": "321",
+            "size": 4,
+            "text": "Lorem ipsum",
+            "name": "name5",
+            "sortable": 4
+        },
         {
             "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
             "url": "https://youtu.be/AM2Ivdi9c4E", "name": "name6", "sortable": 5
         },
-        {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>", "name": "name7", "sortable": 6}
+        {
+            "_id": "789",
+            "widgetType": "HTML",
+            "pageId": "321",
+            "text": "<p>Lorem ipsum</p>",
+            "name": "name7",
+            "sortable": 6
+        }
     ];
 
     var headerSizes = [1, 2, 3, 4, 5, 6];
@@ -54,7 +85,7 @@ module.exports = function (app) {
 
         var widget = {};
 
-        if(req.body.widgetId){
+        if (req.body.widgetId) {
             //Update a Widget
             var widgetId = req.body.widgetId;
 
@@ -62,14 +93,14 @@ module.exports = function (app) {
                 if (widgets[w]._id === widgetId) {
                     widgets[w].width = req.body.width;
                     widgets[w].name = req.body.name;
-                    widgets[w].url = "/uploads/"+req.file.filename;
+                    widgets[w].url = "/uploads/" + req.file.filename;
                     widgets[w].description = req.body.text;
                 }
             }
-            res.redirect("/assignment/user/"+req.body.userId+"/website/"+req.body.websiteId+"/page/"+req.body.pageId+"/widget");
+            res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
 
         }
-        else{
+        else {
             //Create a New Widget
             var pageId = req.body.pageId + "";
             widget._id = (new Date()).getTime() + "";
@@ -77,13 +108,13 @@ module.exports = function (app) {
             widget.widgetType = "IMAGE";
             widget.width = req.body.width;
             widget.name = req.body.name;
-            widget.url = "/uploads/"+req.file.filename;
+            widget.url = "/uploads/" + req.file.filename;
             widget.description = req.body.text;
             widget.sortable = lastSortableOrder(pageId);
             widgets.push(widget);
 
             //hacky Solution, Have to implement a File Uploader Directive in the spring Break
-            res.redirect("/assignment/user/"+req.body.userId+"/website/"+req.body.websiteId+"/page/"+req.body.pageId+"/widget");
+            res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
 
         }
 
@@ -131,7 +162,7 @@ module.exports = function (app) {
         res.sendStatus(404);
     }
 
-    function updateWidgetOrder(req, res){
+    function updateWidgetOrder(req, res) {
         var pageId = req.params.pageId + "";
         initialPos = parseInt(req.query.initial);
         finalPos = parseInt(req.query.final);
@@ -148,10 +179,10 @@ module.exports = function (app) {
         // Used Array.protoype to manipulate the array using lambda functions
 
         /*
-        If the widget is being moved up then we need to place the widget
-        at that position and then increment the sortable of all widgets in between.
+         If the widget is being moved up then we need to place the widget
+         at that position and then increment the sortable of all widgets in between.
          */
-        if(initialPos > finalPos){
+        if (initialPos > finalPos) {
             widgetsOfPage.filter(getWidgetsInBetween).map(updateSortableOrderWidget);
             replacedWidget.sortable += 1;
         }
@@ -175,7 +206,6 @@ module.exports = function (app) {
                 return res.sendStatus(200);
             }
         }
-
 
 
         res.sendStatus(404);
@@ -205,12 +235,12 @@ module.exports = function (app) {
     // Helper function for various router, they dont have requests
     // or responses.
 
-    function lastSortableOrder(pageId){
+    function lastSortableOrder(pageId) {
         var listOfWidgets = [];
         var max = 0;
         for (var w in widgets) {
             if (widgets[w].pageId === pageId) {
-                    ++max;
+                ++max;
             }
         }
         return max;
@@ -227,7 +257,7 @@ module.exports = function (app) {
     }
 
     function getInitialIndex(widget) {
-            return widget.sortable === initialPos;
+        return widget.sortable === initialPos;
     }
 
     function getFinalIndex(widget) {
@@ -235,14 +265,14 @@ module.exports = function (app) {
     }
 
     function getWidgetsInBetween(widget) {
-        if(initialPos > finalPos)
+        if (initialPos > finalPos)
             return widget.sortable < initialPos && widget.sortable > finalPos;
         else
             return widget.sortable > initialPos && widget.sortable < finalPos;
     }
 
     function updateSortableOrderWidget(widget) {
-        if(initialPos > finalPos)
+        if (initialPos > finalPos)
             widget.sortable += 1;
         else
             widget.sortable -= 1;
@@ -250,16 +280,16 @@ module.exports = function (app) {
     }
 
     function deleteIndex(pageId, sortable) {
-        var widgetsLeft = widgets.filter(function(widget) {
+        var widgetsLeft = widgets.filter(function (widget) {
             return widget.pageId === pageId;
         });
 
-        var selectWidgetsToUpdate = widgetsLeft.filter(function(widget) {
+        var selectWidgetsToUpdate = widgetsLeft.filter(function (widget) {
             return widget.sortable > sortable;
         });
 
-        if(selectWidgetsToUpdate){
-            selectWidgetsToUpdate.map(function(widget) {
+        if (selectWidgetsToUpdate) {
+            selectWidgetsToUpdate.map(function (widget) {
                 widget.sortable -= 1;
             })
         }

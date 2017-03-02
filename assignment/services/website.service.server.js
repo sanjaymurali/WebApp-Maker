@@ -19,7 +19,7 @@ module.exports = function (app) {
         {"_id": "789", "name": "Chess", "developerId": "234", "description": "Lorem", created: new Date()}
     ];
 
-    function deleteWebsite(req,res) {
+    function deleteWebsite(req, res) {
         var websiteId = req.params.websiteId;
         for (var w in websites) {
             if (websites[w]._id === websiteId) {

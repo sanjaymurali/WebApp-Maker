@@ -18,26 +18,26 @@
 
 
         function deleteWebsite(websiteId) {
-            return $http.delete('/api/website/'+websiteId);
+            return $http.delete('/api/website/' + websiteId);
         }
 
         function createWebsite(userId, website) {
 
-            return $http.post(apiURL+userId+'/website/',website);
+            return $http.post(apiURL + userId + '/website/', website);
 
         }
 
         function updateWebsite(websiteId, website) {
-            return $http.put('/api/website/'+websiteId, website);
+            return $http.put('/api/website/' + websiteId, website);
         }
 
         function findWebsitesByUser(userId) {
-            return $http.get(apiURL+userId+'/website/');
+            return $http.get(apiURL + userId + '/website/');
 
         }
 
         function findWebsiteById(wid) {
-            return $http.get('/api/website/'+wid);
+            return $http.get('/api/website/' + wid);
 
         }
     }

@@ -10,8 +10,8 @@
             vm.userId = $stateParams['uid'];
             vm.websiteId = $stateParams['wid'];
 
-            PageService.findPageByWebsiteId(vm.websiteId).then(function(response){
-                if(response.statusText === "OK")
+            PageService.findPageByWebsiteId(vm.websiteId).then(function (response) {
+                if (response.statusText === "OK")
                     vm.pages = response.data.pages;
             });
 
@@ -28,8 +28,8 @@
         function createPage(page) {
             cleanUpAlerts();
             if (vm.page) {
-                PageService.createPage(vm.websiteId, page).then(function(response){
-                    if(response.statusText === "OK"){
+                PageService.createPage(vm.websiteId, page).then(function (response) {
+                    if (response.statusText === "OK") {
                         var addNew = response.data.page;
                         vm.pages.push(addNew);
                         vm.success = true;

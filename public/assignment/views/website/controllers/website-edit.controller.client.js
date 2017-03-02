@@ -16,14 +16,14 @@
 
             vm.websites = {};
             vm.website = {};
-            WebsiteService.findWebsitesByUser(vm.userId).then(function(response){
-                if(response.statusText === "OK"){
+            WebsiteService.findWebsitesByUser(vm.userId).then(function (response) {
+                if (response.statusText === "OK") {
                     vm.websites = response.data.websites;
                 }
             });
 
-            WebsiteService.findWebsiteById(vm.websiteId).then(function(response){
-                if(response.statusText === "OK"){
+            WebsiteService.findWebsiteById(vm.websiteId).then(function (response) {
+                if (response.statusText === "OK") {
                     vm.website = response.data.website;
                 }
             });
@@ -37,9 +37,9 @@
 
         function deleteWebsite() {
             cleanUpAlerts();
-            WebsiteService.deleteWebsite(vm.websiteId).then(function(response){
-                if(response.statusText === "OK"){
-                    WebsiteService.findWebsitesByUser(vm.userId).then(function(response){
+            WebsiteService.deleteWebsite(vm.websiteId).then(function (response) {
+                if (response.statusText === "OK") {
+                    WebsiteService.findWebsitesByUser(vm.userId).then(function (response) {
                         vm.websites = response.data.websites;
                         if (vm.websites.length == 0) {
                             $state.go('website-new', {uid: vm.userId});
@@ -49,14 +49,14 @@
                     });
                 }
             });
- }
+        }
 
         function updateWebsite() {
             cleanUpAlerts();
-            WebsiteService.updateWebsite(vm.websiteId, vm.website).then(function(response){
+            WebsiteService.updateWebsite(vm.websiteId, vm.website).then(function (response) {
                 if (response.statusText === "OK") {
-                    for(var current in vm.websites){
-                        if(vm.websites[current]._id === response.data.website._id){
+                    for (var current in vm.websites) {
+                        if (vm.websites[current]._id === response.data.website._id) {
 
                             vm.websites[current] = response.data.website;
                         }

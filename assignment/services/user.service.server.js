@@ -67,12 +67,13 @@ module.exports = function (app) {
         for (var u in users) {
             var user = users[u];
             if (user._id === userId) {
-                for(i=0;i<updatedProperties.length;i++){
-                    if((users[u].hasOwnProperty(updatedProperties[i]))
+                for (i = 0; i < updatedProperties.length; i++) {
+                    if ((users[u].hasOwnProperty(updatedProperties[i]))
                         && updatedProperties[i] != '_id')
                         users[u][updatedProperties[i]] = req.body[updatedProperties[i]];
                 }
-                return res.status(200).json({user: user});;
+                return res.status(200).json({user: user});
+                ;
             }
         }
         res.status(404);
@@ -92,7 +93,7 @@ module.exports = function (app) {
 
     }
 
-    function findUserById(req,res) {
+    function findUserById(req, res) {
         var userId = req.params.userId + "";
         for (var u in users) {
             var user = users[u];

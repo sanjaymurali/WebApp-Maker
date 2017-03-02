@@ -12,7 +12,7 @@
             var user = {};
             vm.userId = $stateParams['uid'];
 
-            if(resolvedJson.statusText === "OK"){
+            if (resolvedJson.statusText === "OK") {
                 var userJson = resolvedJson.data;
                 user = userJson.user;
                 vm.user = user;
@@ -28,10 +28,10 @@
 
         function update(newUser) {
             var user = {};
-                UserService
+            UserService
                 .updateUser(vm.userId, newUser)
-                .then(function(response){
-                    if(response.statusText === "OK"){
+                .then(function (response) {
+                    if (response.statusText === "OK") {
                         var json = response.data;
                         vm.user = json.user;
                         vm.message = "User successfully updated"
@@ -44,11 +44,11 @@
 
         function unregisterUser(user) {
             var answer = confirm("Are you sure?");
-            if(answer) {
+            if (answer) {
                 UserService
                     .deleteUser(user._id)
                     .then(function (response) {
-                        if(response.statusText === "OK")
+                        if (response.statusText === "OK")
                             $state.go('login');
                         else
                             vm.error = 'unable to remove user';
