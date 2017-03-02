@@ -12,7 +12,7 @@
         return {
             scope: scope,
             link: linkfn,
-            templateUrl: 'views/directives/templates/nav.footer.common.client.html'
+            templateUrl: 'directives/templates/nav.footer.common.client.html'
         }
     }
 

@@ -41,6 +41,7 @@
             "createWidget": createWidget,
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
+            "updateWidgetOrder": updateWidgetOrder,
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById
         };
@@ -65,6 +66,10 @@
 
         function findWidgetById(widgetId) {
             return $http.get('/api/widget/'+widgetId);
+        }
+
+        function updateWidgetOrder(pageId, initial, final){
+            return $http.put('/api/page/'+pageId+'/widget',{}, {params: {initial: initial, final: final}});
         }
 
     }

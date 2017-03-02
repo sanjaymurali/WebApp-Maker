@@ -8,11 +8,12 @@
 
 
         function init() {
-            var userJson = resolvedJson.data;
+
             var user = {};
             vm.userId = $stateParams['uid'];
 
-            if(userJson.success){
+            if(resolvedJson.statusText === "OK"){
+                var userJson = resolvedJson.data;
                 user = userJson.user;
                 vm.user = user;
             }

@@ -28,8 +28,8 @@
             vm.success = false;
             vm.error = false;
 
-            vm.showImageUploadForm = true;
-            vm.showImageURLForm = false;
+            vm.showImageUploadForm = false;
+            vm.showImageURLForm = true;
 
             vm.imageTypeURL = "imageURL";
             vm.imageTypeUpload = "imageUpload";
@@ -38,11 +38,10 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
+            return '/views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
         }
 
         function imageTypeHandler(type) {
-            console.log(type);
             if(type === "imageURL"){
                 vm.showImageURLForm = true;
                 vm.showImageUploadForm = false;

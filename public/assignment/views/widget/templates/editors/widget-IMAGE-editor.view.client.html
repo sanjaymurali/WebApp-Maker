@@ -26,17 +26,17 @@
         <input name="width" value="{{model.widget.width}}" type="text" class="form-control" id="width" placeholder="Image Width" value="100%"
                ng-model="model.widget.width">
 
-        <label for="imageType">Imgae Upload / Image URL ?</label>
+        <label for="imageType">Image Upload / Image URL ?</label>
         <div class="form-group" id="imageType">
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageURL" ng-model="model.imageTypeURL" ng-click="model.imageTypeHandler(model.imageTypeURL)">
+                    <input type="radio" name="imageURL" value="imageURL" ng-click="model.imageTypeHandler(model.imageTypeURL)" ng-checked="model.imageTypeURL">
                     Image URL
                 </label>
             </div>
             <div class="radio">
                 <label>
-                    <input type="radio" name="imageURL" value="imageUpload" ng-model="model.imageTypeUpload" ng-click="model.imageTypeHandler(model.imageTypeUpload)">
+                    <input type="radio" name="imageURL" value="imageUpload" ng-click="model.imageTypeHandler(model.imageTypeUpload)">
                     Image Upload
                 </label>
             </div>

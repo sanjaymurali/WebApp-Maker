@@ -25,17 +25,23 @@
             else{
                 if (user.password === user.verifyPassword) {
                     var registerUser = {};
-                        UserService
-                        .createUser(user)
-                        .then(function(response){
-                            console.log(response);
-                            if(response.statusText === "OK"){
-                                var json = response.data;
-                                $state.go('profile', {uid: json.user._id});
-                            }
-                            else
-                                vm.error = 'Unable to register!';
-                        });
+                    UserService.findUserByUsername(user.username).then(function(response){
+
+                        vm.error = 'Change the Username';
+
+                    }, function(response){
+                            UserService
+                                .createUser(user)
+                                .then(function(response){
+                                    if(response.statusText === "OK"){
+                                        var json = response.data;
+                                        $state.go('profile', {uid: json.user._id});
+                                    }
+                                    else
+                                        vm.error = 'Unable to register!';
+                                });
+                    })
+
                 }
                 else
                     vm.error = 'Passwords Do not Match!';

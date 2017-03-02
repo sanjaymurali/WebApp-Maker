@@ -80,7 +80,6 @@ module.exports = function (app) {
     }
 
     function deleteUser(req, res) {
-        console.log("In here!")
         var userId = req.params.userId;
         var userIdToString = userId + "";
         for (var u in users) {
@@ -99,10 +98,10 @@ module.exports = function (app) {
         for (var u in users) {
             var user = users[u];
             if (user._id === userId) {
-                return res.json({success: true, user: user});
+                return res.status(200).json({user: user});
             }
         }
-        res.json({success: false});
+        res.sendStatus(404);
     }
 
     function findUserByCredentials(req, res, next) {
@@ -112,10 +111,10 @@ module.exports = function (app) {
             var user = users[u];
             if (user.username === username &&
                 user.password === password) {
-                return res.json({success: true, user: user});
+                return res.status(200).json({user: user});
             }
         }
-        res.json({success: false});
+        res.sendStatus(404);
     }
 
     function findUserByUsername(req, res, next) {
@@ -124,10 +123,10 @@ module.exports = function (app) {
         for (var u in users) {
             var user = users[u];
             if (user.username === username) {
-                return res.json({success: true, user: user});
+                return res.status(200).json({user: user});
             }
         }
-        res.json({success: false});
+        res.sendStatus(404);
     }
 
     function findUser(req, res) {
