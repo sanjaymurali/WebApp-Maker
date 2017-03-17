@@ -15,8 +15,8 @@
             WidgetService.findWidgetById(vm.widgetId).then(function (response) {
                 if (response.statusText === "OK")
                     vm.widget = response.data.widget;
+                    vm.editorURL = 'views/widget/templates/editors/widget-' + vm.widget.widgetType + '-editor.view.client.html';
             });
-            vm.getEditorTemplateUrl = getEditorTemplateUrl;
             vm.updateWidget = updateWidget;
             vm.deleteWidget = deleteWidget;
 
@@ -36,10 +36,6 @@
         }
 
         init();
-
-        function getEditorTemplateUrl(type) {
-            return '/views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
-        }
 
         function imageTypeHandler(type) {
             if (type === "imageURL") {

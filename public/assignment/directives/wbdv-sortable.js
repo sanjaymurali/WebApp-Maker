@@ -33,6 +33,7 @@
 
         return {
             link: linkFunc,
+            template: '',
             scope: {
                 pageId: '@'
             }

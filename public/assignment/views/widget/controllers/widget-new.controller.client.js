@@ -51,7 +51,7 @@
                 vm.showOptions = true;
             else {
                 vm.showOptions = false;
-                return '/views/widget/templates/creators/widget-' + type + '-creator.view.client.html';
+                return 'views/widget/templates/creators/widget-' + type + '-creator.view.client.html';
             }
         }
 

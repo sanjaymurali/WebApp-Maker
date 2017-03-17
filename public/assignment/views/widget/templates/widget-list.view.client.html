@@ -25,7 +25,7 @@
 
     <span wbdv-sortable page-id="{{model.pageId}}">
     <div ng-repeat="widget in model.widgets | orderBy: 'sortable'">
-        <div class="together">
+
         <div class="jga-toolbar">
             <a ui-sref="widget-edit({uid: model.userId, wid: model.websiteId, pid: model.pageId, wgid: widget._id})">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -48,7 +48,7 @@
             </div>
         </div>
             </div>
-    </div>
+
     </span>
 
 </div>
