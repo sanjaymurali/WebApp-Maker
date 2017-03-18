@@ -23,7 +23,8 @@
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(function (response) {
-                    if (response.statusText === "Not Found") {
+                    console.log(response);
+                    if (!response.data.user) {
                         vm.error = 'User not found';
                     }
                     else {
@@ -31,7 +32,6 @@
                         loginUser = json.user;
                         $state.go('profile', {uid: loginUser._id});
                     }
-
                 }, function (error) {
                     vm.error = 'User not found';
                 });

@@ -25,21 +25,22 @@
             else {
                 if (user.password === user.verifyPassword) {
                     var registerUser = {};
-                    UserService.findUserByUsername(user.username).then(function (response) {
-
-                        vm.error = 'Change the Username';
-
-                    }, function (response) {
-                        UserService
-                            .createUser(user)
-                            .then(function (response) {
-                                if (response.statusText === "OK") {
-                                    var json = response.data;
-                                    $state.go('profile', {uid: json.user._id});
-                                }
-                                else
-                                    vm.error = 'Unable to register!';
-                            });
+                    UserService
+                        .findUserByUsername(user.username)
+                        .then(function (response) {
+                            console.log(response);
+                            vm.error = 'Change the Username';
+                    }, function (error) {
+                            UserService
+                                .createUser(user)
+                                .then(function (response) {
+                                    if (response.statusText === "OK") {
+                                        var json = response.data;
+                                        $state.go('profile', {uid: json.user._id});
+                                    }
+                                    else
+                                        vm.error = 'Unable to register!';
+                                });
                     })
 
                 }

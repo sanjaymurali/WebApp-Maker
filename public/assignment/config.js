@@ -23,6 +23,8 @@
                     .findUserById($stateParams['uid'])
                     .then(function (response) {
                         return response;
+                    }, function(err){
+                        console.log(err);
                     });
             }
         };
@@ -46,7 +48,6 @@
                 controller: 'profileController',
                 controllerAs: 'model',
                 resolve: userJSON
-
             })
             .state('website', {
                 url: '/user/:uid/website',

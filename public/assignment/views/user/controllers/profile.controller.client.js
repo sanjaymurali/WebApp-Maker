@@ -12,6 +12,7 @@
             var user = {};
             vm.userId = $stateParams['uid'];
 
+
             if (resolvedJson.statusText === "OK") {
                 var userJson = resolvedJson.data;
                 user = userJson.user;
@@ -32,8 +33,6 @@
                 .updateUser(vm.userId, newUser)
                 .then(function (response) {
                     if (response.statusText === "OK") {
-                        var json = response.data;
-                        vm.user = json.user;
                         vm.message = "User successfully updated"
                     }
                     else
