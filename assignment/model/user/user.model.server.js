@@ -67,7 +67,7 @@ module.exports = function () {
             }
         }
 
-        UserModel.findByIdAndUpdate({_id: userId}, { $set: updatedUser}, {new: true}, function (err, user) {
+        UserModel.findByIdAndUpdate({_id: userId}, { $setOnInsert: updatedUser}, {new: true}, function (err, user) {
             if(err)
                 deferred.reject(err);
             else
