@@ -44,12 +44,14 @@ module.exports = function (app, websiteModel) {
     }
 
     function updateWebsite(req, res) {
-        var websiteId = req.params.websiteId;
+        var websiteId = req.params.websiteId + "";
         var website = req.body;
 
         websiteModel.updateWebsite(websiteId, website).then(function(changedwebsite){
+            console.log(changedwebsite);
             res.status(200).json({website: changedwebsite});
         }, function (error) {
+            console.log(error);
             res.sendStatus(500);
         });
     }
