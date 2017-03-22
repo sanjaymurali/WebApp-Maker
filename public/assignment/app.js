@@ -1,5 +1,5 @@
 (function () {
     angular
-        .module("WebAppMaker", ['ui.router']);
+        .module("WebAppMaker", ['ui.router','textAngular']);
 
 })();

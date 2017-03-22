@@ -1,0 +1,38 @@
+<h1>TEXT Creator</h1>
+
+<div class="container-fluid">
+    <div class="alert alert-danger fade in" ng-show="model.error">
+        <a href="#" class="close" ng-click="model.alertOpenClose(model.error)">&times;</a>
+        {{model.errorMessage}}
+    </div>
+
+    <div class="alert alert-success fade in" ng-show="model.success">
+        <a href="#" class="close alert-close" ng-click="model.alertOpenClose(model.success)">&times;</a>
+        {{model.successMessage}}<br/>
+        Click <a ui-sref="widget({uid: model.userId, wid: model.websiteId, pid: model.pageId})">here</a> to view your
+        Widget Page
+    </div>
+</div>
+
+<label>Name</label>
+<input ng-model="model.widget.name" placeholder="Text Name" class="form-control"/>
+
+<label>Text</label>
+<input ng-model="model.widget.text" placeholder="Text Widget Text" class="form-control"/>
+
+<label>Rows</label>
+<input ng-model="model.widget.rows" placeholder="Text Rows" class="form-control"/>
+
+<label>Placeholder</label>
+<input ng-model="model.widget.placeholder" placeholder="Text Placeholder" class="form-control"/>
+
+<div class="input-group">
+
+    <input disabled type="text" class="form-control text-muted" value="Formatted">
+    <span class="input-group-addon">
+        <input type="checkbox" ng-model="model.widget.formatted">
+      </span>
+</div>
+<br/>
+<a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create Text</a>
+

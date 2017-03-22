@@ -23,7 +23,6 @@
             UserService
                 .findUserByCredentials(user.username, user.password)
                 .then(function (response) {
-                    console.log(response);
                     if (!response.data.user) {
                         vm.error = 'User not found';
                     }

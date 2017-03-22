@@ -2,7 +2,7 @@
  * Created by sanjaymurali on 2/26/17.
  */
 
-module.exports = function (app) {
+module.exports = function (app, websiteModel) {
 
     app.get('/api/user/:userId/website', findAllWebsitesForUser);
     app.post('/api/user/:userId/website', createWebsite);
@@ -20,59 +20,59 @@ module.exports = function (app) {
     ];
 
     function deleteWebsite(req, res) {
+
         var websiteId = req.params.websiteId;
-        for (var w in websites) {
-            if (websites[w]._id === websiteId) {
-                websites.splice(w, 1);
-                return res.sendStatus(200);
-            }
-        }
-        res.sendStatus(404);
+
+        websiteModel.deleteWebsite(websiteId).then(function(website){
+            res.sendStatus(200);
+        }, function(err) {
+            res.sendStatus(404);
+        });
     }
 
     function createWebsite(req, res) {
         var userId = req.params.userId;
         var website = req.body;
-        website.developerId = userId;
-        website._id = (new Date()).getTime() + "";
-        website.created = new Date();
-        websites.push(website);
-        res.status(200).json({website: website});
 
+        websiteModel
+            .createWebsiteForUser(userId, website)
+            .then(function (createdwebsite) {
+                res.status(200).json({website: createdwebsite});
+            }, function (err) {
+                res.sendStatus(404);
+            });
     }
 
     function updateWebsite(req, res) {
         var websiteId = req.params.websiteId;
         var website = req.body;
-        for (var w in websites) {
-            if (websites[w]._id === websiteId) {
-                websites[w].name = website.name;
-                websites[w].description = website.description;
-                return res.status(200).json({website: websites[w]});
-            }
-        }
-        res.sendStatus(404);
+
+        websiteModel.updateWebsite(websiteId, website).then(function(changedwebsite){
+            res.status(200).json({website: changedwebsite});
+        }, function (error) {
+            res.sendStatus(500);
+        });
     }
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
-        var sites = [];
-        for (var w in websites) {
-            if (websites[w].developerId === userId) {
-                sites.push(websites[w]);
-            }
-        }
-        res.status(200).json({websites: sites});
+
+        websiteModel.findAllWebsitesForUser(userId).then(function (websites) {
+            res.status(200).json({websites: websites});
+        }, function (err) {
+            res.sendStatus(404);
+        });
+
     }
 
     function findWebsiteById(req, res) {
         var wid = req.params.websiteId;
-        for (var w in websites) {
-            if (websites[w]._id === wid) {
-                return res.status(200).json({website: websites[w]});
-            }
-        }
-        res.sendStatus(404);
+
+        websiteModel.findWebsiteById(wid).then(function (website) {
+            res.status(200).json({website: website});
+        }, function (err) {
+            res.sendStatus(404);
+        });
     }
 
 }

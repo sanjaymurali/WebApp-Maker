@@ -19,9 +19,15 @@
 <input ng-model="model.widget.name" class="form-control"/>
 
 <label>Text</label>
-<textarea rows="5" ng-model="model.widget.text" class="form-control"></textarea>
+
+<div ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+    ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+    ['indent','outdent'],['html']]">
+</div>
 
 
 <a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update HTML</a>
 <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
-<div></div>
+<div>

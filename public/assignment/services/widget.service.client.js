@@ -6,7 +6,7 @@
     function WidgetService($http) {
 
         var headerSizes = [1, 2, 3, 4, 5, 6];
-        var widgetTypes = ['HEADER', 'IMAGE', 'HTML', 'YOUTUBE'];
+        var widgetTypes = ['HEADER', 'IMAGE', 'HTML', 'YOUTUBE', 'TEXT'];
 
         var api = {
             "headerSizes": headerSizes,

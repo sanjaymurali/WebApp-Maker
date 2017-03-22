@@ -6,14 +6,16 @@ module.exports = function () {
 
     var api = {
         createUser: createUser,
+        updateUser: updateUser,
+        deleteUser: deleteUser,
         findUserById: findUserById,
         findUserByCredentials: findUserByCredentials,
-        findUserByUsername: findUserByUsername,
-        updateUser: updateUser,
-        deleteUser: deleteUser
+        findUserByUsername: findUserByUsername
     };
 
     var mongoose = require('mongoose');
+
+    var q = require('q');
 
     var UserSchema = require('./user.schema.server')();
     var UserModel = mongoose.model('UserModel', UserSchema);
@@ -21,14 +23,33 @@ module.exports = function () {
     return api;
 
     function createUser(user) {
-        return UserModel.create(user);
+        var deferred = q.defer();
+        UserModel.create(user, function (err, user) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(user)
+        });
+
+        return deferred.promise;
     }
 
     function deleteUser(userId) {
-        return UserModel.remove({_id: userId});
+
+        var deferred = q.defer();
+        UserModel.remove({_id: userId}, function (err, status) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(status)
+        });
+
+        return deferred.promise;
     }
 
     function updateUser(userId, changedUser) {
+        var deferred = q.defer();
+
         var updatedUser = {};
         var updatedProperties = Object.getOwnPropertyNames(changedUser);
         var schemaProp = Object.getOwnPropertyNames(UserModel.schema.obj);
@@ -45,18 +66,51 @@ module.exports = function () {
                 }
             }
         }
-        return UserModel.update({_id: userId}, { $set: updatedUser});
+
+        UserModel.findByIdAndUpdate({_id: userId}, { $set: updatedUser}, {new: true}, function (err, user) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(user);
+        });
+
+        return deferred.promise;
     }
 
     function findUserById(userId) {
-        return UserModel.findById(userId);
+        var deferred = q.defer();
+
+        UserModel.findById(userId, function (err, user) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(user);
+        });
+
+        return deferred.promise;
     }
 
     function findUserByCredentials(username, password) {
-        return UserModel.findOne({username: username, password: password});
+        var deferred = q.defer();
+        UserModel.findOne({username: username, password: password}, function (err, user) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(user);
+        });
+
+        return deferred.promise;
     }
 
     function findUserByUsername(username) {
-        return UserModel.findOne({username: username});
+        var deferred = q.defer();
+        UserModel.findOne({username: username}, function (err, user) {
+            if(err)
+                deferred.reject(err);
+            else
+                deferred.resolve(user);
+        });
+
+        return deferred.promise;
     }
 };

@@ -18,7 +18,12 @@
 <input ng-model="model.widget.name" placeholder="HTML Name" class="form-control"/>
 
 <label>Text</label>
-<textarea rows="5" ng-model="model.widget.text" placeholder="HTML Text" class="form-control"></textarea>
 
+<div ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+</div>
 
 <a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create HTML</a>

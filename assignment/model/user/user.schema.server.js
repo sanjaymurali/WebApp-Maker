@@ -10,8 +10,10 @@ module.exports = function () {
         password: String,
         firstName: String,
         lastName: String,
-        email: String
-    }, {collection: 'users'});
+        email: String,
+        phone: String,
+        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Websites'}]
+    },{collection: 'users', timestamps: {createdAt: 'dateCreated'}});
 
     return UserSchema;
 };

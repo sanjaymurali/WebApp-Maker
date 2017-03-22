@@ -24,7 +24,6 @@
                     .then(function (response) {
                         return response;
                     }, function(err){
-                        console.log(err);
                     });
             }
         };

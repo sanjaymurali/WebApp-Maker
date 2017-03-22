@@ -28,19 +28,22 @@
                     UserService
                         .findUserByUsername(user.username)
                         .then(function (response) {
-                            console.log(response);
-                            vm.error = 'Change the Username';
+                            if(response.data.user)
+                                vm.error = 'Change the Username';
+                            else {
+                                UserService
+                                    .createUser(user)
+                                    .then(function (response) {
+                                        if (response.statusText === "OK") {
+                                            var json = response.data;
+                                            $state.go('profile', {uid: json.user._id});
+                                        }
+                                        else
+                                            vm.error = 'Unable to register!';
+                                    });
+                            }
                     }, function (error) {
-                            UserService
-                                .createUser(user)
-                                .then(function (response) {
-                                    if (response.statusText === "OK") {
-                                        var json = response.data;
-                                        $state.go('profile', {uid: json.user._id});
-                                    }
-                                    else
-                                        vm.error = 'Unable to register!';
-                                });
+                            vm.error = 'Unable to register!';
                     })
 
                 }

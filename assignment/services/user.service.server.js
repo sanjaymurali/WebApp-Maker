@@ -46,13 +46,12 @@ module.exports = function (app, userModel) {
     ]; //This Array is just for reference, can remove it!
 
     function createUser(req, res) {
-
         var user = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
             firstName: req.body.firstName,
-            lastName: req.body.lastName
+            lastName: req.body.lastName,
         };
 
         userModel
@@ -65,7 +64,6 @@ module.exports = function (app, userModel) {
     }
 
     function updateUser(req, res) {
-
         var userId = req.params.userId;
 
         userModel.updateUser(userId, req.body).then(function(user){
@@ -92,10 +90,9 @@ module.exports = function (app, userModel) {
         userModel.
         findUserById(userId)
             .then(function (user) {
-                if(user)
-                    res.status(200).json({user: user});
-                else
-                    res.sendStatus(404);
+                res.status(200).json({user: user});
+            }, function (err) {
+                res.sendStatus(404);
             });
     }
 
@@ -106,27 +103,21 @@ module.exports = function (app, userModel) {
         userModel
             .findUserByCredentials(username, password)
             .then(function (user) {
-                if(user)
-                    res.status(200).json({user: user});
-                else {
-                    console.log("nhit")
-                    res.sendStatus(404);
-                }
-
+                res.status(200).json({user: user});
+            }, function (err) {
+                res.sendStatus(404);
             });
     }
 
     function findUserByUsername(req, res, next) {
-
         var username = req.query.username;
-        
+
         userModel
             .findUserByUsername(username)
             .then(function (user) {
-                if(user)
-                    res.sendStatus(200);
-                else
-                    res.sendStatus(404);
+                res.status(200).json({user: user});
+            }, function (err) {
+                res.sendStatus(200);
             });
     }
 

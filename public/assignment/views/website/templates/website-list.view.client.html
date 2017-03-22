@@ -47,10 +47,10 @@
                     </a>
                 </div>
                 <div class="col-sm-3 hidden-xs">
-                    {{website.created | date}}
+                    {{website.updatedAt | date}}
                 </div>
                 <div class="col-sm-2 hidden-xs">
-                    {{website.developerId}}
+                    {{website._user}}
                 </div>
                 <div class="col-xs-7 col-sm-1">
                     <a ui-sref="website-edit({uid:model.userId,wid:website._id})">
