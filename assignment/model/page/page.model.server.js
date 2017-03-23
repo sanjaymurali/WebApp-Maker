@@ -52,7 +52,7 @@ module.exports = function () {
 
         var deferred = q.defer();
 
-        PageModel.update({_id: pageId}, {$set: page}, function (err, page) {
+        PageModel.update({_id: pageId}, {$set: page, $setOnInsert: page}, function (err, page) {
             if(err)
                 deferred.reject(err);
             else
