@@ -53,6 +53,7 @@ module.exports = function (app, websiteModel) {
             else
                 res.sendStatus(500);
         }, function (error) {
+            console.log(error);
             res.sendStatus(500);
         });
     }
