@@ -3,7 +3,7 @@
  */
 
 
-module.exports = function (app, pageModel) {
+module.exports = function (app, pageModel, websiteModel) {
 
     var pages = [
         {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem", "title": "Title 1"},
@@ -28,13 +28,19 @@ module.exports = function (app, pageModel) {
     }
 
     function createPage(req, res) {
-        var websiteId = req.params.websiteId;
+        var websiteId = req.params.websiteId + "";
         var page = req.body;
 
         pageModel
             .createPage(websiteId, page)
             .then(function (createdpage) {
-                res.status(200).json({page: createdpage});
+                websiteModel.findWebsiteById({_id: websiteId}).then(function (website) {
+                    website.pages.push(createdpage._id);
+                    website.save();
+                    res.status(200).json({page: createdpage});
+                }, function (err) {
+                    res.sendStatus(404);
+                });
             }, function (err) {
                 res.sendStatus(404);
             });

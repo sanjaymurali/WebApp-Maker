@@ -10,8 +10,8 @@ module.exports = function (app) {
 
     require("./services/user.service.server.js")(app, models.userModel);
     require("./services/website.service.server.js")(app, models.websiteModel, models.userModel);
-    require("./services/page.service.server.js")(app, models.pageModel);
-    require("./services/widget.service.server.js")(app, models.widgetModel);
+    require("./services/page.service.server.js")(app, models.pageModel, models.websiteModel);
+    require("./services/widget.service.server.js")(app, models.widgetModel, models.pageModel);
 
 
 

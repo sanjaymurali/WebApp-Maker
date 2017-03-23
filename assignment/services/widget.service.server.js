@@ -3,7 +3,7 @@
  */
 
 
-module.exports = function (app, widgetModel) {
+module.exports = function (app, widgetModel, pageModel) {
 
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../public/uploads'});
@@ -126,14 +126,26 @@ module.exports = function (app, widgetModel) {
             widgetModel.lastSortableOrder(pageId).then(function(max){
                 widget.sortable = max;
                 widgetModel.createWidget(pageId, widget).then(function(widget) {
-                    res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
+                    pageModel.findPageById({_id: pageId}).then(function (page) {
+                        page.widgets.push(widget._id);
+                        page.save();
+                        res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
+                    }, function (err) {
+                        res.sendStatus(404);
+                    });
                 }, function (err) {
                     res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
                 });
             }, function (err) {
                 widget.sortable = 0;
                 widgetModel.createWidget(pageId, widget).then(function(widget) {
-                    res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
+                    pageModel.findPageById({_id: pageId}).then(function (page) {
+                        page.widgets.push(widget._id);
+                        page.save();
+                        res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
+                    }, function (err) {
+                        res.sendStatus(404);
+                    });
                 }, function (err) {
                     res.redirect("/assignment/user/" + req.body.userId + "/website/" + req.body.websiteId + "/page/" + req.body.pageId + "/widget");
                 });
@@ -150,14 +162,27 @@ module.exports = function (app, widgetModel) {
         widgetModel.lastSortableOrder(pageId).then(function(max){
             widget.sortable = max;
             widgetModel.createWidget(pageId, widget).then(function(widget) {
-                res.status(200).json({widget: widget});
+                pageModel.findPageById({_id: pageId}).then(function (page) {
+                    page.widgets.push(widget._id);
+                    page.save();
+                    res.status(200).json({widget: widget});
+                }, function (err) {
+                    res.sendStatus(404);
+                });
+
             }, function (err) {
                 res.status(404);
             });
         }, function (err) {
             widget.sortable = 0;
             widgetModel.createWidget(pageId, widget).then(function(widget) {
-                res.status(200).json({widget: widget});
+                pageModel.findPageById({_id: pageId}).then(function (page) {
+                    page.widgets.push(widget._id);
+                    page.save();
+                    res.status(200).json({widget: widget});
+                }, function (err) {
+                    res.sendStatus(404);
+                });
             }, function (err) {
                 res.status(404);
             });

@@ -215,7 +215,6 @@ h1 {
     padding-bottom: 5px;
     border-bottom-left-radius: 5px;
 
-
 }
 
 /* YouTube Widget */
@@ -224,7 +223,6 @@ h1 {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
-    z-index: -1;
 }
 
 .youtube-widget iframe {
