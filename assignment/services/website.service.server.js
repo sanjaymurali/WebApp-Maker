@@ -2,7 +2,7 @@
  * Created by sanjaymurali on 2/26/17.
  */
 
-module.exports = function (app, websiteModel) {
+module.exports = function (app, websiteModel, userModel) {
 
     app.get('/api/user/:userId/website', findAllWebsitesForUser);
     app.post('/api/user/:userId/website', createWebsite);
@@ -37,7 +37,14 @@ module.exports = function (app, websiteModel) {
         websiteModel
             .createWebsiteForUser(userId, website)
             .then(function (createdwebsite) {
-                res.status(200).json({website: createdwebsite});
+                userModel.findUserById({_id: userId}).then(function (user) {
+                    user.websites.push(createdwebsite._id);
+                    user.save();
+                    res.status(200).json({website: createdwebsite});
+                }, function (err) {
+                    res.sendStatus(404);
+                });
+
             }, function (err) {
                 res.sendStatus(404);
             });

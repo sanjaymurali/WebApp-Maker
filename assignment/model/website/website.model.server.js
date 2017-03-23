@@ -17,8 +17,8 @@ module.exports = function () {
     var q = require('q');
 
     var WebsiteSchema = require('./website.schema.server')();
-    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
 
+    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
     return api;
 
     function deleteWebsite(websiteId) {
@@ -42,8 +42,9 @@ module.exports = function () {
         WebsiteModel.create(website, function (err, website) {
             if(err)
                 deferred.reject(err);
-            else
+            else {
                 deferred.resolve(website)
+            }
         });
 
         return deferred.promise;
