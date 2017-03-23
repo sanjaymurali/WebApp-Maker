@@ -52,7 +52,7 @@ module.exports = function () {
 
         var deferred = q.defer();
 
-        PageModel.findByIdAndUpdate({_id: pageId}, page, {new: true}, function (err, page) {
+        PageModel.update({_id: pageId}, {$set: page}, function (err, page) {
             if(err)
                 deferred.reject(err);
             else

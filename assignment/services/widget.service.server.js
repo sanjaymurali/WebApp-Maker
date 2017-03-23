@@ -171,7 +171,7 @@ module.exports = function (app, widgetModel) {
         var widget = req.body;
 
         widgetModel.updateWidget(widgetId, widget).then(function(changedwidget){
-            res.status(200).json({widget: changedwidget});
+            res.status(200).json({widget: widget});
         }, function (error) {
             res.sendStatus(500);
         });

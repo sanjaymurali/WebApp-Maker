@@ -48,7 +48,7 @@ module.exports = function () {
 
         var deferred = q.defer();
 
-        WidgetModel.findByIdAndUpdate({_id: widgetId}, widget, {new: true}, function (err, newwidget) {
+        WidgetModel.update({_id: widgetId}, {$set: widget}, function (err, newwidget) {
             if(err)
                 deferred.reject(err);
             else

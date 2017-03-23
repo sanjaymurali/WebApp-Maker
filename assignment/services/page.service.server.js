@@ -45,7 +45,7 @@ module.exports = function (app, pageModel) {
         var page = req.body;
 
         pageModel.updatePage(pageId, page).then(function(changedpage){
-            res.status(200).json({page: changedpage});
+            res.status(200).json({page: page});
         }, function (error) {
             res.sendStatus(500);
         });
