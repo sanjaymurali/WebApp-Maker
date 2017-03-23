@@ -52,11 +52,10 @@ module.exports = function () {
     function updateWebsite(websiteId, website) {
         var deferred = q.defer();
 
-        WebsiteModel.update(websiteId, {$set: website}, function (err, status) {
+        WebsiteModel.update({_id: websiteId}, {$setOnInsert: website}, function (err, status) {
             if(err)
                 deferred.reject(err);
             else
-                console.log(status)
                 deferred.resolve(status);
         });
 

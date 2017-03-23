@@ -48,10 +48,11 @@ module.exports = function (app, websiteModel) {
         var website = req.body;
 
         websiteModel.updateWebsite(websiteId, website).then(function(changedwebsite){
-            console.log(changedwebsite);
-            res.status(200).json({website: website});
+            if(changedwebsite.ok === 1)
+                res.status(200).json({website: website});
+            else
+                res.sendStatus(500);
         }, function (error) {
-            console.log(error);
             res.sendStatus(500);
         });
     }
