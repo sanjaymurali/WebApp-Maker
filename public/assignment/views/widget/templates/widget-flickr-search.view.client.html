@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a class="navbar-link" ui-sref="widget({uid: model.userId, wid: model.websiteId,pid: model.pageId})">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a class="navbar-link" ui-sref="widget-new({uid: model.userId, wid: model.websiteId, pid: model.pageId})">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <div class="navbar-new-website">Search Flickr</div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="input-group">
+                <input ng-model="searchText"
+                       type="text"
+                       placeholder="Search images"
+                       class="form-control">
+                <span class="input-group-btn">
+                    <a ng-click="model.searchPhotos(searchText)"
+                       class="btn btn-default"
+                       type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-xs-4"
+                 ng-repeat="photo in model.photos.photo">
+                <img ng-click="model.selectPhoto(photo)"
+                     class="img-thumbnail"
+                     ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_q.jpg"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<nav-footer-common
+        uid="{{model.userId}}">
+</nav-footer-common>

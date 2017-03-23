@@ -96,6 +96,12 @@
                 controller: 'NewWidgetController',
                 controllerAs: 'model'
             })
+            .state('widget-flickr', {
+                url: '/user/:uid/website/:wid/page/:pid/widget/new/flickr',
+                templateUrl: '/views/widget/templates/widget-flickr-search.view.client.html',
+                controller: 'FlickrImageSearchController',
+                controllerAs: 'model'
+            })
             .state('widget-new-specific', {
                 url: '/user/:uid/website/:wid/page/:pid/widget/new/:specific',
                 templateUrl: '/views/widget/templates/widget-choose.view.client.html',
