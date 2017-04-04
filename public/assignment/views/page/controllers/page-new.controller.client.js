@@ -27,7 +27,8 @@
 
         function createPage(page) {
             cleanUpAlerts();
-            if (vm.page) {
+            vm.newPageForm.$submitted = true;
+            if (vm.page && !vm.newPageForm.name.$invalid) {
                 PageService.createPage(vm.websiteId, page).then(function (response) {
                     if (response.statusText === "OK") {
                         var addNew = response.data.page;
@@ -35,9 +36,11 @@
                         vm.success = true;
                         vm.successMessage = "Successfully Created new page!";
                         vm.page = null;
+                        vm.newPageForm.$submitted = false;
                     }
                     else {
                         vm.error = true;
+                        vm.newPageForm.$submitted = false;
                         vm.errorMessage = "There was an error in Creating the page";
                     }
 

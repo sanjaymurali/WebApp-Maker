@@ -13,12 +13,14 @@
         function init() {
             vm.user = {};
             vm.login = login;
+
         }
 
         init();
 
 
         function login(user) {
+
             var loginUser = {};
             UserService
                 .findUserByCredentials(user.username, user.password)

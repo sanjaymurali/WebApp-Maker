@@ -49,22 +49,27 @@
 
         function updatePage() {
             cleanUpAlerts();
-            PageService.updatePage(vm.pageId, vm.page).then(function (response) {
-                if (response.statusText === "OK") {
-                    for (var current in vm.pages) {
-                        if (vm.pages[current]._id === response.data.page._id) {
-                            vm.pages[current] = response.data.page;
+            vm.editPageForm.$submitted = true;
+            if (!vm.editPageForm.name.$invalid) {
+                PageService.updatePage(vm.pageId, vm.page).then(function (response) {
+                    if (response.statusText === "OK") {
+                        for (var current in vm.pages) {
+                            if (vm.pages[current]._id === response.data.page._id) {
+                                vm.pages[current] = response.data.page;
+                            }
                         }
+                        vm.success = true;
+                        vm.editPageForm.$submitted = false;
+                        vm.successMessage = "Page successfully updated"
                     }
-                    vm.success = true;
-                    vm.successMessage = "Page successfully updated"
-                }
-                else {
-                    vm.error = true;
-                    vm.errorMessage = "Unable to update page";
-                }
-            });
+                    else {
+                        vm.error = true;
+                        vm.editPageForm.$submitted = false;
+                        vm.errorMessage = "Unable to update page";
+                    }
+                });
 
+            }
         }
 
         function alertOpenClose(successOrError) {

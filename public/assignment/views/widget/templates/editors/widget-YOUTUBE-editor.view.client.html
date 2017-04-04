@@ -16,10 +16,22 @@
 </div>
 <div class="container">
 
-    <form>
+    <form name="model.youtubeEditor" ng-submit="model.updateWidget()" novalidate>
 
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Video Name" ng-model="model.widget.name">
+        <div class="form-group"
+             ng-class="{'has-error': model.youtubeEditor.$submitted && model.youtubeEditor.name.$invalid}">
+            <label for="name">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   placeholder="Video Name"
+                   name="name"
+                   ng-model="model.widget.name" required>
+
+
+            <span class="help-block"
+                  ng-show="model.youtubeEditor.$submitted && model.youtubeEditor.name.$error.required">Required</span>
+        </div>
 
         <label for="url">URL</label>
         <input type="text" class="form-control" id="url" placeholder="YouTube URL" value="URL here!"
@@ -29,8 +41,7 @@
         <input type="text" class="form-control" id="width" placeholder="Video Width" value="100%"
                ng-model="model.widget.width">
 
-        <a class="btn btn-primary btn-block"
-           ng-click="model.updateWidget()">Update Video</a>
+        <button type="submit" class="btn btn-primary btn-block">Update Video</button>
         <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
     </form>
 </div>

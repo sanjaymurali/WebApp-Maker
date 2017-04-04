@@ -29,6 +29,7 @@
             var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
             url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
             var widget = {};
+            widget.name = photo.title;
             widget.url = url;
             widget.widgetType = "IMAGE";
             widget.width = "100%";

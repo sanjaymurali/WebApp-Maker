@@ -63,14 +63,24 @@
                 {{model.successMessage}}<br/>
                 Click <a ui-sref="page({uid: model.userId, wid: model.websiteId})">here</a> to view your Page List
             </div>
-            <form>
-                <label for="name">Name</label>
-                <input type="text"
-                       class="form-control"
-                       id="name"
-                       placeholder="Page Name"
-                       value="{{model.page.name}}"
-                       ng-model="model.page.name">
+            <form ng-submit="model.updatePage()" name="model.editPageForm" novalidate>
+
+                <div class="form-group"
+                     ng-class="{'has-error': model.editPageForm.$submitted && model.editPageForm.name.$invalid}">
+
+                    <label for="name">Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           name="name"
+                           placeholder="Page Name"
+                           value="{{model.page.name}}"
+                           ng-model="model.page.name" required>
+
+                    <span class="help-block"
+                          ng-show="model.editPageForm.$submitted && model.editPageForm.name.$error.required">Required</span>
+                </div>
+
 
                 <label for="title">Title</label>
                 <input type="text"
@@ -80,7 +90,7 @@
                        value="{{model.page.title}}"
                        ng-model="model.page.title">
 
-                <a class="btn btn-block btn-primary" ng-click="model.updatePage()">Update</a>
+                <button type="submit" class="btn btn-block btn-primary">Update</button>
                 <a class="btn btn-danger btn-block" ng-click="model.deletePage()">Delete</a>
             </form>
         </div>

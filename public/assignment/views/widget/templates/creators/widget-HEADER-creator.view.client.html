@@ -13,9 +13,20 @@
         Widget Page
     </div>
 </div>
+<form name="model.headerCreator" ng-submit="model.createWidget()" novalidate>
+    <div class="form-group"
+         ng-class="{'has-error': model.headerCreator.$submitted && model.headerCreator.name.$invalid}">
 
-<label>Name</label>
-<input ng-model="model.widget.name" placeholder="Header Name" class="form-control"/>
+        <label>Name</label>
+        <input ng-model="model.widget.name"
+               placeholder="Header Name"
+               name="name"
+               class="form-control" required/>
+
+        <span class="help-block"
+              ng-show="model.headerCreator.$submitted && model.headerCreator.name.$error.required">Required</span>
+    </div>
+
 
 <label>Text</label>
 <input ng-model="model.widget.text" placeholder="Header Text" class="form-control"/>
@@ -24,5 +35,5 @@
 <select ng-options="headerSize for headerSize in model.headerSizes" ng-model="model.widget.size" class="form-control">
 </select>
 
-<a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create Header</a>
-
+<button type="submit" class="btn btn-block btn-primary">Create Header</button>
+</form>

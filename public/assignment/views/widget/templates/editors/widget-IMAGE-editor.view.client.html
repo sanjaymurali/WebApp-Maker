@@ -15,11 +15,19 @@
 </div>
 <div class="container">
 
-    <form action="/api/upload" method="POST" enctype="multipart/form-data">
+    <form name="model.imageEditor" action="/api/upload" method="POST" enctype="multipart/form-data" novalidate>
 
-        <label for="name">Name</label>
-        <input name="name" value="{{model.widget.name}}" type="text" class="form-control" id="name"
-               placeholder="Image Name" ng-model="model.widget.name">
+        <div class="form-group"
+             ng-class="{'has-error': model.imageEditor.$submitted && model.imageEditor.name.$invalid}">
+            <label for="name">Name</label>
+            <input name="name" value="{{model.widget.name}}" type="text" class="form-control" id="name"
+                   placeholder="Image Name" ng-model="model.widget.name" required>
+
+            <span class="help-block"
+                  ng-show="model.imageEditor.$submitted && model.imageEditor.name.$error.required">Required</span>
+        </div>
+
+
 
         <label for="text">Text</label>
         <input name="text" value="{{model.widget.description}}" type="text" class="form-control" id="text"
@@ -54,8 +62,7 @@
                    ng-model="model.widget.url">
 
 
-        <a class="btn btn-primary btn-block"
-           ng-click="model.updateWidget()">Update Image</a>
+        <a class="btn btn-primary btn-block" ng-click="model.updateWidget()" ng-disabled="!model.imageEditor.$valid">Update Image</a>
         </span>
 
         <span ng-if="model.showImageUploadForm">
@@ -66,7 +73,7 @@
 
             <label for="uploadedImage">Upload</label>
             <input type="file" name="uploadedImage" class="form-control" id="uploadedImage">
-            <button type="submit" class="btn btn-block btn-primary">Update Image</button>
+            <button type="submit" class="btn btn-block btn-primary" ng-disabled="!model.imageEditor.$valid">Update Image</button>
 
         </span>
 

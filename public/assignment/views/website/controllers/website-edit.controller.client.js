@@ -53,24 +53,29 @@
 
         function updateWebsite() {
             cleanUpAlerts();
-            WebsiteService.updateWebsite(vm.websiteId, vm.website).then(function (response) {
-                if (response.statusText === "OK") {
-                    for (var current in vm.websites) {
-                        if (vm.websites[current]._id === response.data.website._id) {
+            vm.editWebsiteForm.$submitted = true;
+            if (!vm.editWebsiteForm.name.$invalid)
+            {
+                WebsiteService.updateWebsite(vm.websiteId, vm.website).then(function (response) {
+                    if (response.statusText === "OK") {
+                        for (var current in vm.websites) {
+                            if (vm.websites[current]._id === response.data.website._id) {
 
-                            vm.websites[current] = response.data.website;
+                                vm.websites[current] = response.data.website;
+                            }
                         }
+                        vm.editWebsiteForm.$submitted = false;
+                        vm.success = true;
+                        vm.successMessage = "Website successfully updated"
+
+                    } else {
+                        vm.editWebsiteForm.$submitted = false;
+                        vm.error = true;
+                        vm.errorMessage = "Unable to update website";
                     }
+                });
 
-                    vm.success = true;
-                    vm.successMessage = "Website successfully updated"
-
-                } else {
-                    vm.error = true;
-                    vm.errorMessage = "Unable to update website";
-                }
-            });
-
+            }
         }
 
         function alertOpenClose(successOrError) {

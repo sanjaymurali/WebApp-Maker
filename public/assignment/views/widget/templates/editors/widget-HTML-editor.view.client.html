@@ -15,8 +15,16 @@
     </div>
 </div>
 
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+    <form name="model.htmlEditor" ng-submit="model.updateWidget()" novalidate>
+        <div class="form-group"
+             ng-class="{'has-error': model.htmlEditor.$submitted && model.htmlEditor.name.$invalid}">
+
+        <label>Name</label>
+        <input ng-model="model.widget.name" name="name" class="form-control" required/>
+
+            <span class="help-block"
+                  ng-show="model.htmlEditor.$submitted && model.htmlEditor.name.$error.required">Required</span>
+        </div>
 
 <label>Text</label>
 
@@ -28,6 +36,7 @@
 </div>
 
 
-<a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update HTML</a>
+<button type="submit" class="btn btn-block btn-primary">Update HTML</button>
 <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
 <div>
+    </form>

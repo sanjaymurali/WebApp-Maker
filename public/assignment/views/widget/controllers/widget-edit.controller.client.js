@@ -32,7 +32,8 @@
             vm.showImageURLForm = true;
 
             vm.imageTypeURL = "imageURL";
-            vm.imageTypeUpload = "imageUpload";
+            vm.imageTypeHandler("imageURL");
+
         }
 
         init();
@@ -50,17 +51,25 @@
 
         function updateWidget() {
             cleanUpAlerts();
-            WidgetService.updateWidget(vm.widgetId, vm.widget).then(function (response) {
-                if (response.statusText === "OK") {
-                    vm.success = true;
-                    vm.successMessage = "Widget successfully updated"
-                }
-                else {
-                    vm.error = true;
-                    vm.errorMessage = "Unable to update widget";
-                }
+            console.log(vm.imageTypeURL);
+            var formSelected = vm.widget.widgetType.toLowerCase() + "Editor";
 
-            });
+            vm.widget.widgetId = vm.widgetId;
+
+            selectForm(formSelected).$submitted = true;
+            if (!selectForm(formSelected).name.$invalid) {
+                WidgetService.updateWidget(vm.widgetId, vm.widget).then(function (response) {
+                    if (response.statusText === "OK") {
+                        vm.success = true;
+                        vm.successMessage = "Widget successfully updated"
+                    }
+                    else {
+                        vm.error = true;
+                        vm.errorMessage = "Unable to update widget";
+                    }
+
+                });
+            }
         }
 
         function deleteWidget() {
@@ -84,6 +93,28 @@
         function cleanUpAlerts() {
             vm.success = false;
             vm.error = false;
+        }
+
+        function selectForm(formSelected) {
+            switch(formSelected){
+                case 'headerEditor':
+                    return vm.headerEditor;
+                    break;
+                case 'imageEditor':
+                    return vm.imageEditor;
+                    break;
+                case 'htmlEditor':
+                    return vm.htmlEditor;
+                    break;
+                case 'youtubeEditor':
+                    return vm.youtubeEditor;
+                    break;
+                case 'textEditor':
+                    return vm.textEditor;
+                    break;
+                default:
+                    return null;
+            }
         }
     }
 })();

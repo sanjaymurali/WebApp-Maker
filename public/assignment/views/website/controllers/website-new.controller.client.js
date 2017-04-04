@@ -28,7 +28,8 @@
 
         function createWebsite(website) {
             cleanUpAlerts();
-            if (vm.website) {
+            vm.newWebsiteForm.$submitted = true;
+            if (vm.website && !vm.newWebsiteForm.name.$invalid) {
                 var addNew = WebsiteService.createWebsite(vm.userId, website);
                 addNew.then(function (response) {
                     if (response.statusText === "OK") {
@@ -37,13 +38,13 @@
                         vm.success = true;
                         vm.successMessage = "Successfully Created new website!";
                         vm.website = null;
+                        vm.newWebsiteForm.$submitted = false;
                     }
                     else {
                         vm.error = true;
+                        vm.newWebsiteForm.$submitted = false;
                         vm.errorMessage = "There was an error in Creating the Website";
                     }
-
-
                 });
 
             }

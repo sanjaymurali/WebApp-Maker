@@ -2,27 +2,50 @@
 <div class="alert alert-danger" ng-show="model.error">
     {{model.error}}
 </div>
-<form>
-    <label for="Username">Username</label>
-    <input type="text"
-           id="Username"
-           class="form-control"
-           placeholder="Username"
-           ng-model="model.user.username"/>
-    <label for="Password">Password</label>
-    <input type="password"
-           id="Password"
-           class="form-control"
-           placeholder="Password"
-           ng-model="model.user.password"/>
-    <label for="Verify_Password">Re-Type Password</label>
-    <input type="password"
-           id="Verify_Password"
-           class="form-control"
-           placeholder="Verify Password"
-           ng-model="model.user.verifyPassword"/>
-    <a class="btn btn-primary btn-block"
-       ng-click="model.register(model.user)">Register</a>
+<form name="model.registerForm" ng-submit="model.register(model.user)" novalidate>
+
+    <div class="form-group"
+         ng-class="{'has-error': model.registerForm.$submitted && model.registerForm.username.$invalid}">
+        <label for="Username">Username</label>
+        <input type="text"
+               name="username"
+               id="Username"
+               class="form-control"
+               placeholder="Username"
+               ng-model="model.user.username" required/>
+        <span class="help-block"
+              ng-show="model.registerForm.$submitted && model.registerForm.username.$error.required">Required</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{'has-error': model.registerForm.$submitted && model.registerForm.password.$invalid}">
+        <label for="Password">Password</label>
+        <input type="password"
+               id="Password"
+               name="password"
+               class="form-control"
+               placeholder="Password"
+               ng-model="model.user.password" required/>
+        <span class="help-block"
+              ng-show="model.registerForm.$submitted && model.registerForm.password.$error.required">Required</span>
+    </div>
+
+    <div class="form-group"
+         ng-class="{'has-error': model.registerForm.$submitted && model.registerForm.verifyPassword.$invalid}">
+        <label for="Verify_Password">Re-Type Password</label>
+        <input type="password"
+               id="Verify_Password"
+               name="verifyPassword"
+               class="form-control"
+               placeholder="Verify Password"
+               ng-model="model.user.verifyPassword" required/>
+        <span class="help-block"
+              ng-show="model.registerForm.$submitted && model.registerForm.verifyPassword.$error.required">Required</span>
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
     <a class="btn btn-danger btn-block"
        ui-sref="login">Cancel</a>
 </form>

@@ -122,10 +122,10 @@ module.exports = function (app, userModel) {
     }
 
     function findUser(req, res) {
-        if (req.query.username && req.query.password)
-            findUserByCredentials(req, res);
-        else
+        if (!req.query.username && !req.query.password)
             findUserByUsername(req, res);
+        else
+            findUserByCredentials(req, res);
     }
 
 

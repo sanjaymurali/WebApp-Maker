@@ -13,9 +13,22 @@
         Widget Page
     </div>
 </div>
+<form name="model.textEditor" ng-submit="model.updateWidget()" novalidate>
 
-<label>Name</label>
-<input ng-model="model.widget.name" placeholder="Text Name" class="form-control"/>
+    <div class="form-group"
+         ng-class="{'has-error': model.textEditor.$submitted && model.textEditor.name.$invalid}">
+        <label>Name</label>
+        <input ng-model="model.widget.name"
+               placeholder="Text Name"
+               name="name"
+               class="form-control" required/>
+
+
+
+        <span class="help-block"
+              ng-show="model.textEditor.$submitted && model.textEditor.name.$error.required">Required</span>
+    </div>
+
 
 <label>Text</label>
 <input ng-model="model.widget.text" placeholder="Text Widget Text" class="form-control"/>
@@ -34,5 +47,6 @@
       </span>
 </div>
 <br/>
-<a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update Text</a>
+<button type="submit" class="btn btn-block btn-primary">Update Text</button>
 <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
+</form>

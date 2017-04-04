@@ -21,6 +21,8 @@
             vm.getCreatorTemplateUrl = getCreatorTemplateUrl;
             vm.createWidget = createWidget;
 
+
+
             vm.imageTypeHandler = imageTypeHandler;
 
             vm.headerSizes = WidgetService.headerSizes;
@@ -33,6 +35,9 @@
 
             vm.showImageUploadForm = true;
             vm.showImageURLForm = false;
+
+            vm.imageTypeURL = "imageURL";
+            vm.imageTypeHandler("imageURL");
 
             //Set initial Header size : h1,h2
             vm.widget.size = 1;
@@ -57,6 +62,7 @@
 
 
         function imageTypeHandler(type) {
+
             if (type === "imageURL") {
                 vm.showImageURLForm = true;
                 vm.showImageUploadForm = false;
@@ -70,18 +76,24 @@
         function createWidget() {
             cleanUpAlerts();
             vm.widget.widgetType = vm.widgetTypeSelected;
-            var createdWidget = WidgetService.createWidget(vm.pageId, vm.widget);
+            var formSelected = vm.widgetTypeSelected.toLowerCase() + "Creator";
+            selectForm(formSelected).$submitted = true;
+            if (!selectForm(formSelected).name.$invalid) {
+                var createdWidget = WidgetService.createWidget(vm.pageId, vm.widget);
 
-            if (createdWidget == null) {
-                vm.error = true;
-                vm.errorMessage = "Unable to create widget";
-            } else {
-                vm.success = true;
-                vm.successMessage = "Widget successfully created!";
-                vm.widget = {};
-                vm.widget.size = 1;
+                if (createdWidget == null) {
+                    vm.error = true;
+                    selectForm(formSelected).$submitted = false;
+                    vm.errorMessage = "Unable to create widget";
+                } else {
+                    selectForm(formSelected).$submitted = false;
+                    vm.success = true;
+                    vm.successMessage = "Widget successfully created!";
+                    vm.widget = {};
+                    vm.widget.size = 1;
+                }
+
             }
-
         }
 
         function alertOpenClose(successOrError) {
@@ -92,6 +104,28 @@
         function cleanUpAlerts() {
             vm.success = false;
             vm.error = false;
+        }
+
+        function selectForm(formSelected) {
+            switch(formSelected){
+                case 'headerCreator':
+                    return vm.headerCreator;
+                    break;
+                case 'imageCreator':
+                    return vm.imageCreator;
+                    break;
+                case 'htmlCreator':
+                    return vm.htmlCreator;
+                    break;
+                case 'youtubeCreator':
+                    return vm.youtubeCreator;
+                    break;
+                case 'textCreator':
+                    return vm.textCreator;
+                    break;
+                default:
+                    return null;
+            }
         }
 
     }

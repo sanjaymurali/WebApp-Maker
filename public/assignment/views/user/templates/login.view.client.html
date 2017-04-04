@@ -3,23 +3,40 @@
     {{model.error}}
 </div>
 
-<form>
-    <label for="Username">Username</label>
-    <input id="Username"
-           type="text"
-           class="form-control"
-           placeholder="Username"
-           ng-model="model.user.username"/>
+<form name="model.loginForm" ng-submit="model.login(model.user)" novalidate>
 
-    <label for="Password">Password</label>
-    <input id="Password"
-           type="password"
-           class="form-control"
-           placeholder="Password"
-           ng-model="model.user.password"/>
+    <div class="form-group"
+         ng-class="{'has-error': model.loginForm.$submitted && model.loginForm.username.$invalid}">
+        <label for="Username">Username</label>
+        <input id="Username"
+               autocapitalize="off"
+               autocorrect="off"
+               name="username"
+               type="text"
+               class="form-control"
+               placeholder="Username"
+               ng-model="model.user.username" required/>
+        <span class="help-block"
+              ng-show="model.loginForm.$submitted && model.loginForm.username.$error.required">Required</span>
+    </div>
 
-    <a class="btn btn-primary btn-block"
-       ng-click="model.login(model.user)">Login</a>
+    <div class="form-group"
+         ng-class="{'has-error': model.loginForm.$submitted && model.loginForm.password.$invalid}">
+        <label for="Password">Password</label>
+        <input id="Password"
+               name="password"
+               type="password"
+               class="form-control"
+               placeholder="Password"
+               ng-model="model.user.password" required/>
+        <span class="help-block"
+              ng-show="model.loginForm.$submitted && model.loginForm.password.$error.required">Required</span>
+    </div>
+
+
+
+
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
     <a class="btn btn-success btn-block"
        ui-sref="register">Register</a>
 </form>

@@ -62,14 +62,22 @@
                 Click <a ui-sref="website({uid: model.userId, wid: model.website._id})">here</a> to view your Website
                 List Page
             </div>
-            <label for="name">Website Name</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    placeholder="Website Name"
-                    value="{{model.website.name}}"
-                    ng-model="model.website.name">
+            <form ng-submit="model.updateWebsite()" name="model.editWebsiteForm" novalidate>
+                <div class="form-group"
+                     ng-class="{'has-error': model.editWebsiteForm.$submitted && model.editWebsiteForm.name.$invalid}">
+                    <label for="name">Website Name</label>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Website Name"
+                            value="{{model.website.name}}"
+                            ng-model="model.website.name" required>
+
+                    <span class="help-block"
+                          ng-show="model.editWebsiteForm.$submitted && model.editWebsiteForm.name.$error.required">Required</span>
+                </div>
 
             <label for="description">Website Description</label>
             <textarea
@@ -79,9 +87,11 @@
                     placeholder="Description"
                     ng-model="model.website.description">{{model.website.description}}</textarea>
 
-            <a class="btn btn-block btn-primary" ng-click="model.updateWebsite()">Update</a>
+            <button type="submit" class="btn btn-block btn-primary">Update</button>
             <a class="btn btn-block btn-danger" ng-click="model.deleteWebsite()">Delete</a>
+            </form>
         </div>
+
     </div>
 
 

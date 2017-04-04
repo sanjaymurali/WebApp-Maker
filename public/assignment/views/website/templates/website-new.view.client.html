@@ -66,13 +66,21 @@
                 List Page
             </div>
 
-            <form>
-                <label for="name">Website Name</label>
-                <input
-                        class="form-control"
-                        id="name"
-                        placeholder="Website Name"
-                        ng-model="model.website.name">
+            <form ng-submit="model.createWebsite(model.website)" name="model.newWebsiteForm" novalidate>
+
+                <div class="form-group"
+                     ng-class="{'has-error': model.newWebsiteForm.$submitted && model.newWebsiteForm.name.$invalid}">
+                    <label for="name">Website Name</label>
+                    <input  class="form-control"
+                            id="name"
+                            name="name"
+                            placeholder="Website Name"
+                            ng-model="model.website.name" required>
+
+                    <span class="help-block"
+                          ng-show="model.newWebsiteForm.$submitted && model.newWebsiteForm.name.$error.required">Required</span>
+                </div>
+
 
                 <label for="description">Website Description</label>
                 <textarea rows="4"
@@ -80,8 +88,7 @@
                           id="description"
                           placeholder="Description"
                           ng-model="model.website.description"></textarea>
-                <a class="btn btn-primary btn-block"
-                   ng-click="model.createWebsite(model.website)">Create Website</a>
+                <button type="submit" class="btn btn-primary btn-block">Create Website</button>
             </form>
         </div>
     </div>

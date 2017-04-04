@@ -14,8 +14,19 @@
     </div>
 </div>
 
-<label>Name</label>
-<input ng-model="model.widget.name" placeholder="Text Name" class="form-control"/>
+<form name="model.textCreator" ng-submit="model.createWidget()" novalidate>
+    <div class="form-group"
+         ng-class="{'has-error': model.textCreator.$submitted && model.textCreator.name.$invalid}">
+        <label>Name</label>
+        <input ng-model="model.widget.name"
+               placeholder="Text Name"
+               name="name"
+               class="form-control" required/>
+
+
+        <span class="help-block"
+              ng-show="model.textCreator.$submitted && model.textCreator.name.$error.required">Required</span>
+    </div>
 
 <label>Text</label>
 <input ng-model="model.widget.text" placeholder="Text Widget Text" class="form-control"/>
@@ -34,5 +45,5 @@
       </span>
 </div>
 <br/>
-<a class="btn btn-block btn-primary" ng-click="model.createWidget()">Create Text</a>
-
+<button type="submit" class="btn btn-block btn-primary">Create Text</button>
+</form>

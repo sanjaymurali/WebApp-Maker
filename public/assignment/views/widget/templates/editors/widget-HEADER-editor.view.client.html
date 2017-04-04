@@ -14,9 +14,18 @@
         Widget Page
     </div>
 </div>
-<form>
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+<form name="model.headerEditor" ng-submit="model.updateWidget()" novalidate>
+
+    <div class="form-group"
+         ng-class="{'has-error': model.headerEditor.$submitted && model.headerEditor.name.$invalid}">
+
+        <label>Name</label>
+        <input ng-model="model.widget.name" name="name" class="form-control" required/>
+
+        <span class="help-block"
+              ng-show="model.headerEditor.$submitted && model.headerEditor.name.$error.required">Required</span>
+    </div>
+
 
 <label>Text</label>
 <input ng-model="model.widget.text" class="form-control"/>
@@ -25,7 +34,7 @@
 <select ng-options="headerSize for headerSize in model.headerSizes" ng-model="model.widget.size" class="form-control">
 </select>
 
-<a class="btn btn-block btn-primary" ng-click="model.updateWidget()">Update Header</a>
+<button type="submit" class="btn btn-block btn-primary">Update Header</button>
 <a class="btn btn-block btn-danger" ng-click="model.deleteWidget()">Delete</a>
 </form>
 </div>

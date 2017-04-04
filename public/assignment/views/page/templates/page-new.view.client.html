@@ -63,13 +63,24 @@
                 Click <a ui-sref="page({uid: model.userId, wid: model.websiteId})">here</a> to view your Page List
             </div>
 
-            <form>
-                <label for="name">Page Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Page Name" ng-model="model.page.name">
+            <form ng-submit="model.createPage(model.page)" name="model.newPageForm" novalidate>
+                <div class="form-group"
+                     ng-class="{'has-error': model.newPageForm.$submitted && model.newPageForm.name.$invalid}">
+                    <label for="name">Page Name</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           name="name"
+                           placeholder="Page Name"
+                           ng-model="model.page.name" required>
+
+                    <span class="help-block"
+                          ng-show="model.newPageForm.$submitted && model.newPageForm.name.$error.required">Required</span>
+                </div>
 
                 <label for="title">Page Title</label>
                 <input type="text" class="form-control" id="title" placeholder="Page Title" ng-model="model.page.title">
-                <a class="btn btn-primary btn-block" ng-click="model.createPage(model.page)">Create Page</a>
+                <button type="submit" class="btn btn-primary btn-block">Create Page</button>
             </form>
         </div>
     </div>

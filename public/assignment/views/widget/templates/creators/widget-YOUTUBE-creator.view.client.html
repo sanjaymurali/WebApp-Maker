@@ -15,9 +15,22 @@
 </div>
 <div class="container">
 
-    <form>
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Video Name" ng-model="model.widget.name">
+    <form name="model.youtubeCreator" ng-submit="model.createWidget()" novalidate>
+
+        <div class="form-group"
+             ng-class="{'has-error': model.youtubeCreator.$submitted && model.youtubeCreator.name.$invalid}">
+            <label for="name">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   name="name"
+                   placeholder="Video Name"
+                   ng-model="model.widget.name" required>
+
+            <span class="help-block"
+                  ng-show="model.youtubeCreator.$submitted && model.youtubeCreator.name.$error.required">Required</span>
+        </div>
+
 
         <label for="url">URL</label>
         <input type="text" class="form-control" id="url" placeholder="YouTube URL" ng-model="model.widget.url">
@@ -25,7 +38,6 @@
         <label for="width">Width</label>
         <input type="text" class="form-control" id="width" placeholder="Video Width" ng-model="model.widget.width">
 
-        <a class="btn btn-primary btn-block"
-           ng-click="model.createWidget()">Create Video</a>
+        <button type="submit" class="btn btn-primary btn-block">Create Video</button>
     </form>
 </div>
