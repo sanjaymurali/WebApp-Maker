@@ -11,6 +11,7 @@
 
         vm.searchPhotos = searchPhotos;
         vm.selectPhoto  = selectPhoto;
+        vm.updatePhoto = updatePhoto;
 
         function searchPhotos(searchTerm) {
             FlickrService
@@ -36,6 +37,22 @@
 
             WidgetService.createWidget(vm.pageId, widget).then(function(widget){
                 $state.go('widget', {uid: vm.userId, wid: vm.websiteId, pid: vm.pageId});
+            });
+        }
+
+        function updatePhoto(photo) {
+            var widgetId = $stateParams['wgid'];
+
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            var widget = {};
+            widget.name = photo.title;
+            widget.url = url;
+            widget.widgetType = "IMAGE";
+            widget.width = "100%";
+
+            WidgetService.updateWidget(widgetId, widget).then(function(widget){
+                $state.go('widget-edit', {uid: vm.userId, wid: vm.websiteId, pid: vm.pageId, wgid: widgetId});
             });
         }
     }

@@ -56,6 +56,12 @@
             </div>
         </div>
 
+        <a class="btn btn-info btn-block"
+           ui-sref="widget-flickr-edit({uid: model.userId, wid: model.websiteId,pid: model.pageId, wgid: model.widgetId})">
+            Search Flickr
+        </a>
+        <br>
+
         <span ng-if="model.showImageURLForm">
             <label for="url">URL</label>
             <input type="text" class="form-control" id="url" placeholder="Image URL" value="URL here!"
