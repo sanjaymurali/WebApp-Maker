@@ -17,7 +17,7 @@
         //$httpProvider.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
         //$httpProvider.defaults.headers.put['Content-Type'] = 'application/json;charset=utf-8';
 
-        var userJSON = function ($q,$stateParams, $state, UserService) {
+        var userJSON = function ($q, $stateParams, $state, UserService) {
             var userid = $stateParams.uid + "";
                 var deferred = $q.defer();
                 UserService
@@ -32,6 +32,7 @@
                         }
                     }, function(err){
                         deferred.reject();
+                        $state.go('sessionerror');
                     });
                 return deferred.promise;
         };

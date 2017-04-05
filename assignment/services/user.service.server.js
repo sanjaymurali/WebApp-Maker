@@ -6,6 +6,7 @@ module.exports = function (app, userModel) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
+    var bcrypt = require("bcrypt-nodejs");
 
     passport.use(new LocalStrategy(localStrategy));
 
@@ -14,7 +15,7 @@ module.exports = function (app, userModel) {
 
     app.post('/api/login',passport.authenticate('local'), login);
     app.post('/api/logout', logout);
-    app.get ('/api/loggedin/:uid', loggedin);
+    app.get('/api/loggedin/:uid', loggedin);
     app.post('/api/register', register);
 
     app.get('/api/user', findUser);
@@ -25,6 +26,10 @@ module.exports = function (app, userModel) {
 
     function loggedin(req, res) {
         var userid = req.params.uid;
+        /*
+        This is done inorder to check whether the same user
+        is accessing the page requested or not.
+        */
         var requserid = !req.user ? "" : req.user._id + "";
         if(req.isAuthenticated() && requserid === userid)
             res.status(200).json({success: true, user: req.user});
@@ -39,6 +44,8 @@ module.exports = function (app, userModel) {
 
     function register(req, res) {
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+        console.log(user.password)
         userModel
             .createUser(user).then(function(user){
                 if(user){
@@ -175,15 +182,17 @@ module.exports = function (app, userModel) {
     }
 
     function localStrategy(username, password, done) {
+
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
+
                     if(!user) {
                         return done(null, true);
                     }
                     else {
-                        if(user.username === username && user.password === password) {
+                        if(user.username === username && bcrypt.compareSync(password, user.password)) {
                             return done(null, user);
                         } else {
                             return done(null, false);
