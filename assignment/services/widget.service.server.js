@@ -115,7 +115,8 @@ module.exports = function (app, widgetModel, pageModel) {
             });
 
         }
-        else if(req.body.imageURL){
+        else if(req.body.imageURL && req.body.widgetId){
+            console.log(req.body)
             var widgetId = req.body.widgetId;
             widgetModel.updateWidget(widgetId, req.body).then(function (widget) {
                 res.sendStatus(200);

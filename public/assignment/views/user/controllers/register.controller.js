@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("registerController", registerController);
 
-    function registerController(UserService, $state) {
+    function registerController(UserService, $state, $rootScope) {
         var vm = this;
 
         function init() {
@@ -32,10 +32,12 @@
                                 vm.error = 'Change the Username';
                             else {
                                 UserService
-                                    .createUser(user)
+                                    .register(user)
                                     .then(function (response) {
+                                        console.log(response)
                                         if (response.statusText === "OK") {
                                             var json = response.data;
+                                            $rootScope.currentUser = json.user;
                                             $state.go('profile', {uid: json.user._id});
                                         }
                                         else

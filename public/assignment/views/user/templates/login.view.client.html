@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<div class="alert alert-danger" ng-show="model.error">
+<div class="alert alert-danger" ng-show="model.error" role="alert">
     {{model.error}}
 </div>
 
@@ -32,8 +32,6 @@
         <span class="help-block"
               ng-show="model.loginForm.$submitted && model.loginForm.password.$error.required">Required</span>
     </div>
-
-
 
 
     <button type="submit" class="btn btn-primary btn-block">Login</button>

@@ -4,46 +4,71 @@
 
 module.exports = function (app, userModel) {
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local').Strategy;
+
+    passport.use(new LocalStrategy(localStrategy));
+
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    app.post('/api/login',passport.authenticate('local'), login);
+    app.post('/api/logout', logout);
+    app.get ('/api/loggedin/:uid', loggedin);
+    app.post('/api/register', register);
+
     app.get('/api/user', findUser);
     app.post('/api/user', createUser);
     app.get('/api/user/:userId', findUserById);
     app.put('/api/user/:userId', updateUser);
     app.delete('/api/user/:userId', deleteUser);
 
-    var users = [
-        {
-            _id: "123",
-            username: "alice",
-            password: "alice",
-            firstName: "Alice",
-            lastName: "Wonder",
-            email: "alice@gmail.com"
-        },
-        {
-            _id: "234",
-            username: "bob",
-            password: "bob",
-            firstName: "Bob",
-            lastName: "Marley",
-            email: "bob@gmail.com"
-        },
-        {
-            _id: "345",
-            username: "charly",
-            password: "charly",
-            firstName: "Charly",
-            lastName: "Garcia",
-            email: "charly@gmail.com"
-        },
-        {
-            _id: "456",
-            username: "jannunzi",
-            password: "jannunzi",
-            firstName: "Jose",
-            lastName: "Annunzi",
-            email: "jose@gmail.com"
-        }
-    ]; //This Array is just for reference, can remove it!
+    function loggedin(req, res) {
+        var userid = req.params.uid;
+        var requserid = !req.user ? "" : req.user._id + "";
+        if(req.isAuthenticated() && requserid === userid)
+            res.status(200).json({success: true, user: req.user});
+        else
+            res.status(200).json({success: false})
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.sendStatus(200);
+    }
+
+    function register(req, res) {
+        var user = req.body;
+        userModel
+            .createUser(user).then(function(user){
+                if(user){
+                    req.login(user, function(err) {
+                        if(err) {
+                            res.sendStatus(400);
+                        } else {
+                            res.status(200).json({user: user});
+                        }
+                    });
+                }
+            });
+    }
+
+    function login(req, res) {
+
+        var user = req.user;
+        /*
+         This means that user isnt found, this is done to avoid
+         401 unauthorized error, so by replacing done(null, false) with true
+         I have made sure that the passport.authenticate middleware doesnt
+         send the client a 401 unauthorized. This was getting printed
+         in the console of the browser
+         */
+        if(user === true)
+            return res.sendStatus(200);
+        res.json({user: user});
+
+
+    }
 
     function createUser(req, res) {
         var user = {
@@ -85,6 +110,8 @@ module.exports = function (app, userModel) {
     }
 
     function findUserById(req, res) {
+        if(!req.user)
+            return res.sendStatus(404);
         var userId = req.params.userId + "";
 
         userModel.
@@ -127,6 +154,49 @@ module.exports = function (app, userModel) {
         else
             findUserByCredentials(req, res);
     }
+
+    //Session and Passport
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if(!user) {
+                        return done(null, true);
+                    }
+                    else {
+                        if(user.username === username && user.password === password) {
+                            return done(null, user);
+                        } else {
+                            return done(null, false);
+                        }
+                    }
+
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
 
 
 };

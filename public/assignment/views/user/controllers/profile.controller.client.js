@@ -3,26 +3,21 @@
         .module("WebAppMaker")
         .controller("profileController", profileController);
 
-    function profileController($state, $stateParams, UserService, resolvedJson) {
+    function profileController($state, $stateParams, UserService, checkUserSession) {
         var vm = this;
-
 
         function init() {
 
-            var user = {};
             vm.userId = $stateParams['uid'];
 
-
-            if (resolvedJson.statusText === "OK") {
-                var userJson = resolvedJson.data;
-                user = userJson.user;
-                vm.user = user;
+            if(!checkUserSession) {}
+            else {
+                vm.user = checkUserSession;
             }
-            else
-                vm.error = 'Error';
 
             vm.update = update;
             vm.unregisterUser = unregisterUser;
+            vm.logout = logout;
         }
 
         init();
@@ -53,6 +48,15 @@
                             vm.error = 'unable to remove user';
                     });
             }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(function(response) {
+                        $state.go('login');
+                    });
+
         }
     }
 })();
