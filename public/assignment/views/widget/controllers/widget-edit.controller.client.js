@@ -51,7 +51,6 @@
 
         function updateWidget() {
             cleanUpAlerts();
-            console.log(vm.imageTypeURL);
             var formSelected = vm.widget.widgetType.toLowerCase() + "Editor";
 
             vm.widget.widgetId = vm.widgetId;

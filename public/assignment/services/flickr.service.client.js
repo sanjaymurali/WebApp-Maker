@@ -23,7 +23,6 @@
         }
 
         function getCurrentPhoto() {
-            console.log("in here!");
             return currentPhoto;
         }
 

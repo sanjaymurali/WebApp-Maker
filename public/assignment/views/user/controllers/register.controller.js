@@ -34,7 +34,6 @@
                                 UserService
                                     .register(user)
                                     .then(function (response) {
-                                        console.log(response)
                                         if (response.statusText === "OK") {
                                             var json = response.data;
                                             $rootScope.currentUser = json.user;

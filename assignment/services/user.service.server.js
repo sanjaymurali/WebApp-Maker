@@ -7,7 +7,7 @@ module.exports = function (app, userModel) {
     var facebookConfig = {
         clientID     : process.env.FACEBOOK_CLIENT_ID || 1258031284246027,
         clientSecret : process.env.FACEBOOK_CLIENT_SECRET || "cf0de6164db8e1f8cb40db9dca98538b",
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback',
         profileFields: ['emails', 'name']
     };
 
@@ -65,7 +65,6 @@ module.exports = function (app, userModel) {
     function register(req, res) {
         var user = req.body;
         user.password = bcrypt.hashSync(user.password);
-        console.log(user.password)
         userModel
             .createUser(user).then(function(user){
                 if(user){
