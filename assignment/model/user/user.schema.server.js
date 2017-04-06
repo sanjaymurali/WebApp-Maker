@@ -12,6 +12,10 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
+        facebook: {
+            id:    String,
+            token: String
+        },
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Websites'}]
     },{collection: 'users', timestamps: {createdAt: 'dateCreated'}});
 

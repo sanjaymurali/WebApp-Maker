@@ -4,11 +4,22 @@
 
 module.exports = function (app, userModel) {
 
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID || 1258031284246027,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET || "cf0de6164db8e1f8cb40db9dca98538b",
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL || 'http://localhost:3000/auth/facebook/callback',
+        profileFields: ['emails', 'name']
+    };
+
     var passport = require('passport');
     var LocalStrategy = require('passport-local').Strategy;
     var bcrypt = require("bcrypt-nodejs");
+    var FacebookStrategy = require('passport-facebook').Strategy;
 
     passport.use(new LocalStrategy(localStrategy));
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
@@ -17,12 +28,21 @@ module.exports = function (app, userModel) {
     app.post('/api/logout', logout);
     app.get('/api/loggedin/:uid', loggedin);
     app.post('/api/register', register);
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : ['email'] }));
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook'), facebookcallback);
 
     app.get('/api/user', findUser);
     app.post('/api/user', createUser);
     app.get('/api/user/:userId', findUserById);
     app.put('/api/user/:userId', updateUser);
     app.delete('/api/user/:userId', deleteUser);
+
+    function facebookcallback(req, res) {
+        var userid = req.user._id + ""
+        return res.redirect("/assignment/user/" + userid);
+    }
 
     function loggedin(req, res) {
         var userid = req.params.uid;
@@ -204,6 +224,49 @@ module.exports = function (app, userModel) {
                     if (err) { return done(err); }
                 }
             );
+    }
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        if(!profile)
+            return done(null, false);
+        else{
+            var firstName = profile._json.first_name;
+            var lastName = profile. _json.last_name;
+            var userFacebook = {
+                firstName: firstName,
+                lastName: lastName,
+                email: profile._json.email,
+                facebook: {
+                    id: profile.id,
+                    token: token
+                }
+            };
+
+            userModel.findUserByFacebookId(userFacebook.facebook.id).then(function(user){
+                if(!user) {
+                    userModel.createUser(userFacebook).then(function(user){
+                        return done(null,user)
+                    }, function(err) {
+                        return done(null, false);
+                    });
+                }
+                else{
+                    return done(null, user);
+                }
+
+            }, function (err) {
+                console.log(err)
+                return done(null, true);
+            })
+
+
+
+        }
+
+
+
+
+
     }
 
 
