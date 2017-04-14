@@ -19,22 +19,22 @@
 
         var userJSON = function ($q, $stateParams, $state, UserService) {
             var userid = $stateParams.uid + "";
-                var deferred = $q.defer();
-                UserService
-                    .checkSession(userid)
-                    .then(function (response) {
-                        if(!response.data.success) {
-                            deferred.reject(null);
-                            $state.go('sessionerror');
-                        }
-                        else{
-                            deferred.resolve(response.data.user)
-                        }
-                    }, function(err){
-                        deferred.reject();
+            var deferred = $q.defer();
+            UserService
+                .checkSession(userid)
+                .then(function (response) {
+                    if(!response.data.success) {
+                        deferred.reject(null);
                         $state.go('sessionerror');
-                    });
-                return deferred.promise;
+                    }
+                    else{
+                        deferred.resolve(response.data.user)
+                    }
+                }, function(err){
+                    deferred.reject();
+                    $state.go('sessionerror');
+                });
+            return deferred.promise;
         };
 
         $stateProvider

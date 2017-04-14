@@ -102,7 +102,7 @@ module.exports = function (app, userModel) {
             password: req.body.password,
             email: req.body.email,
             firstName: req.body.firstName,
-            lastName: req.body.lastName,
+            lastName: req.body.lastName
         };
 
         userModel
