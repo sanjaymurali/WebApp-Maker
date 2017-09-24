@@ -1,410 +1,72 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en" ng-app="WebAppMaker">
 <head>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="HandheldFriendly" content="true">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sanjay's Portfolio</title>
 
-    <link rel='stylesheet'
-          href='https://fonts.googleapis.com/css?family=Merriweather:400,700,900,400italic,700italic,900italic%7CMontserrat:400,700%7CInconsolata:400&subset=latin,latin-ext'
-          type='text/css' media='all'/>
+    <title>Assignment Home Page</title>
 
-    <link rel='stylesheet' href='styles/main.css' type='text/css' media='all'/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel='stylesheet' href='styles/ionicons.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='styles/linea.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='styles/magnific-popup.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='styles/owl-carousel.css' type='text/css' media='all'/>
-    <link rel='stylesheet' href='styles/style.css' type='text/css' media='all'/>
-    <!--[if lt IE 10]>
-    <link rel='stylesheet' href='styles/ie.css' type='text/css' media='all'/>
-    <![endif]-->
-    <!--[if lt IE 9]>
-    <link rel='stylesheet' href='styles/ie8.css' type='text/css' media='all'/>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel='stylesheet' href='styles/ie7.css' type='text/css' media='all'/>
-    <![endif]-->
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
-    <script type='text/javascript'
-            src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js'></script>
-    <!--[if lt IE 9]>
-    <script type='text/javascript'
-            src='https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js'></script>
-    <![endif]-->
+    <link href="/css/library/bootstrap.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+    <link href="/css/library/jquery-ui.min.css" rel="stylesheet"/>
+    <link href="/css/library/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/css/library/textAngular.css" rel="stylesheet"/>
 
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-35245732-5', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-
-<body class="home">
-<div id='preloader'>
-    <div class='loader'>
-        <img src='images/loader.gif' alt="Sanjay Murali's Portfolio">
-    </div>
-</div>
-
-<a href='#' class='menu-btn'>
-    <span class='l1'></span>
-    <span class='l2'></span>
-    <span class='l3'></span>
-</a>
-
-<nav class='nav'>
-    <div class='v-align'>
-        <div class='inner'>
-            <ul class='menu-items'>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#home"><i
-                        class="icon-basic-home"></i><span>Home</span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#about"><i
-                        class="icon-basic-info"></i><span>About</span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#portfolio"><i
-                        class="icon-basic-case"></i><span>Portfolio</span></a></li>
-                <li class="menu-item menu-item-type-post_type menu-item-object-page"><a href="#resume"><i
-                        class="icon-ecommerce-receipt"></i><span>Resume</span></a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div id='main-wrapper'>
-    <section id="home" class="section active" data-bg='#3F51B5' data-color=''>
-
-        <div class="main-section">
-            <div class="container-fluid">
-                <div class="v-align">
-                    <div class="inner">
-                        <div class="row">
-                            <div class="col-md-offset-1 col-sm-offset-1 text-left">
-
-                                <div class="intro-text">
-
-                                    <span class="pre-heading">Hi, I am</span>
-
-                                    <!-- Your Name -->
-                                    <h2 class="name">
-                                        SANJAY MURALI
-                                    </h2>
-                                    <ul class="main-social">
-                                        <li><a href="https://www.linkedin.com/in/sanjaymurali" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li>
-                                        <li><a href="https://github.com/sanjaymurali" target="_blank"><i class="ion-social-github-outline"></i></a></li>
-                                        <li><a href="Sanjay_Murali-Resume.pdf" target="_blank"><i class="ion-android-document"></i></a></li>
-                                        <li><a href="mailto:murali.s@husky.neu.edu"><i class="ion-ios-email-outline"></i></a></li>
-                                    </ul>
-
-                                    <ul class="webdev-list list-unstyled list-inline">
-
-                                        <li><a href="https://murali-sanjay-project.herokuapp.com/" target="_blank">Web Dev Project</a></li>
-                                        <li><a href="https://murali-sanjay-webdev.herokuapp.com/assignment/login" target="_blank">Web Dev Assignment</a></li>
-                                        <li><a href="https://github.com/sanjaymurali/" target="_blank">My Github</a></li>
-                                    </ul>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="about" class="section " data-bg='#D7CCC8' data-color='dark'>
-
-        <div class="about-section">
-            <div class="section-block about-block">
-                <div class="container-fluid">
-
-                    <div class="section-header text-center">
-                        <h2>About Me</h2>
-                        <div class="divider">
-                            <img src="images/wave.png" alt>
-                        </div>
-                    </div>
-
-                    <div class="person-img text-center">
-                        <!-- Your Image -->
-                        <img src="images/sanjay_murali.png" alt>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="about-text">
-                                <p>
-                                    I am a Master's student in Computer Science at Northeastern University.
-                                    I have 1.5 years of Application Development experience which includes an internship
-                                    and a Full-Time role in India.
-                                    Currently I am the "Director of Web" for <a href="http://hackneu.com"
-                                                                                target="_blank">HackNEU</a> Hackathon
-                                    where
-                                    I designed and developed the website for the hackathon.
-                                    I love designing for the web and hence im currently looking for opportunities as a Full
-                                    Stack Developer.
-                                    Feel Free to <a href="mailto:murali.s@husky.neu.edu">contact me</a>.
-                                    Here is a downloadable form of my <a href="Sanjay_Murali-Resume.pdf">Resume</a>.
-
-                                </p>
+    <base href="/">
 
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+</head>
+<body>
 
-    </section>
-
-    <section id="portfolio" class="section " data-bg='#B2DFDB' data-color='dark'>
-
-        <div class="portfolio-section">
-            <div class="container-fluid">
-                <div class="section-header text-center">
-                    <h2>My Project</h2>
-                    <div class="divider"><img src="images/wave.png" alt></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-1">
-
-                    </div>
-                    <div class="col-md-11">
-                        <ul class="portfolio-items">
-                            <li>
-                                <div class="inner"><img src="images/portfolio/3.jpg" alt>
-                                    <div class="overlay"><a href="#hackneu" class="has-popup view-project">View
-                                        Project</a>
-                                        <div id="hackneu" class="popup-box zoom-anim-dialog mfp-hide">
-                                            <figure><img src="images/portfolio/3.jpg" alt></figure>
-                                            <div class="content"><h4>HackNEU Hackathon</h4>
-                                                <p>
-                                                    HackNEU is a student led, Graduate and PhD Hackathon hosted by Northeastern University.
-                                                    I am the "Director of Web" for HackNEU Hackathon where I designed and developed the website for the hackathon.<br/>
-                                                    Link: <a href="http://hackneu.com" target="_blank">HackNEU</a>
-                                                </p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner"><img src="images/portfolio/2.jpg" alt>
-                                    <div class="overlay"><a href="#edb" class="has-popup view-project">View
-                                        Project</a>
-                                        <div id="edb" class="popup-box zoom-anim-dialog mfp-hide">
-                                            <figure><img src="images/portfolio/2.jpg" alt></figure>
-                                            <div class="content"><h4>Entertainment-DB</h4>
-                                                <p>
-                                                    Entertainment-DB is a web-app that is built using MySQL, ExpressJS, AngularJS and NodeJS. JSON Web Tokens (JWT) is
-                                                    used to implement user session in the app.
-                                                    <br/>Link: <a href="https://entertainment-db.herokuapp.com/" target="_blank">Entertainment-DB</a>
-                                                </p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner"><img src="images/portfolio/4.jpg" alt>
-                                    <div class="overlay"><a href="#iste" class="has-popup view-project">View
-                                        Project</a>
-                                        <div id="iste" class="popup-box zoom-anim-dialog mfp-hide">
-                                            <figure><img src="images/portfolio/4.jpg" alt></figure>
-                                            <div class="content"><h4>Indian Society for Technical Education (ISTE)</h4>
-                                                <p>
-                                                    Indian Society for Technical Education (ISTE) wanted to have an online presence and i took this opportunity to design a commercial yet appealing design for them.<br/>
-                                                    Link: <a href="http://www.iste-tnp.in/" target="_blank">ISTE</a>
-                                                </p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="inner"><img src="images/portfolio/1.jpg" alt>
-                                    <div class="overlay"><a href="#cynapse14" class="has-popup view-project">View
-                                        Project</a>
-                                        <div id="cynapse14" class="popup-box zoom-anim-dialog mfp-hide">
-                                            <figure><img src="images/portfolio/1.jpg" alt></figure>
-                                            <div class="content"><h4>Cynapse'14</h4>
-                                                <p>
-                                                    Cynapse is a technical symposium organized by computer science and engineering department of R.M.K. Engineering college.<br/>
-                                                    Link: <a href="http://sanjaym.me/portfolio/cynapse14/index.html" target="_blank">Cynapse'14</a>
-                                                </p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="inner"><img src="images/portfolio/5.jpg" alt>
-                                    <div class="overlay"><a href="#sanjayblog" class="has-popup view-project">View
-                                        Project</a>
-                                        <div id="sanjayblog" class="popup-box zoom-anim-dialog mfp-hide">
-                                            <figure><img src="images/portfolio/5.jpg" alt></figure>
-                                            <div class="content"><h4>My Blog</h4>
-                                                <p>
-                                                    Writing was always fun for me, and one way to do this was to start my own blog where i could reach out to large group of people with my ideas and thoughts. I had to design the blog in such a way that the loading time is fast and the website looked cool and slick.
-                                                    <br/>
-                                                    Link: <a href="http://sanjaym.me" target="_blank">Sanjay's blog</a>
-                                                </p></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <section id="resume" class="section " data-bg='#E1BEE7' data-color='dark'>
-        <div class="resume-section">
-            <div class="section-block timeline-block">
-                <div class="container-fluid">
-
-                    <div class="section-header text-center">
-                        <h2>My Resume</h2>
-                        <div class="divider">
-                            <img src="images/wave.png" alt>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="timeline-header"><i class="icon-basic-book"></i>
-                                <h4>Education</h4>
-                            </div>
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-content">
-                                        <h4>Northeastern University</h4>
-                                        <em><span>Masters Degree in Computer Science</span><span>2016 - Present</span></em>
-                                        <p>Currently pursuing my Masters and I would be specializing in Software
-                                            Engineering and Database Managements Systems</p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-content">
-                                        <h4>Anna University</h4>
-                                        <em><span>Bachelors in Computer Science</span><span>2011 - 2015</span></em>
-                                        <p>Subjects included Data Structures, Algorithm Analysis, Software Engineering
-                                            and Object Oriented Programming</p>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="timeline-header"><i class="icon-basic-case"></i>
-                                <h4>Experience</h4>
-                            </div>
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-content"><h4>HackNEU Hackathon</h4>
-                                        <em><span>Director Of Web</span><span>Nov 2016 - Present</span></em>
-                                        <p>Hack NEU is a student led, Graduate and PhD Hackathon hosted by Northeastern
-                                            University.
-                                            <br/>
-                                            Link: <a href="http://hackneu.com" target="_blank">HackNEU</a>
-                                        </p></div>
-                                </li>
-                                <li>
-                                    <div class="timeline-content"><h4>iNautix Technologies India</h4><em><span>Application Developer</span><span>June 2015 - July 2016</span></em>
-                                        <p>Part of a team that develops APIs (Services) and the frontend for BNY
-                                            Mellon's Next gen financial service solution:
-                                            <a href="https://nexen.bnymellon.com/" target="_blank">Nexen</a>.</p></div>
-                                </li>
-                                <li>
-                                    <div class="timeline-content"><h4>iNautix Technologies India</h4><em><span>Application Developer Intern</span><span>Jan 2011 - April 2015</span></em>
-                                        <p>Submitted a Project as a part of internship program in Java using Spring MVC
-                                            for REST services and AngularJS for the front-end, which simulated a stock
-                                            market.</p></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-    </section>
-
-
-    <section id="contact" class="section " data-bg='#FFF9C4' data-color='dark'>
-
-        <div class="contact-section">
-            <div class="container-fluid">
-                <div class="section-header text-center">
-                    <h2>Contact Me</h2>
-                    <div class="divider">
-                        <img src="images/wave.png" alt>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div role="form">
-
-                            <form action="#" method="post" novalidate="novalidate">
-
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="text" name="text" value="" size="40" class="form-control"
-                                                   aria-required="true" aria-invalid="false" placeholder="Name"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <input type="email" name="email" value="" size="40" class="form-control"
-                                                   aria-required="true" aria-invalid="false" placeholder="Email"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="subject" value="" size="40" class="form-control"
-                                           aria-required="true" aria-invalid="false" placeholder="Subject"/>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="message" cols="40" rows="10" class="form-control"
-                                              aria-required="true" aria-invalid="false"
-                                              placeholder="Message"></textarea>
-
-                                </div>
-                                <div class="form-group text-center">
-                                    <input type="submit" value="Send Message"/>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
+<div class="container-fluid ng-cloak">
+    <ui-view></ui-view>
 </div>
 
 
-<script type='text/javascript' src='library/jquery.shuffle.min.js'></script>
-<script type='text/javascript' src='library/jquery.magnific-popup.min.js'></script>
-<script type='text/javascript' src='library/validator.min.js'></script>
-<script type='text/javascript' src='library/script.js'></script>
+<script src="/js/library/jquery.min.js"></script>
+<script src="/js/library/bootstrap.min.js"></script>
+<script src="/js/library/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
-<script type='text/javascript'>
-    var screenReaderText = {"expand": "expand child menu", "collapse": "collapse child menu"};
-</script>
-<script type='text/javascript' src='library/functions.js'></script>
+<script src="/js/library/angular.js"></script>
+<script src="/js/library/angular-ui-router.js"></script>
+
+<script src="/js/library/textAngular-sanitize.min.js"></script>
+
+<script src="/js/library/textAngular-rangy.min.js"></script>
+
+
+<script src="/js/library/textAngular.min.js"></script>
+
+
+<script src="app.js"></script>
+<script src="config.js"></script>
+
+<script src="services/user.service.client.js"></script>
+<script src="services/website.service.client.js"></script>
+<script src="services/page.service.client.js"></script>
+<script src="services/widget.service.client.js"></script>
+<script src="services/helper.service.client.js"></script>
+<script src="services/flickr.service.client.js"></script>
+
+<script src="views/user/controllers/login.controller.client.js"></script>
+<script src="views/user/controllers/register.controller.js"></script>
+<script src="views/user/controllers/profile.controller.client.js"></script>
+<script src="views/website/controllers/website-list.controller.client.js"></script>
+<script src="views/website/controllers/website-new.controller.client.js"></script>
+<script src="views/website/controllers/website-edit.controller.client.js"></script>
+<script src="views/page/controllers/page-list.controller.client.js"></script>
+<script src="views/page/controllers/page-new.controller.client.js"></script>
+<script src="views/page/controllers/page-edit.controller.client.js"></script>
+<script src="views/widget/controllers/widget-list.controller.client.js"></script>
+<script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+<script src="views/widget/controllers/widget-new.controller.client.js"></script>
+<script src="views/widget/controllers/widget-flickr-search.controller.client.js"></script>
+
+<script src="directives/nav.common.footer.directive.js"></script>
+<script src="directives/wbdv-sortable.js"></script>
+
 </body>
 </html>
