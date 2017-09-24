@@ -1,8 +1,4 @@
-# web-dev-template
+# Web App Maker
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+Web App Maker is part of a project submission for CS5610 Web Development. It is a way to prototype your blog/website quickly.
+
